@@ -3,7 +3,7 @@
 In this section, we first present the Sprint 4 backlog, then detail the design and implementation of key features through screenshots and diagrams.
 
 \subsection{Sprint 4 Backlog}
- 
+
 \begin{table}[!htbp]
   \centering
   \small
@@ -24,7 +24,7 @@ Figure~\ref{fig:uc_sprint4} presents the new use cases for Sprint 4, including s
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.75\textwidth]{images/usecase_sprint4.png}
+  \includegraphics[width=0.8\textwidth]{images/usecase_sprint4.png}
   \caption{Use Case Diagram – Sprint 4}
   \label{fig:uc_sprint4}
 \end{figure}
@@ -33,9 +33,8 @@ Figure~\ref{fig:uc_sprint4} presents the new use cases for Sprint 4, including s
 
 In this section, we detail each use case identified for Sprint 4.
 
-\vspace{5cm}
-
 \subsubsection{Use Case "View spending analytics"}
+
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
   \caption{Description of use case "View spending analytics"}
   \label{tab:uc_view_analytics} \\
@@ -75,12 +74,10 @@ In this section, we detail each use case identified for Sprint 4.
       \item If data processing fails, display "Failed to load analytics data".
       \item If network timeout occurs, show "Connection timeout, please retry".
     \end{enumerate} \\ \hline
-
 \end{longtable}
 
-\vspace{5cm}
-
 \subsubsection{Use Case "Generate financial reports"}
+
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
   \caption{Description of use case "Generate financial reports"}
   \label{tab:uc_generate_reports} \\
@@ -120,13 +117,14 @@ In this section, we detail each use case identified for Sprint 4.
       \item If report generation fails, display "Report generation failed, please retry".
       \item If insufficient data exists, show "Insufficient data for report generation".
     \end{enumerate} \\ \hline
-
 \end{longtable}
 
 \subsection{Sequence Diagrams}
 
 \subsubsection{Sequence Diagram - View Spending Analytics}
+
 This diagram (see figure \ref{fig:seq_view_analytics}) models the spending analytics viewing process with data retrieval and display:
+
 \begin{itemize}[nosep,leftmargin=*]
   \item Corporate user requests to display analytics data.
   \item Analytics interface submits request to analytics controller.
@@ -137,13 +135,15 @@ This diagram (see figure \ref{fig:seq_view_analytics}) models the spending analy
 
 \begin{figure}[H] 
   \centering
-  \includegraphics[width=\textwidth,keepaspectratio]{images/seq_view_spending_analytics.png}
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_view_spending_analytics.png}
   \caption{Sequence Diagram "View Spending Analytics"}
   \label{fig:seq_view_analytics}
 \end{figure}
 
 \subsubsection{Sequence Diagram - Generate Financial Reports}
+
 This diagram (see figure \ref{fig:seq_generate_reports}) shows the financial report generation process with data compilation:
+
 \begin{itemize}[nosep,leftmargin=*]
   \item Corporate user requests financial report generation.
   \item Analytics interface forwards request to analytics controller.
@@ -153,100 +153,58 @@ This diagram (see figure \ref{fig:seq_generate_reports}) shows the financial rep
 
 \begin{figure}[H] 
   \centering
-  \includegraphics[width=\textwidth,keepaspectratio]{images/seq_generate_financial_reports.png}
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_generate_financial_reports.png}
   \caption{Sequence Diagram "Generate Financial Reports"}
   \label{fig:seq_generate_reports}
 \end{figure}
-
-\subsection{Class Diagram (Sprint 4)}
-
-The enriched class diagram for Sprint 4 adds new entities for analytics and reporting:
-
-\begin{itemize}[nosep,leftmargin=*,label=—]
-  \item \textbf{SpendingAnalytics}: manages spending analytics data and calculations.
-    \begin{itemize}[nosep,leftmargin=*]
-      \item \texttt{id}: unique identifier for analytics record;
-      \item \texttt{corporateId}: associated corporate account identifier;
-      \item \texttt{period}: time period for analytics (DAILY, WEEKLY, MONTHLY);
-      \item \texttt{totalSpending}: total spending amount for the period;
-      \item \texttt{transactionCount}: number of transactions in period;
-      \item \texttt{averageTransaction}: average transaction amount;
-      \item \texttt{generatedAt}: timestamp of analytics generation.
-    \end{itemize}
-
-  \item \textbf{FinancialReport}: comprehensive financial reporting for compliance and analysis.
-    \begin{itemize}[nosep,leftmargin=*]
-      \item \texttt{id}: unique report identifier;
-      \item \texttt{corporateId}: corporate account for the report;
-      \item \texttt{reportType}: type of report (SPENDING, COMPLIANCE, AUDIT);
-      \item \texttt{startDate}: report period start date;
-      \item \texttt{endDate}: report period end date;
-      \item \texttt{generatedAt}: report generation timestamp;
-      \item \texttt{filePath}: path to generated report file;
-      \item \texttt{status}: report generation status.
-    \end{itemize}
-\end{itemize}
-
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=1\textwidth]{images/class_diagram_sprint4.png}
-%   \caption{Class Diagram – Sprint 4}
-%   \label{fig:class_sprint4}
-% \end{figure}
-
-\vspace{20cm}
 
 \subsection{CI/CD Pipeline Implementation}
 
 To ensure rapid and reliable delivery of Credix enhancements, we implemented comprehensive CI/CD pipelines for both frontend and backend components using GitHub Actions and Docker.
 
-\noindent\textbf{*GitHub Actions Pipeline:}
+\textbf{GitHub Actions Pipeline:}
 
 The workflow file \texttt{.github/workflows/ci-cd.yml} (see figure \ref{fig:github_actions_workflow}) defines the pipeline stages: code checkout, dependency installation, testing, building, and deployment to production.
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=\textwidth,keepaspectratio]{images/github_actions_workflow.png}
-%   \caption{GitHub Actions CI/CD workflow configuration}
-%   \label{fig:github_actions_workflow}
-% \end{figure}
-% \FloatBarrier
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[GitHub Actions Workflow Screenshot Placeholder]\\\vspace{0.5cm}This will show the CI/CD workflow configuration with stages:\\code checkout, dependency installation, testing, building, and deployment.\vspace{2cm}}}
+  \caption{GitHub Actions CI/CD workflow configuration}
+  \label{fig:github_actions_workflow}
+\end{figure}
 
-\noindent\textbf{*GitHub Repository:}
+\textbf{GitHub Repository:}
 
 The GitHub repository (see figure \ref{fig:github_repo_credix}) shows the automated workflow triggers on main branch commits, with status badges indicating build health.
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=\textwidth,keepaspectratio]{images/github_repo_credix.png}
-%   \caption{GitHub repository with CI/CD workflow status}
-%   \label{fig:github_repo_credix}
-% \end{figure}
-% \FloatBarrier
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[GitHub Repository Screenshot Placeholder]\\\vspace{0.5cm}This will show the repository with automated workflow triggers,\\status badges, and build health indicators.\vspace{2cm}}}
+  \caption{GitHub repository with CI/CD workflow status}
+  \label{fig:github_repo_credix}
+\end{figure}
 
-\noindent\textbf{*Docker Containerization:}
+\textbf{Docker Containerization:}
 
 The \texttt{Dockerfile} (see figure \ref{fig:dockerfile_credix}) enables consistent deployment across environments with optimized multi-stage builds.
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.7\textwidth,keepaspectratio]{images/dockerfile_credix.png}
-%   \caption{Dockerfile for Credix application containerization}
-%   \label{fig:dockerfile_credix}
-% \end{figure}
-% \FloatBarrier
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.7\textwidth}{\centering\vspace{2cm}[Dockerfile Screenshot Placeholder]\\\vspace{0.5cm}This will show the Dockerfile configuration\\for containerization with multi-stage builds.\vspace{2cm}}}
+  \caption{Dockerfile for Credix application containerization}
+  \label{fig:dockerfile_credix}
+\end{figure}
 
-\noindent\textbf{*Production Deployment:}
+\textbf{Production Deployment:}
 
 The production environment (see figure \ref{fig:production_deployment}) runs on cloud infrastructure with automated scaling and monitoring.
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=\textwidth,keepaspectratio]{images/production_deployment_credix.png}
-%   \caption{Production deployment dashboard showing system health}
-%   \label{fig:production_deployment}
-% \end{figure}
-% \FloatBarrier
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Production Deployment Screenshot Placeholder]\\\vspace{0.5cm}This will show the production environment dashboard\\with automated scaling and monitoring capabilities.\vspace{2cm}}}
+  \caption{Production deployment dashboard showing system health}
+  \label{fig:production_deployment}
+\end{figure}
 
 \subsection{Realization (Sprint 4)}
 
@@ -254,14 +212,14 @@ This section presents the interfaces and features implemented during Sprint 4, f
 
 \subsubsection{Spending analytics dashboard}
 
-The spending analytics dashboard provides comprehensive visualization of organizational spending patterns and credit usage (see Figure \ref{fig:analytics_dashboard}).
+The spending analytics dashboard provides comprehensive visualization of organizational spending patterns and credit usage.
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=\textwidth,keepaspectratio]{images/spending_analytics_dashboard.png}
-%   \caption{Spending Analytics Dashboard}
-%   \label{fig:analytics_dashboard}
-% \end{figure}
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Spending Analytics Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show interactive charts, time period filters,\\category breakdowns, and trend analysis visualizations.\vspace{2cm}}}
+  \caption{Spending Analytics Dashboard}
+  \label{fig:analytics_dashboard}
+\end{figure}
 
 — \textbf{States presented:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
@@ -286,14 +244,14 @@ The spending analytics dashboard provides comprehensive visualization of organiz
 
 \subsubsection{Financial reporting interface}
 
-The financial reporting interface enables generation of comprehensive reports for compliance and business analysis (see Figure \ref{fig:financial_reports}).
+The financial reporting interface enables generation of comprehensive reports for compliance and business analysis.
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=\textwidth,keepaspectratio]{images/financial_reporting_interface.png}
-%   \caption{Financial Reporting Interface}
-%   \label{fig:financial_reports}
-% \end{figure}
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Financial Reporting Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show report type selection, date range configuration,\\export options, and report history access.\vspace{2cm}}}
+  \caption{Financial Reporting Interface}
+  \label{fig:financial_reports}
+\end{figure}
 
 — \textbf{States presented:}
 \begin{itemize}[nosep,leftmargin=*,label=•]

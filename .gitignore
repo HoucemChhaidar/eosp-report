@@ -52,4 +52,5 @@
 
 # Latexmk and other build directories
 latex.out/
-build/
+build/ 
+out/

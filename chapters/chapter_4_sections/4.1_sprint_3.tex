@@ -19,26 +19,25 @@ In this section, we first detail the Sprint 3 backlog, then present the design a
   \end{tabular}
 \end{table}
 
-\vspace{4cm}
-
 \subsection{Use Case Diagram}
+
 Figure~\ref{fig:uc_sprint3} presents the three major use cases developed during Sprint 3: purchasing bulk credit, distributing credit across end users, and monitoring end user transactions. It illustrates their respective interactions with the \textit{Corporate} actor and the authentication system.
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.9\textwidth]{images/usecase_sprint3.png}
+\begin{figure}[H]
+   \centering
+  % replaced https URL with local image path
+  \includegraphics[width=0.8\textwidth]{images/usecase_sprint3.png}
   \caption{Use Case Diagram – Sprint 3}
   \label{fig:uc_sprint3}
 \end{figure}
 
 \subsection{Use Case Descriptions – Sprint 3}
+
 In this section, we detail each use case identified for Sprint 3.
 
-\vspace{4cm}
-
 \subsubsection{Use Case "Purchase bulk credit"}
-\begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
 
+\begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
   \caption{Description of use case "Purchase bulk credit"}
   \label{tab:uc_purchase_bulk_credit} \\
   \hline
@@ -80,12 +79,10 @@ In this section, we detail each use case identified for Sprint 3.
       \item If transaction processing fails, show "Transaction failed, please retry".
       \item If network timeout occurs, display "Connection error, please retry".
     \end{enumerate} \\ \hline
-
 \end{longtable}
 
-\vspace{1cm}
-
 \subsubsection{Use Case "Distribute credit across end users"}
+
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
   \caption{Description of use case "Distribute credit across end users"}
   \label{tab:uc_distribute_credit} \\
@@ -126,12 +123,10 @@ In this section, we detail each use case identified for Sprint 3.
       \item If transaction processing fails, show "Distribution failed, please retry".
       \item If end user account is inactive, skip and notify corporate user.
     \end{enumerate} \\ \hline
-
 \end{longtable}
 
-\vspace{3cm}
-
 \subsubsection{Use Case "Monitor end users transactions"}
+
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
   \caption{Description of use case "Monitor end users transactions"}
   \label{tab:uc_monitor_transactions} \\
@@ -158,7 +153,7 @@ In this section, we detail each use case identified for Sprint 3.
       \item Transaction data is processed and formatted for display.
       \item Interface displays transaction history with filtering options.
       \item Corporate user can view detailed transaction information.
-      \item System provides analytics and usage summaries.
+      \item System provides analytics and usage summaries for oversight.
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
@@ -170,15 +165,14 @@ In this section, we detail each use case identified for Sprint 3.
       \item If monitoring service fails, display "Failed to load transaction data".
       \item If data access is restricted, show "Insufficient permissions".
     \end{enumerate} \\ \hline
-
 \end{longtable}
-
-\vspace{5cm}
 
 \subsection{Sequence Diagrams}
 
 \subsubsection{Sequence Diagram - Purchase Bulk Credit}
+
 This diagram (see figure \ref{fig:seq_purchase_bulk_credit}) models the bulk credit purchase process with email verification and admin approval:
+
 \begin{itemize}[nosep,leftmargin=*]
   \item Corporate user initiates bulk credit purchase request.
   \item System sends email verification and waits for confirmation.
@@ -189,13 +183,16 @@ This diagram (see figure \ref{fig:seq_purchase_bulk_credit}) models the bulk cre
 
 \begin{figure}[H] 
   \centering
-  \includegraphics[width=\textwidth,keepaspectratio]{images/seq_purchase_bulk_credit.png}
+  % replaced https URL with local image path
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_purchase_bulk_credit.png}
   \caption{Sequence Diagram "Purchase Bulk Credit"}
   \label{fig:seq_purchase_bulk_credit}
 \end{figure}
 
 \subsubsection{Sequence Diagram - Distribute Credit Across End Users}
+
 This diagram (see figure \ref{fig:seq_distribute_credit}) shows the credit distribution process with balance validation:
+
 \begin{itemize}[nosep,leftmargin=*]
   \item Corporate user requests to distribute credits to end users.
   \item System validates corporate balance sufficiency.
@@ -205,42 +202,11 @@ This diagram (see figure \ref{fig:seq_distribute_credit}) shows the credit distr
 
 \begin{figure}[H] 
   \centering
-  \includegraphics[width=\textwidth,keepaspectratio]{images/seq_distribute_credit_across_end_users.png}
+  % replaced https URL with local image path
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_distribute_credit_across_end_users.png}
   \caption{Sequence Diagram "Distribute Credit Across End Users"}
   \label{fig:seq_distribute_credit}
 \end{figure}
-
-\subsection{Class Diagram (Sprint 3)}
-
-The enriched class diagram for Sprint 3 adds new business entities for credit management:
-
-\begin{itemize}[nosep,leftmargin=*]
-  \item \textbf{CorporateAccount}: manages corporate user accounts and credit balances;
-    \begin{itemize}[nosep,leftmargin=*,label=•]
-      \item corporate account identifier (\texttt{id});
-      \item organization name (\texttt{organizationName});
-      \item total credit balance (\texttt{creditBalance});
-      \item account creation date (\texttt{createdAt});
-      \item account status (\texttt{status}).
-    \end{itemize}
-
-  \item \textbf{CreditTransaction}: stores credit purchase and distribution records;
-    \begin{itemize}[nosep,leftmargin=*,label=•]
-      \item transaction identifier (\texttt{id});
-      \item corporate account reference (\texttt{corporateId});
-      \item transaction type (\texttt{type}: \texttt{PURCHASE}, \texttt{DISTRIBUTION});
-      \item credit amount (\texttt{amount});
-      \item transaction timestamp (\texttt{timestamp});
-      \item transaction status (\texttt{status}: \texttt{PENDING}, \texttt{APPROVED}, \texttt{REJECTED}).
-    \end{itemize}
-\end{itemize}
-
-% \begin{figure}[H]
-% \centering  
-% \includegraphics[width=1\textwidth]{images/class_diagram_sprint3.png}
-% \caption{Class Diagram – Sprint 3}
-% \label{fig:class_sprint3}
-% \end{figure}
 
 \subsection{Realization (Sprint 3)}
 
@@ -250,7 +216,7 @@ In this section, we present the main interfaces developed during Sprint 3, dedic
 
 The bulk credit purchase interface guides corporate users through the credit purchasing process with email verification and admin approval.
 
-\noindent\textbf{Credit Purchase Form:}
+\textbf{Credit Purchase Form:}
 
 Figure \ref{fig:credit_purchase_form} illustrates the credit purchase form, the initial step of the bulk credit acquisition process.
 
@@ -310,4 +276,36 @@ The credit distribution dashboard enables corporate users to allocate purchased 
   \item User specifies credit amounts for selected end users.
   \item System validates sufficient corporate balance for distribution.
   \item Upon confirmation, credits are distributed and balances updated.
+\end{itemize}
+
+\subsubsection{Transaction monitoring interface}
+
+The transaction monitoring interface provides comprehensive oversight of all end user transactions within the corporate organization.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Transaction Monitoring Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the monitoring dashboard with transaction history,\\filtering options, analytics summaries, and detailed transaction views.\vspace{2cm}}}
+  \caption{Transaction Monitoring Interface}
+  \label{fig:transaction_monitoring}
+\end{figure}
+
+— \textbf{States presented:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+  \item \textbf{Transaction history}  
+    Chronological display of all end user transactions.
+  \item \textbf{Filtering options}  
+    Date range, user, and transaction type filters.
+  \item \textbf{Analytics summary}  
+    Key metrics and spending patterns overview.
+  \item \textbf{Detailed views}  
+    Drill-down capability for individual transaction details.
+\end{itemize}
+
+— \textbf{Transaction monitoring flow:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+  \item Corporate user opens transaction monitoring dashboard.
+  \item System retrieves all end user transaction data.
+  \item Interface displays transaction history with filtering options.
+  \item User can apply filters and view detailed transaction information.
+  \item System provides analytics and usage summaries for oversight.
 \end{itemize}
