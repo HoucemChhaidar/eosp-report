@@ -1,66 +1,57 @@
 \section{Application Actors}
 
-The Credix application is designed to serve a diverse set of users, each with distinct roles and interactions within the digital meal voucher ecosystem. Understanding these roles is crucial for defining the specific functional and non-functional requirements of the platform.
+The Credix application is designed to serve a hierarchical credit management system with three distinct role levels. Understanding these roles is crucial for defining the specific functional and non-functional requirements of the platform.
 
 \begin{itemize}
-    \item \textbf{End-User}
+    \item \textbf{SUPER\_ADMIN}
     \begin{itemize}
-        \item \textbf{Role:} Individual employees who utilize digital meal vouchers for payments at participating vendors and manage their personal wallet.
         \item \textbf{Responsibilities:}
         \begin{itemize}
-            \item Viewing current digital wallet balance and available credit.
-            \item Generating unique, time-bound barcodes for payment transactions.
-            \item Reviewing personal transaction history and spending patterns.
-            \item Confirming payments via biometric authentication (fingerprint/FaceID).
-            \item Managing personal account settings and preferences.
+            \item Manage ADMIN users (create, edit, activate/deactivate)
+            \item Distribute bulk credit to ADMINs based on wallet transfer amounts
+            \item View all ADMINs and their wallets
+            \item Monitor system-wide activity
         \end{itemize}
-        \item \textbf{Access:}
+        \item \textbf{Key Features:}
         \begin{itemize}
-            \item Credix mobile application (Flutter-based).
-            \item Digital wallet interface with real-time balance updates.
-            \item Transaction history and payment generation features.
+            \item Admin user management dashboard
+            \item Bulk credit transfer to ADMINs
+            \item Wallet overview for all managed ADMINs
         \end{itemize}
     \end{itemize}
 
-    \item \textbf{Corporate}
+    \item \textbf{ADMIN}
     \begin{itemize}
-        \item \textbf{Role:} Corporate entities that manage meal credit benefits for their employees, including bulk purchasing, distribution, and comprehensive analytics.
         \item \textbf{Responsibilities:}
         \begin{itemize}
-            \item Purchasing bulk credit packages for organizational meal voucher programs.
-            \item Distributing credit across end users within their corporate structure.
-            \item Monitoring end user transactions and spending behaviors.
-            \item Viewing comprehensive spending analytics and usage patterns.
-            \item Generating detailed financial reports for budget management and compliance.
-            \item Setting spending policies and credit allocation rules.
+            \item Manage USER accounts (employees)
+            \item Create and manage user wallets
+            \item Set transfer amounts for each user wallet
+            \item Distribute bulk credit to users based on transfer amounts
         \end{itemize}
-        \item \textbf{Access:}
+        \item \textbf{Key Features:}
         \begin{itemize}
-            \item Corporate web dashboard (Angular-based interface).
-            \item Credit management and distribution modules.
-            \item Advanced analytics and reporting tools.
-            \item Employee account oversight and policy configuration.
+            \item User management dashboard
+            \item Wallet creation and configuration
+            \item Bulk credit distribution to employees
+            \item Transaction monitoring
         \end{itemize}
     \end{itemize}
 
-    % \item \textbf{Administrator}
-    % \begin{itemize}
-    %     \item \textbf{Role:} System administrators who oversee platform operations, user management, and system security across all Credix components.
-    %     \item \textbf{Responsibilities:}
-    %     \begin{itemize}
-    %         \item Managing user accounts across all actor types (creation, modification, deactivation).
-    %         \item Overseeing corporate bulk credit purchase approvals and validations.
-    %         \item Monitoring system performance, security, and transaction integrity.
-    %         \item Configuring system parameters and business rules.
-    %         \item Handling escalated support requests and dispute resolution.
-    %         \item Maintaining audit trails and compliance reporting.
-    %     \end{itemize}
-    %     \item \textbf{Access:}
-    %     \begin{itemize}
-    %         \item Comprehensive administrative dashboard with full system oversight.
-    %         \item User management and role assignment interfaces.
-    %         \item System monitoring and configuration tools.
-    %         \item Security and fraud detection systems.
-    %     \end{itemize}
-    % \end{itemize}
+    \item \textbf{USER}
+    \begin{itemize}
+        \item \textbf{Responsibilities:}
+        \begin{itemize}
+            \item View personal wallet balance
+            \item Access transaction history
+            \item Make transactions using wallet barcode
+            \item Manage personal profile
+        \end{itemize}
+        \item \textbf{Key Features:}
+        \begin{itemize}
+            \item Wallet balance display
+            \item Transaction history view
+            \item Barcode-based payment capability
+        \end{itemize}
+    \end{itemize}
 \end{itemize}

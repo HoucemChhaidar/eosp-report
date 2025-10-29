@@ -2,30 +2,30 @@
 
 \subsection{General presentation of the solution}
 
-To address the identified needs and overcome the shortcomings of existing applications, we propose \textbf{Credix}, a comprehensive, modular, and scalable mobile application. It centralizes the management of digital meal vouchers, secure payments, corporate credit distribution, and real-time POS integration within a secure and ergonomic interface. Designed with Flutter for the front-end and Spring Boot for the back-end, Credix relies on a robust, continuously deployed architecture via CI/CD pipelines, ensuring rapid updates, reliability, and portability across Android and iOS platforms.
+To address the identified needs and overcome the shortcomings of existing applications, we propose \textbf{Credix}, a comprehensive, modular, and scalable web-based application. It centralizes the management of digital meal vouchers, secure payments, corporate credit distribution, and real-time transaction tracking within a secure and ergonomic interface. Designed with Angular for the front-end and Spring Boot for the back-end, Credix relies on a robust, continuously deployed architecture via CI/CD pipelines, ensuring rapid updates, reliability, and accessibility from any device.
 
 \subsection{Key Solution Functions}
 
-Credix offers a suite of functionalities designed to revolutionize the meal voucher ecosystem for end-users, vendors, and corporate clients:
+Credix offers a suite of functionalities designed to streamline credit management, secure payment processing, and organizational oversight:
 
 \begin{itemize}
     \item \textbf{Secure Wallet Management and Authentication:}
-    Credix ensures secure registration and authentication for end-users, vendors, and corporate administrators through an email/password module, biometric authentication (fingerprint/FaceID), and robust role-based access control. The system manages digital wallet balances, transaction history, and tokenized user identities for enhanced security.
+    Each user is assigned a digital wallet upon account creation, identified by a unique tokenized ID. The wallet stores the user's credit balance and transaction history. Authentication is handled through secure email/password credentials with JWT token-based session management, ensuring that only authorized users can access their wallets and perform transactions.
 
     \item \textbf{Barcode Payment and Real-time Validation:}
-    The Flutter mobile application generates unique, time-bound (e.g., 30-second expiry) 1D barcodes (e.g., Code128 format) linked to the user's tokenized wallet ID. These barcodes are scanned by ASM POS terminals, which send real-time validation requests to the Spring Boot backend via a REST API. This ensures instant payment processing and eliminates the need for physical cards or vouchers.
+    Users can initiate payments by generating a unique, time-bound 1D barcode (Code128 format) directly from their wallet interface. Each barcode has a 30-second validity window to prevent unauthorized reuse or interception. Upon scanning, the Spring Boot backend validates the barcode in real-time, verifies the user's wallet balance, processes the transaction by debiting the user's wallet and crediting the merchant's account, and returns an immediate confirmation or error message.
 
-    \item \textbf{Advanced Corporate Credit Management:}
-    A dedicated corporate dashboard allows businesses to purchase credit in bulk (e.g., 10,000 TND for 9,500 TND) via bank transfer. This credit can then be distributed to employees through flexible allocation rules (e.g., fixed monthly amounts, dynamic adjustments) and managed with corporate-defined spending limits and expiry settings.
-
-    \item \textbf{Robust Fraud Detection and Security:}
-    The backend implements an intelligent fraud detection engine that blocks suspicious patterns (e.g., more than 5 transactions per minute from a single user). For high-value payments (e.g., exceeding 200 TND), an SMS One-Time Password (OTP) is required for additional verification. Wallet IDs are replaced with short-lived JWT tokens, refreshed every 24 hours, to enhance security.
+    \item \textbf{Hierarchical Credit Management:}
+    Credix implements a three-tier role-based system (SUPER\_ADMIN, ADMIN, USER) enabling efficient credit distribution across organizational hierarchies. SUPER\_ADMIN users can purchase and distribute bulk credit to ADMIN users, who in turn allocate credit to end-USER accounts. Each wallet can be configured with specific transfer amounts, allowing precise control over credit allocation limits. The system supports bulk credit transfer operations, enabling administrators to distribute credits to multiple users simultaneously based on predefined wallet transfer amounts, significantly reducing manual effort and ensuring consistent allocation.
 
     \item \textbf{Comprehensive Dashboards and Reporting:}
-    Credix provides intuitive dashboards tailored to each user role. End-users can view their balance and transaction history. Vendors access settlement reports and payment summaries. Corporate clients gain real-time insights into credit usage, employee spending, and fraud alerts through visual graphs and detailed reports. Push notifications are sent for payment confirmations, credit updates, and security alerts.
+    Administrators have access to real-time dashboards displaying credit consumption trends, user spending patterns, and transaction summaries. The system generates detailed financial reports in PDF and CSV formats, including credit allocation histories, usage summaries, and transaction details. Visual graphs and charts provide insights into spending behavior, with dynamic filtering capabilities by period, user, and transaction type. Users can view their personal transaction history and current wallet balance through intuitive interfaces.
 
-    \item \textbf{Admin and Vendor Portals:}
-    A dedicated administrative interface allows for fraud monitoring, credit issuance, and dispute resolution. The vendor portal enables businesses to scan barcodes, process payments, view real-time settlements, and access comprehensive transaction reports, streamlining their operational workflow.
+    \item \textbf{Admin and User Portals:}
+    The platform provides role-specific web interfaces tailored to each user type. SUPER\_ADMIN and ADMIN users access comprehensive management dashboards for user account creation, wallet management, bulk credit distribution, and system monitoring. End-USER accounts access simplified interfaces displaying wallet balance, transaction history, barcode generation for payments, and profile management. All interfaces are designed with responsive layouts ensuring optimal user experience across desktop and mobile devices.
+
+    \item \textbf{Robust Security Architecture:}
+    The system implements JWT-based authentication with secure token refresh mechanisms, ensuring session security without compromising user experience. All sensitive data, including wallet IDs and transaction details, are encrypted both in transit and at rest. The platform enforces role-based access control (RBAC), ensuring users can only access functionalities appropriate to their permission level. Transaction logs are maintained for audit purposes, providing complete traceability of all credit movements and system operations.
 \end{itemize}
 
 \begin{table}[!htbp]
@@ -37,38 +37,39 @@ Credix offers a suite of functionalities designed to revolutionize the meal vouc
         \hline
         \textbf{Functionality} & \textbf{Existing Solutions} & \textbf{Credix (Our Project)} \\ 
         \hline
-        Digital-First Payment (No Physical Vouchers/Cards) 
-        & \textcolor{orange}{\ding{70}} Partial (hybrid systems)
-        & \textcolor{green}{\ding{51}} Fully digital with mobile-first approach \\
+        Hierarchical Credit Distribution
+        & \textcolor{orange}{\ding{70}} Limited hierarchy support
+        & \textcolor{green}{\ding{51}} Three-tier role-based distribution system \\
         \hline
-        Seamless ASM POS Integration
-        & \textcolor{red}{\ding{55}} No
-        & \textcolor{green}{\ding{51}} Native integration with real-time synchronization \\
+        Time-Bound Barcode Payments
+        & \textcolor{red}{\ding{55}} Static QR codes or no barcode support
+        & \textcolor{green}{\ding{51}} 30-second validity window with Code128 format \\
         \hline
-        Advanced Corporate Credit Controls
-        & \textcolor{orange}{\ding{70}} Basic controls
-        & \textcolor{green}{\ding{51}} Dynamic allocation with real-time monitoring \\
+        Web-Based Administration
+        & \textcolor{orange}{\ding{70}} Desktop applications required
+        & \textcolor{green}{\ding{51}} Modern Angular interface accessible anywhere \\
+        \hline
+        Bulk Credit Transfer Operations
+        & \textcolor{red}{\ding{55}} Manual individual transfers
+        & \textcolor{green}{\ding{51}} Automated bulk transfers with predefined amounts \\
         \hline
         Real-time Transaction Processing
-        & \textcolor{orange}{\ding{70}} Limited (batch processing)
-        & \textcolor{green}{\ding{51}} Instant processing with immediate confirmation \\
+        & \textcolor{orange}{\ding{70}} Delayed batch processing
+        & \textcolor{green}{\ding{51}} Instant validation and wallet updates \\
         \hline
-        Robust Security (Biometric, Tokenization, OTP)
-        & \textcolor{orange}{\ding{70}} Basic security measures
-        & \textcolor{green}{\ding{51}} Multi-layer security with biometric authentication \\
+        Configurable Wallet Transfer Limits
+        & \textcolor{orange}{\ding{70}} Fixed allocation rules
+        & \textcolor{green}{\ding{51}} Flexible per-wallet transfer amount configuration \\
         \hline
-        Intuitive User Experience
-        & \textcolor{red}{\ding{55}} Poor UX design
-        & \textcolor{green}{\ding{51}} Modern, user-centric interface design \\
+        Role-Based Access Control
+        & \textcolor{orange}{\ding{70}} Basic user permissions
+        & \textcolor{green}{\ding{51}} Comprehensive three-tier permission system \\
         \hline
-        Comprehensive Vendor Discovery
-        & \textcolor{orange}{\ding{70}} Limited vendor listings
-        & \textcolor{green}{\ding{51}} Enhanced location-based vendor discovery \\
-        \hline
-        Multi-Category Retail Support
-        & \textcolor{red}{\ding{55}} Restaurant-focused only
-        & \textcolor{green}{\ding{51}} All retail categories (markets, boutiques, pharmacies) \\
+        Scalable Architecture
+        & \textcolor{orange}{\ding{70}} Monolithic systems
+        & \textcolor{green}{\ding{51}} Spring Boot microservices with PostgreSQL \\
         \hline
     \end{tabularx}
 \end{table}
-The entirety of these functionalities, supported by a robust technical architecture and an automated DevOps process, offers a coherent, secure, and perfectly adapted user experience to the expectations of end-users, vendors, and professional corporate clients in the digital meal voucher ecosystem.
+
+The entirety of these functionalities, supported by a robust technical architecture and an automated DevOps process, offers a coherent, secure, and perfectly adapted user experience to the expectations of organizations in the digital meal voucher ecosystem.

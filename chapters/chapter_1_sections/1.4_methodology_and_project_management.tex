@@ -63,13 +63,11 @@ Each sprint included a selection of user stories—descriptions of product featu
 Prior to the core development cycle, we conducted a two-week preliminary phase commonly referred to as a \textbf{Sprint 0}. This initial sprint was dedicated to project setup and team onboarding, and included the following activities:
 
 \begin{itemize}
-    \item Environment setup: installation and configuration of Flutter SDK, JDK, MongoDB, and Spring Boot dependencies.
+    \item Environment setup: installation and configuration of Angular CLI, JDK, PostgreSQL, and Spring Boot dependencies.
     \item Initialization of the Git repository with clear branching strategy and commit conventions.
     \item Configuration of CI/CD pipelines using GitHub Actions for both frontend and backend components.
-    \item Technical onboarding and knowledge-sharing sessions on key technologies: Flutter, Spring Boot, and the BLoC pattern.
+    \item Technical onboarding and knowledge-sharing sessions on key technologies: Angular, Spring Boot, and RESTful API design.
 \end{itemize}
-
-Sprint 0 established a solid technical foundation but is not included in the four main development sprints outlined below. Each of the subsequent sprints had a duration of four weeks and was concluded with a sprint review to demonstrate deliverables, gather feedback, and plan improvements for the following iteration.
 
 \vspace{1em}
 \begin{longtable}{|p{3cm}|p{10cm}|p{2cm}|}
@@ -95,18 +93,18 @@ Sprint 0 established a solid technical foundation but is not included in the fou
 \textbf{Sprint 1} & 
 \begin{itemize}
   \item Secure authentication (registration, login, JWT)
-  \item Role-based access for End-User, Vendor, Corporate
-  \item Biometric auth integration (Flutter)
+  \item Role-based access for SUPER\_ADMIN, ADMIN, USER
   \item Wallet balance + transaction view
+  \item User profile management
 \end{itemize}
 & 4 weeks \\
 \hline
 
 \textbf{Sprint 2} & 
 \begin{itemize}
-  \item Barcode payment + validation API
-  \item POS integration and fraud detection rules
-  \item Offline mode for POS/mobile
+  \item Barcode generation for wallet payments (30-second validity)
+  \item Payment validation API
+  \item Transaction processing and recording
   \item Payment confirmation logic
 \end{itemize}
 & 4 weeks \\
@@ -114,20 +112,17 @@ Sprint 0 established a solid technical foundation but is not included in the fou
 
 \textbf{Sprint 3} & 
 \begin{itemize}
-  \item Purchase bulk credit functionality
-  \item Distribute credit across end users
-  \item Monitor end users transactions
-  \item Corporate authentication and authorization
+  \item Hierarchical credit distribution (SUPER\_ADMIN to ADMIN to USER)
+  \item Bulk credit transfer functionality
+  \item Wallet transfer amount configuration
 \end{itemize}
 & 4 weeks \\
 \hline
 
 \textbf{Sprint 4} & 
 \begin{itemize}
-  \item View spending analytics dashboard
-  \item Generate financial reports (CSV/PDF)
+  \item View analytics dashboard
   \item CI/CD pipelines and deployment automation
-  \item Performance monitoring and optimization
 \end{itemize}
 & 4 weeks \\
 \hline
@@ -140,8 +135,8 @@ Sprint 0 established a solid technical foundation but is not included in the fou
 To align with Scrum methodology, the project is structured into two releases, each covering two sprints of four weeks:
 
 \begin{itemize}[nosep]
-  \item \textbf{Release 1}: covers Sprints 1 and 2, focusing on user authentication, wallet and transaction features, and payment validation logic.
-  \item \textbf{Release 2}: covers Sprints 3 and 4, dedicated to Credit Management features, Stats \& Deployment features, and performance optimization.
+  \item \textbf{Release 1}: covers Sprints 1 and 2, focusing on user authentication, role-based access control, wallet management, and barcode-based payment validation.
+  \item \textbf{Release 2}: covers Sprints 3 and 4, dedicated to hierarchical credit distribution, analytics dashboards, reporting features, and deployment automation.
 \end{itemize}
 
 \begin{figure}[htbp]

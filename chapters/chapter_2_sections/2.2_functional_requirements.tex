@@ -2,51 +2,39 @@
 
 Functional requirements describe the set of services and interactions that the system must provide to satisfy the users of Credix. They are organized according to the sprint-based development approach, covering core payment functionality, credit management capabilities, analytics and reporting features, and system administration.
 
-\subsection{Core Payment Processing}
+\subsection{User and Account Management (Sprint 1)}
 \begin{itemize}
-    \item Generation of unique, time-bound (e.g., 30-second expiry) 1D barcodes (e.g., Code128 format) linked to the End-User's tokenized wallet ID.
-    \item Real-time validation of barcode payments by the Spring Boot backend upon scanning by ASM POS terminals.
-    \item Processing of payment transactions, including debiting the End-User's wallet and crediting the Vendor's account.
-    \item Implementation of fraud detection rules (e.g., >5 transactions/min from one user) to block suspicious payments.
-    \item Requirement of SMS One-Time Password (OTP) for payments exceeding a predefined threshold (e.g., 200 TND).
-    \item Display of current digital wallet balance for End-Users with real-time updates.
+    \item Creation, modification, and logical deletion of accounts (SUPER\_ADMIN, ADMIN, USER).
+    \item Secure authentication (email/password, JWT, token refresh).
+    \item Management of roles and permissions according to user type.
+    \item Hierarchical account management (SUPER\_ADMIN manages ADMINs, ADMINs manage USERs).
+    \item User account management within the organizational structure (addition, removal, status tracking).
+\end{itemize}
+
+\subsection{Core Payment Processing (Sprint 2)}
+\begin{itemize}
+    \item Generation of unique, time-bound (e.g., 30-second expiry) 1D barcodes (e.g., Code128 format) linked to the user's tokenized wallet ID.
+    \item Real-time validation of barcode payments by the Spring Boot backend upon scanning.
+    \item Processing of payment transactions, including debiting the user's wallet and crediting the merchant's account.
+    \item Display of current digital wallet balance for users with real-time updates.
 \end{itemize}
 
 \subsection{Credit Management (Sprint 3)}
 \begin{itemize}
-    \item \textbf{Bulk Credit Purchase}: Corporate clients can purchase credit in bulk through secure payment gateways with admin approval workflow.
-    \item \textbf{Credit Distribution}: Allocation and de-allocation of credit to individual employees by Corporate clients with customizable spending limits.
-    \item \textbf{Transaction Monitoring}: Real-time tracking of employee transactions, credit consumption, and remaining balances.
-    \item Management of corporate credit pools, including top-up functionalities and expiry settings.
-    \item Enforcement of corporate-defined spending policies (monthly limits, daily limits, vendor restrictions).
-    \item Email notifications for credit allocation, depletion alerts, and policy violations.
+    \item \textbf{Bulk Credit Distribution}: SUPER\_ADMIN can distribute credit in bulk to ADMIN users based on predefined wallet transfer amounts.
+    \item \textbf{Credit Allocation}: ADMIN users can allocate and de-allocate credit to individual USER accounts with customizable spending limits.
+    \item \textbf{Transaction Monitoring}: Real-time tracking of user transactions, credit consumption, and remaining balances across the hierarchy.
+    \item Management of credit pools at each level, including top-up functionalities and balance tracking.
+    \item Enforcement of spending policies and limits at both ADMIN and USER levels.
+    \item Notifications for credit allocation, depletion alerts, and policy violations.
 \end{itemize}
 
 \subsection{Analytics and Reporting (Sprint 4)}
 \begin{itemize}
-    \item \textbf{Spending Analytics}: Interactive dashboards displaying credit consumption trends, employee spending patterns, and vendor analysis.
+    \item \textbf{Spending Analytics}: Interactive dashboards displaying credit consumption trends, user spending patterns, and transaction analysis.
     \item \textbf{Financial Reports}: Generation of comprehensive financial reports (credit allocation, usage summaries, transaction details) in PDF/CSV formats.
-    \item Graphical visualization of key metrics with dynamic filtering capabilities (period, user, vendor, transaction type).
+    \item Graphical visualization of key metrics with dynamic filtering capabilities (period, user, transaction type).
     \item Real-time analytics updates with drill-down capabilities for detailed transaction analysis.
-    \item Automated report scheduling and delivery to corporate stakeholders.
-    \item Comparative analytics across different time periods and employee groups.
-\end{itemize}
-
-\subsection{User and Account Management}
-\begin{itemize}
-    \item Creation, modification, and logical deletion of accounts (End-User, Vendor, Corporate, Administrator).
-    \item Secure authentication (email/password, JWT, token refresh, biometric authentication for End-Users).
-    \item Management of roles and permissions according to user type.
-    \item Corporate account creation, modification, and management.
-    \item Employee account management within corporate structures (addition, removal, status tracking).
-\end{itemize}
-
-\subsection{System Administration and Security}
-\begin{itemize}
-    \item Administrator dashboard for real-time system monitoring, fraud alerts, and user activity logs.
-    \item System alerts for fraud attempts, system errors, or critical events.
-    \item Secure tokenization of wallet IDs and sensitive data encryption.
-    \item Multi-language support for notifications and interfaces (English, French, Arabic).
-    \item Vendor dashboard displaying daily transaction summaries, settlement status, and payment history.
-    \item Push notifications for all user types with customizable alert preferences.
+    \item Automated report scheduling and delivery to administrators.
+    \item Comparative analytics across different time periods and user groups.
 \end{itemize}
