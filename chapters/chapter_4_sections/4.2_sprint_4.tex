@@ -12,15 +12,13 @@ In this section, we first present the Sprint 4 backlog, then detail the design a
   \begin{tabular}{|p{1cm}|p{5cm}|p{6cm}|p{2cm}|}
     \hline
     \textbf{ID} & \textbf{User Story} & \textbf{Description} & \textbf{Priority} \\ \hline
-    US10 & View spending analytics & As a corporate user, I want to view comprehensive spending analytics to understand transaction patterns and credit usage across my organization. & Critical \\ \hline
-    US11 & Generate financial reports & As a corporate user, I want to generate detailed financial reports for compliance and business analysis purposes. & High \\ \hline
-    US12 & CI/CD pipeline optimization & As a development team, we want automated testing, building, and deployment pipelines to ensure rapid and reliable releases. & High \\ \hline
+    US10 & View analytics & As an Admin, I want to view comprehensive analytics to understand transaction patterns and credit usage across my organization. & Critical \\ \hline
   \end{tabular}
 \end{table}
 
 \subsection{Use Case Diagram}
 
-Figure~\ref{fig:uc_sprint4} presents the new use cases for Sprint 4, including spending analytics viewing, financial report generation, and system deployment activities.
+Figure~\ref{fig:uc_sprint4} presents the use case for Sprint 4: viewing analytics for comprehensive system insights.
 
 \begin{figure}[H]
   \centering
@@ -31,41 +29,41 @@ Figure~\ref{fig:uc_sprint4} presents the new use cases for Sprint 4, including s
 
 \subsection{Use Case Descriptions – Sprint 4}
 
-In this section, we detail each use case identified for Sprint 4.
+In this section, we detail the use case identified for Sprint 4.
 
-\subsubsection{Use Case "View spending analytics"}
+\subsubsection{Use Case "View analytics"}
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "View spending analytics"}
+  \caption{Description of use case "View analytics"}
   \label{tab:uc_view_analytics} \\
   \hline
-  \textbf{Title} & View spending analytics \\ \hline
-  \textbf{Actors} & Corporate \\ \hline
-  \textbf{Description} & Corporate user views comprehensive spending analytics to understand transaction patterns, credit usage, and organizational financial behavior. \\ \hline
+  \textbf{Title} & View analytics \\ \hline
+  \textbf{Actors} & Admin \\ \hline
+  \textbf{Description} & Admin views comprehensive analytics to understand transaction patterns, credit usage, and organizational financial behavior. \\ \hline
   \textbf{Preconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
-      \item Corporate user is authenticated with analytics access permissions.
+      \item Admin is authenticated with analytics access permissions.
       \item Historical transaction data is available in the analytics system.
       \item Analytics controller is operational and responsive.
     \end{itemize} \\ \hline
   \textbf{Postconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
       \item Analytics data is retrieved and displayed in interactive charts.
-      \item Corporate user can filter and analyze spending patterns.
+      \item Admin can filter and analyze spending patterns.
       \item Analytics viewing activity is logged for audit purposes.
     \end{itemize} \\ \hline
   \textbf{Main Scenario} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item Corporate user requests to display analytics dashboard.
+      \item Admin requests to display analytics dashboard.
       \item Analytics interface submits request to analytics controller.
       \item Analytics controller processes request and retrieves data.
       \item System returns analytics data to the interface.
-      \item Interface displays spending data in charts and graphs.
-      \item Corporate user can interact with analytics and apply filters.
+      \item Interface displays data in charts and graphs.
+      \item Admin can interact with analytics and apply filters.
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item If no analytics data exists, display "No spending data available".
+      \item If no analytics data exists, display "No data available".
       \item If date range filter returns no results, show "No data for selected period".
     \end{enumerate} \\ \hline
   \textbf{Exception Scenarios} &
@@ -76,91 +74,30 @@ In this section, we detail each use case identified for Sprint 4.
     \end{enumerate} \\ \hline
 \end{longtable}
 
-\subsubsection{Use Case "Generate financial reports"}
-
-\begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "Generate financial reports"}
-  \label{tab:uc_generate_reports} \\
-  \hline
-  \textbf{Title} & Generate financial reports \\ \hline
-  \textbf{Actors} & Corporate \\ \hline
-  \textbf{Description} & Corporate user generates comprehensive financial reports for compliance, auditing, and business analysis purposes with detailed transaction summaries. \\ \hline
-  \textbf{Preconditions} & 
-    \begin{itemize}[nosep,leftmargin=*]
-      \item Corporate user is authenticated with report generation permissions.
-      \item Financial data is available in the analytics system.
-      \item Report generation service is operational.
-    \end{itemize} \\ \hline
-  \textbf{Postconditions} & 
-    \begin{itemize}[nosep,leftmargin=*]
-      \item Financial report is generated and available for download.
-      \item Report generation activity is logged for compliance.
-      \item Corporate user receives confirmation of successful report creation.
-    \end{itemize} \\ \hline
-  \textbf{Main Scenario} &
-    \begin{enumerate}[nosep,leftmargin=*]
-      \item Corporate user requests to generate financial reports.
-      \item Analytics interface submits report generation request.
-      \item Analytics controller processes request and compiles data.
-      \item System returns compiled report data to interface.
-      \item Interface displays report data and provides download options.
-      \item Corporate user can download or view the generated report.
-    \end{enumerate} \\ \hline
-  \textbf{Alternative Scenarios} &
-    \begin{enumerate}[nosep,leftmargin=*]
-      \item If report generation takes time, show progress indicator.
-      \item If user cancels generation, stop processing and return to dashboard.
-    \end{enumerate} \\ \hline
-  \textbf{Exception Scenarios} &
-    \begin{enumerate}[nosep,leftmargin=*]
-      \item If analytics service returns exception, pass error message to interface.
-      \item If report generation fails, display "Report generation failed, please retry".
-      \item If insufficient data exists, show "Insufficient data for report generation".
-    \end{enumerate} \\ \hline
-\end{longtable}
-
 \subsection{Sequence Diagrams}
 
-\subsubsection{Sequence Diagram - View Spending Analytics}
+\subsubsection{Sequence Diagram - View Analytics}
 
-This diagram (see figure \ref{fig:seq_view_analytics}) models the spending analytics viewing process with data retrieval and display:
+This diagram (see figure \ref{fig:seq_view_analytics}) models the analytics viewing process with data retrieval and display:
 
 \begin{itemize}[nosep,leftmargin=*]
-  \item Corporate user requests to display analytics data.
+  \item Admin requests to display analytics data.
   \item Analytics interface submits request to analytics controller.
   \item Controller processes request and retrieves analytics data.
   \item System returns data for display in interactive charts.
   \item Error handling provides appropriate feedback for failures.
 \end{itemize}
 
-% \begin{figure}[H] 
-%   \centering
-%   \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_view_spending_analytics.png}
-%   \caption{Sequence Diagram "View Spending Analytics"}
-%   \label{fig:seq_view_analytics}
-% \end{figure}
-
-\subsubsection{Sequence Diagram - Generate Financial Reports}
-
-This diagram (see figure \ref{fig:seq_generate_reports}) shows the financial report generation process with data compilation:
-
-\begin{itemize}[nosep,leftmargin=*]
-  \item Corporate user requests financial report generation.
-  \item Analytics interface forwards request to analytics controller.
-  \item Controller processes and compiles financial data into reports.
-  \item System returns compiled report data for download or viewing.
-\end{itemize}
-
-% \begin{figure}[H] 
-%   \centering
-%   \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_generate_financial_reports.png}
-%   \caption{Sequence Diagram "Generate Financial Reports"}
-%   \label{fig:seq_generate_reports}
-% \end{figure}
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_view_analytics.png}
+  \caption{Sequence Diagram "View Analytics"}
+  \label{fig:seq_view_analytics}
+\end{figure}
 
 \subsection{CI/CD Pipeline Implementation}
 
-To ensure rapid and reliable delivery of Credix enhancements, we implemented comprehensive CI/CD pipelines for both frontend and backend components using GitHub Actions and Docker.
+To ensure rapid and reliable delivery of Credix enhancements, we implemented comprehensive CI/CD pipelines for both frontend and backend components using GitHub Actions and Docker. While not represented as a use case in the diagram, this technical implementation is crucial for system deployment and maintenance.
 
 \textbf{GitHub Actions Pipeline:}
 
@@ -208,68 +145,36 @@ The production environment (see figure \ref{fig:production_deployment}) runs on 
 
 \subsection{Realization (Sprint 4)}
 
-This section presents the interfaces and features implemented during Sprint 4, focusing on spending analytics, financial reporting, and deployment capabilities. Each interface is illustrated with screenshots and accompanied by functionality descriptions.
+This section presents the interfaces and features implemented during Sprint 4, focusing on analytics visualization and deployment capabilities. Each interface is illustrated with screenshots and accompanied by functionality descriptions.
 
-\subsubsection{Spending analytics dashboard}
+\subsubsection{Analytics Dashboard}
 
-The spending analytics dashboard provides comprehensive visualization of organizational spending patterns and credit usage.
+The analytics dashboard provides comprehensive visualization of organizational transaction patterns and credit usage.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Spending Analytics Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show interactive charts, time period filters,\\category breakdowns, and trend analysis visualizations.\vspace{2cm}}}
-  \caption{Spending Analytics Dashboard}
-  \label{fig:analytics_dashboard}
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Analytics Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show interactive charts, time period filters,\\category breakdowns, and trend analysis visualizations.\vspace{3cm}}}
+  \caption{Analytics Dashboard}
+  \label{fig:sprint4_analytics_dashboard}
 \end{figure}
 
 — \textbf{States presented:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
   \item \textbf{Interactive charts}  
-    Visual representation of spending patterns with drill-down capabilities.
+    Visual representation of transaction patterns with drill-down capabilities.
   \item \textbf{Time period filters}  
     Selection of daily, weekly, monthly, or custom date ranges.
   \item \textbf{Category breakdown}  
-    Spending analysis by transaction type and user groups.
+    Analysis by transaction type and user groups.
   \item \textbf{Trend analysis}  
-    Historical trends and predictive spending insights.
+    Historical trends and usage insights.
 \end{itemize}
 
 — \textbf{Analytics viewing flow:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
-  \item Corporate user accesses analytics dashboard.
+  \item Admin accesses analytics dashboard.
   \item System retrieves and processes historical transaction data.
-  \item Analytics controller compiles spending metrics and patterns.
+  \item Analytics controller compiles metrics and patterns.
   \item Interface displays interactive charts and filtering options.
-  \item User can explore data through various visualization options.
-\end{itemize}
-
-\subsubsection{Financial reporting interface}
-
-The financial reporting interface enables generation of comprehensive reports for compliance and business analysis.
-
-\begin{figure}[H]
-  \centering
-  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Financial Reporting Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show report type selection, date range configuration,\\export options, and report history access.\vspace{2cm}}}
-  \caption{Financial Reporting Interface}
-  \label{fig:financial_reports}
-\end{figure}
-
-— \textbf{States presented:}
-\begin{itemize}[nosep,leftmargin=*,label=•]
-  \item \textbf{Report type selection}  
-    Choice of spending reports, compliance reports, or audit trails.
-  \item \textbf{Date range configuration}  
-    Flexible date range selection for report generation.
-  \item \textbf{Export options}  
-    Multiple format options (PDF, Excel, CSV) for report download.
-  \item \textbf{Report history}  
-    Access to previously generated reports and templates.
-\end{itemize}
-
-— \textbf{Report generation flow:}
-\begin{itemize}[nosep,leftmargin=*,label=•]
-  \item Corporate user selects report type and parameters.
-  \item System compiles financial data based on specified criteria.
-  \item Analytics controller processes and formats report data.
-  \item Generated report is made available for download or viewing.
-  \item Report generation activity is logged for compliance tracking.
+  \item Admin can explore data through various visualization options.
 \end{itemize}

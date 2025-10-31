@@ -8,7 +8,7 @@ To ensure better scalability, a clear separation of responsibilities, and the po
 
 \begin{itemize}
     \item \textbf{Layer Decoupling:} The front-end (Flutter) communicates via HTTP with a Spring Boot back-end, which exposes REST APIs. This allows the user interface to evolve independently of the business logic.
-    \item \textbf{Service Reusability:} Each core component (e.g., authentication, payment processing, corporate credit management, fraud detection) becomes a distinct, reusable service.
+    \item \textbf{Service Reusability:} Each core component (e.g., authentication, payment processing, admin credit management, fraud detection) becomes a distinct, reusable service.
     \item \textbf{Fine-grained Scalability:} Critical services (e.g., real-time payment validation, fraud engine) can be scaled autonomously based on load, without impacting the other services.
     \item \textbf{Third-party Service Integration:} We seamlessly integrate with external services, notably ASM POS APIs for barcode scanning and validation, without additional complexity in the core business code.
     \item \textbf{Resilience and Maintenance:} In case of a service failure (e.g., a specific payment gateway issue), the rest of the application continues to function, and each service can be updated or redeployed separately, ensuring high availability.
@@ -37,8 +37,8 @@ The Spring Boot back-end is structured into three main layers:
 
 \begin{itemize}
     \item \textbf{Controllers Layer:} Exposes the REST APIs for the Flutter front-end and handles incoming requests from ASM POS systems. It acts as the entry point for all client and third-party interactions.
-    \item \textbf{Business Layer (Services):} Implements the core business rules, including user authentication and authorization, payment processing logic, corporate credit management workflows, fraud detection algorithms, and data validation.
-    \item \textbf{Data Access Layer (Repositories \& Persistence):} Defines Spring Data interfaces (e.g., JPA Repositories) and manages persistence in the PostgreSQL database for all application data, such as user profiles, transaction records, corporate accounts, and audit logs.
+    \item \textbf{Business Layer (Services):} Implements the core business rules, including user authentication and authorization, payment processing logic, admin credit management workflows, fraud detection algorithms, and data validation.
+    \item \textbf{Data Access Layer (Repositories \& Persistence):} Defines Spring Data interfaces (e.g., JPA Repositories) and manages persistence in the PostgreSQL database for all application data, such as user profiles, transaction records, admin accounts, and audit logs.
 \end{itemize}
 
 \subsection{Frontend Components}

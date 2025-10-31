@@ -2,7 +2,7 @@
 
 \subsection{Sprint 1 Backlog}
 
-The first sprint focuses on establishing the fundamental authentication infrastructure and user management capabilities for the Credix mobile payment application. This sprint implements role-based access control distinguishing between Corporate Admins and End Users, with automatic wallet creation upon user account setup. The following table presents the user stories prioritized for this sprint:
+The first sprint focuses on establishing the fundamental authentication infrastructure and user management capabilities for the Credix mobile payment application. This sprint implements a three-tier role-based access control system distinguishing between Super Admin, Admin, and End User, with automatic wallet creation upon user account setup. The following table presents the user stories prioritized for this sprint:
 
 \begin{table}[!htbp]
   \centering
@@ -12,16 +12,19 @@ The first sprint focuses on establishing the fundamental authentication infrastr
   \begin{tabular}{|p{1.5cm}|p{3.5cm}|p{7cm}|p{2cm}|}
     \hline
     \textbf{ID} & \textbf{User Story} & \textbf{Description} & \textbf{Priority} \\ \hline
-    US1 & Secure Authentication for Corporate Admins  
-      & As a corporate admin, I want to authenticate using secure credentials so that I can access the admin dashboard safely and receive a JWT containing my role.  
+    US1 & Secure Authentication for All Users  
+      & As a user (Super Admin, Admin, or End User), I want to authenticate using secure credentials so that I can access the appropriate dashboard safely and receive a JWT containing my role.  
       & Critical \\ \hline
-    US2 & Manage End User Accounts  
-      & As a corporate admin, I want to create, update, and delete end user accounts to control who has access to the payment system.  
+    US2 & Manage Admin Accounts  
+      & As a Super Admin, I want to create, update, delete, and view admin accounts to control who has administrative access to the system.  
+      & Critical \\ \hline
+    US3 & Manage End User Accounts  
+      & As an Admin, I want to create, update, delete, and view end user accounts to control who has access to the payment system.  
       & High \\ \hline
-    US3 & Secure Authentication for End Users  
-      & As an end user, I want to log in with my corporate-provided credentials so that I can access my wallet securely.  
+    US4 & Manage Wallets  
+      & As an Admin, I want to create, update, delete, and view end user wallets to manage the payment infrastructure.  
       & High \\ \hline
-    US4 & Automatic Wallet Creation  
+    US5 & Automatic Wallet Creation  
       & As an end user, I want my wallet to be created automatically upon account creation so that I can start using the payment system immediately.  
       & Medium \\ \hline
   \end{tabular}
@@ -29,7 +32,7 @@ The first sprint focuses on establishing the fundamental authentication infrastr
 
 \subsection{Use Case Diagram}
 
-The following diagram illustrates the main use cases implemented during Sprint 1, showing the interactions between the Corporate Admin actor and the system functionalities for user and wallet management.
+The following diagram illustrates the main use cases implemented during Sprint 1, showing the interactions between Super Admin and Admin actors with the system functionalities for user and wallet management.
 
 \begin{figure}[H]
   \centering
@@ -48,22 +51,22 @@ The following diagram illustrates the main use cases implemented during Sprint 1
         \caption{Description of Use Case « Manage End Users »}
   \label{tab:uc_manage_end_users} \\\hline
   \textbf{Title} & Manage End Users \\ \hline
-  \textbf{Primary Actor} & Corporate Admin \\ \hline
-  \textbf{Description} & This use case allows the corporate admin to:
+  \textbf{Primary Actor} & Admin \\ \hline
+  \textbf{Description} & This use case allows the Admin to:
     \begin{itemize}[nosep,leftmargin=*]
       \item create, update, or delete end user accounts;
       \item assign secure login credentials;
       \item enable or disable access to the payment system;
       \item view the list of users and their statuses.
     \end{itemize} \\ \hline
-        \textbf{Preconditions} & The corporate admin is authenticated and has the rights to manage user accounts. \\ \hline
-    \textbf{Postconditions} & User accounts are created, updated, or deleted; wallets are automatically created for new users. \\ \hline
+        \textbf{Preconditions} & The Admin is authenticated and has the rights to manage end user accounts. \\ \hline
+    \textbf{Postconditions} & End user accounts are created, updated, or deleted; wallets are automatically created for new users. \\ \hline
     \textbf{Nominal Scenario} &
       \begin{enumerate}[nosep,leftmargin=*]
-        \item The admin accesses the user management interface.
-        \item The system displays the list of existing accounts with their statuses.
-        \item The admin chooses to add, modify, or delete an account.
-        \item The admin enters or modifies account information (email, password, role).
+        \item The Admin accesses the user management interface.
+        \item The system displays the list of existing end user accounts with their statuses.
+        \item The Admin chooses to add, modify, or delete an account.
+        \item The Admin enters or modifies account information (email, password).
         \item The system validates the data and records the modification.
         \item For a new user, the system automatically creates a wallet.
         \item The system confirms the update of user accounts.
@@ -72,7 +75,7 @@ The following diagram illustrates the main use cases implemented during Sprint 1
       \begin{enumerate}[nosep,leftmargin=*]
         \item If a required field is empty, the system displays « Required Field » and blocks the action.
         \item If the email already exists, the system displays « User already exists ».
-        \item If the admin cancels the action, no modification is made.
+        \item If the Admin cancels the action, no modification is made.
       \end{enumerate} \\ \hline
     \textbf{Exception Scenarios} &
       \begin{enumerate}[nosep,leftmargin=*]
@@ -89,22 +92,22 @@ The following diagram illustrates the main use cases implemented during Sprint 1
   \label{tab:uc_manage_wallets} \\
   \hline
   \textbf{Title} & Manage Wallets \\ \hline
-  \textbf{Primary Actor} & Corporate Admin \\ \hline
-  \textbf{Description} & This use case allows the corporate admin to create, view, and modify end user wallets. \\ \hline
-  \textbf{Preconditions} & The admin is authenticated and has the right to manage wallets. \\ \hline
-\textbf{Postconditions} & The wallet is created, updated, or viewed, and its status is updated in the system. \\ \hline
+  \textbf{Primary Actor} & Admin \\ \hline
+  \textbf{Description} & This use case allows the Admin to create, view, update, and delete end user wallets. \\ \hline
+  \textbf{Preconditions} & The Admin is authenticated and has the right to manage wallets. \\ \hline
+\textbf{Postconditions} & The wallet is created, updated, deleted, or viewed, and its status is updated in the system. \\ \hline
   \textbf{Nominal Scenario} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item The admin navigates to the wallet management interface.
-      \item The admin selects a user and chooses « Create », « Update » or « View ».
-      \item The admin enters or modifies wallet details (initial balance, status).
+      \item The Admin navigates to the wallet management interface.
+      \item The Admin selects a user and chooses « Create », « Update », « Delete », or « View ».
+      \item The Admin enters or modifies wallet details (initial balance, status).
       \item The system generates a unique tokenizedId for the new wallet.
       \item The system records the wallet and displays a success message.
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
       \item If the user already has a wallet, the system displays « Wallet already exists ».
-      \item If the admin cancels the action, the wallet remains unchanged.
+      \item If the Admin cancels the action, the wallet remains unchanged.
     \end{enumerate} \\ \hline
   \textbf{Exception Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
@@ -114,14 +117,48 @@ The following diagram illustrates the main use cases implemented during Sprint 1
 
 \clearpage
 
-\subsubsection{UC3: Authenticate}
+\subsubsection{UC3: Manage Admins}
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+      \caption{Description of Use Case « Manage Admins »}
+  \label{tab:uc_manage_admins} \\
+  \hline
+  \textbf{Title} & Manage Admins \\ \hline
+  \textbf{Primary Actor} & Super Admin \\ \hline
+  \textbf{Description} & This use case allows the Super Admin to create, view, update, and delete admin accounts. \\ \hline
+  \textbf{Preconditions} & The Super Admin is authenticated and has the right to manage admin accounts. \\ \hline
+\textbf{Postconditions} & Admin accounts are created, updated, deleted, or viewed, and their status is updated in the system. \\ \hline
+  \textbf{Nominal Scenario} &
+    \begin{enumerate}[nosep,leftmargin=*]
+      \item The Super Admin navigates to the admin management interface.
+      \item The system displays the list of existing admin accounts with their statuses.
+      \item The Super Admin chooses « Create », « Update », « Delete », or « View ».
+      \item The Super Admin enters or modifies admin account information (email, password).
+      \item The system validates the data and records the modification.
+      \item The system confirms the update of admin accounts.
+    \end{enumerate} \\ \hline
+  \textbf{Alternative Scenarios} &
+    \begin{enumerate}[nosep,leftmargin=*]
+      \item If a required field is empty, the system displays « Required Field » and blocks the action.
+      \item If the email already exists, the system displays « Admin already exists ».
+      \item If the Super Admin cancels the action, no modification is made.
+    \end{enumerate} \\ \hline
+  \textbf{Exception Scenarios} &
+    \begin{enumerate}[nosep,leftmargin=*]
+      \item In case of server error or database issue, the system displays « Internal error, please try again ».
+    \end{enumerate} \\ \hline
+\end{longtable}
+
+\clearpage
+
+\subsubsection{UC4: Authenticate}
 
 \begin{longtable}{|p{4cm}|p{11cm}|}
       \caption{Description of Use Case « Authenticate »}
   \label{tab:uc_authenticate} \\
   \hline
   \textbf{Title} & Authenticate \\ \hline
-  \textbf{Primary Actor} & End User / Corporate Admin \\ \hline
+  \textbf{Primary Actor} & Super Admin / Admin / End User \\ \hline
   \textbf{Description} & This use case allows users to authenticate into the system with their credentials to access appropriate functionalities based on their role. \\ \hline
   \textbf{Preconditions} & The user has valid credentials and the application is accessible. \\ \hline
 \textbf{Postconditions} & The user is authenticated, receives a JWT token, and accesses the role-appropriate interface. \\ \hline
@@ -131,7 +168,7 @@ The following diagram illustrates the main use cases implemented during Sprint 1
       \item The user enters their email and password.
       \item The system validates the credentials against the database.
       \item The system generates a JWT token containing role information.
-      \item The user is redirected to the appropriate interface (admin dashboard or user wallet).
+      \item The user is redirected to the appropriate interface (Super Admin dashboard, Admin dashboard, or User wallet).
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
@@ -152,7 +189,7 @@ The following sequence diagrams illustrate the main interactions between differe
 
 \subsubsection{Authentication Sequence Diagram}
 
-This diagram illustrates the authentication process where a user (either end user or corporate admin) enters their credentials. The authentication interface transmits this information to the authentication controller, which validates credentials through the user service against the database. Upon successful validation, a JWT token is generated and returned; otherwise, an error message is displayed.
+This diagram illustrates the authentication process where a user (Super Admin, Admin, or End User) enters their credentials. The authentication interface transmits this information to the authentication controller, which validates credentials through the user model against the database. Upon successful validation, a JWT token is generated and returned; otherwise, an error message is displayed.
 
 \begin{figure}[H]
 \centering
@@ -163,7 +200,7 @@ This diagram illustrates the authentication process where a user (either end use
 
 \subsubsection{User Creation Sequence Diagram}
 
-This diagram shows the user creation process initiated by a corporate admin. The admin submits user details through the interface, which are processed by the user controller and service. The system validates the data, checks for existing users, creates the new user account, and automatically triggers wallet creation for the new user.
+This diagram shows the user creation process initiated by an Admin. The Admin submits user details through the interface, which are processed by the user controller. The system validates the data, checks for existing users, creates the new user account, and automatically triggers wallet creation for the new end user.
 
 \begin{figure}[H]
 \centering
@@ -177,14 +214,14 @@ This diagram shows the user creation process initiated by a corporate admin. The
 The Sprint 1 class diagram, presented in Figure~\ref{fig:class_sprint1}, establishes the foundational business entities and their relationships:
 
 \begin{itemize}[nosep,leftmargin=*]
-\item \textbf{User}: Base entity with email, password, and timestamps
-\item \textbf{Admin}: Inherits from User, represents corporate administrators
-\item \textbf{End User}: Inherits from User, represents wallet owners
-\item \textbf{Corporate}: Entity representing the corporate organization
-\item \textbf{Wallet}: Digital wallet with tokenizedId, balance, and status
+\item \textbf{User}: Base entity with email, password, and timestamps (createdAt, updatedAt)
+\item \textbf{Super Admin}: Inherits from User, manages Admin accounts
+\item \textbf{Admin}: Inherits from User, manages End User accounts and Wallets
+\item \textbf{End User}: Inherits from User, owns a Wallet
+\item \textbf{Wallet}: Digital wallet with tokenizedId, balance, isActive status, timestamps, and transferAmount
 \end{itemize}
 
-The diagram shows inheritance relationships between User and its subclasses (Admin, End User), as well as the association between Corporate and End User entities. Each End User owns exactly one Wallet, establishing a one-to-one relationship.
+The diagram shows inheritance relationships between User and its subclasses (Super Admin, Admin, End User). Super Admin manages Admins, Admin manages End Users and Wallets, and each End User owns exactly one Wallet, establishing a one-to-one relationship.
 
 \begin{figure}[H]
 \centering
@@ -193,18 +230,25 @@ The diagram shows inheritance relationships between User and its subclasses (Adm
 \label{fig:class_sprint1}
 \end{figure}
 
-\subsection{Implementation (Sprint 1)}
+\subsection{Realization (Sprint 1)}
 
-In this section, we present the main interfaces developed during Sprint 1, focused on secure authentication and user management. The implementation covers both mobile application interfaces for end users and web dashboard interfaces for corporate administrators.
+In this section, we present the main interfaces developed during Sprint 1, focused on secure authentication and user management. The implementation covers both web application interfaces for Super Admins and Admins, and user interfaces for End Users. Each interface is illustrated with screenshots and accompanied by functionality descriptions.
 
 \subsubsection{Authentication Interface}
 
-The login interface provides secure access for both end users and corporate administrators. The interface adapts based on user role, redirecting to appropriate dashboards upon successful authentication.
+The login interface provides secure access for all user types: Super Admin, Admin, and End User. The interface adapts based on user role, redirecting to appropriate dashboards upon successful authentication.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Authentication Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the login form with email and password fields,\\role-based authentication, JWT token generation, and error handling.\vspace{3cm}}}
+  \caption{Authentication Interface}
+  \label{fig:sprint1_auth_interface}
+\end{figure}
 
 — \textbf{Key Features:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
 \item Email and password input fields with validation
-\item Role-based redirection (admin dashboard vs user wallet)
+\item Role-based redirection (Super Admin dashboard, Admin dashboard, or User wallet)
 \item JWT token generation and secure storage
 \item Error handling for invalid credentials and network issues
 \end{itemize}
@@ -217,14 +261,48 @@ The login interface provides secure access for both end users and corporate admi
 \item On failure: Clear error message displayed with retry option
 \end{itemize}
 
-\subsubsection{Corporate Admin Dashboard}
+\subsubsection{Super Admin Dashboard}
 
-The web-based admin dashboard provides comprehensive user and wallet management capabilities for corporate administrators.
+The web-based Super Admin dashboard provides comprehensive admin account management capabilities.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Super Admin Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show admin management interface with create, update, delete, and view\\capabilities, system oversight, audit logging, and role-based access control.\vspace{3cm}}}
+  \caption{Super Admin Dashboard}
+  \label{fig:sprint1_superadmin_dashboard}
+\end{figure}
+
+— \textbf{Key Features:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Admin management: Create, update, delete, and view admin accounts
+\item System oversight and monitoring capabilities
+\item Audit logging for all Super Admin actions
+\item Secure role-based access control
+\end{itemize}
+
+— \textbf{Super Admin Workflow:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Super Admin authenticates and accesses management dashboard
+\item Creates admin accounts with secure credentials
+\item Monitors admin activity and system health
+\item Manages admin permissions and access levels
+\end{itemize}
+
+\subsubsection{Admin Dashboard}
+
+The web-based Admin dashboard provides comprehensive user and wallet management capabilities.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Admin Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show user and wallet management interface with create, update, delete,\\and view capabilities, bulk operations, and audit logging.\vspace{3cm}}}
+  \caption{Admin Dashboard}
+  \label{fig:sprint1_admin_dashboard}
+\end{figure}
 
 — \textbf{Key Features:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
 \item User management: Create, update, delete, and view end user accounts
-\item Wallet management: Create wallets, view balances, and monitor status
+\item Wallet management: Create, update, delete, and view wallets with balances and status
 \item Bulk operations for efficient user onboarding
 \item Audit logging for all administrative actions
 \end{itemize}
@@ -232,21 +310,28 @@ The web-based admin dashboard provides comprehensive user and wallet management 
 — \textbf{Admin Workflow:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
 \item Admin authenticates and accesses management dashboard
-\item Creates end user accounts with corporate email addresses
+\item Creates end user accounts with secure credentials
 \item System automatically generates wallets for new users
 \item Admin can monitor user activity and wallet status
 \end{itemize}
 
-\subsubsection{End User Mobile Interface}
+\subsubsection{End User Interface}
 
-The mobile application provides end users with secure access to their wallet information and basic account management.
+The web application provides end users with secure access to their wallet information and basic account management.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[End User Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the user wallet interface with balance display, account information,\\profile management, and responsive design for various devices.\vspace{3cm}}}
+  \caption{End User Interface}
+  \label{fig:sprint1_user_interface}
+\end{figure}
 
 — \textbf{Key Features:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
-\item Secure login with corporate credentials
+\item Secure login with credentials
 \item Wallet balance display and account information
 \item Profile management and security settings
-\item Responsive design optimized for mobile devices
+\item Responsive design optimized for various devices
 \end{itemize}
 
 — \textbf{User Experience:}

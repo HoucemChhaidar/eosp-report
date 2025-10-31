@@ -13,15 +13,14 @@ In this section, we first detail the Sprint 3 backlog, then present the design a
   \begin{tabular}{|p{1cm}|p{4cm}|p{7cm}|p{2cm}|}
     \hline
     \textbf{ID} & \textbf{User Story}               & \textbf{Description}                                                                                             & \textbf{Priority} \\ \hline
-    US7         & Purchase bulk credit & As a corporate user, I want to purchase bulk credit for my organization to enable payment transactions for end users. & High            \\ \hline
-    US8         & Distribute credit across end users       & As a corporate user, I want to distribute purchased credit across my end users to enable their payment capabilities. & Critical         \\ \hline
-    US9         & Monitor end users transactions       & As a corporate user, I want to monitor all end user transactions to track credit usage and maintain oversight. & Medium          \\ \hline
+    US7         & Purchase bulk credit & As an Admin, I want to purchase bulk credit for my organization to enable payment transactions for end users. & High            \\ \hline
+    US8         & Distribute credit across users       & As an Admin, I want to distribute purchased credit across end users to enable their payment capabilities. & Critical         \\ \hline
   \end{tabular}
 \end{table}
 
 \subsection{Use Case Diagram}
 
-Figure~\ref{fig:uc_sprint3} presents the three major use cases developed during Sprint 3: purchasing bulk credit, distributing credit across end users, and monitoring end user transactions. It illustrates their respective interactions with the \textit{Corporate} actor and the authentication system.
+Figure~\ref{fig:uc_sprint3} presents the two major use cases developed during Sprint 3: purchasing bulk credit and distributing credit across users. It illustrates their respective interactions with the \textit{Admin} actor and the authentication system.
 
 \begin{figure}[H]
    \centering
@@ -41,128 +40,86 @@ In this section, we detail each use case identified for Sprint 3.
   \label{tab:uc_purchase_bulk_credit} \\
   \hline
   \textbf{Title} & Purchase bulk credit \\ \hline
-  \textbf{Actors} & Corporate \\ \hline
-  \textbf{Description} & The corporate user purchases bulk credit for their organization through email verification and admin approval process. \\ \hline
+  \textbf{Actors} & Admin \\ \hline
+  \textbf{Description} & The Admin purchases bulk credit for their organization through email verification and Super Admin approval process. \\ \hline
   \textbf{Preconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
-      \item The corporate user is authenticated with valid credentials.
-      \item The corporate user has sufficient funds or valid payment method.
-      \item Admin server is available for transaction processing.
+      \item The Admin is authenticated with valid credentials.
+      \item The Admin has sufficient funds or valid payment method.
+      \item Super Admin server is available for transaction processing.
     \end{itemize} \\ \hline
   \textbf{Postconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
-      \item Bulk credit is purchased and added to corporate balance.
+      \item Bulk credit is purchased and added to Admin balance.
       \item Transaction record is created with purchase details.
-      \item Corporate user receives confirmation of successful purchase.
+      \item Admin receives confirmation of successful purchase.
     \end{itemize} \\ \hline
   \textbf{Main Scenario} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item Corporate user selects "Purchase Bulk Credit" option.
+      \item Admin selects "Purchase Bulk Credit" option.
       \item System displays credit purchase form with amount selection.
-      \item Corporate user enters desired credit amount and confirms.
-      \item System sends email verification to corporate user.
-      \item Corporate user confirms via email verification link.
-      \item System forwards transaction to admin server for processing.
-      \item Admin accepts the payment and provides credit to corporate.
-      \item System updates corporate total balance with purchased credit.
-      \item Corporate user receives success confirmation message.
+      \item Admin enters desired credit amount and confirms.
+      \item System sends email verification to Admin.
+      \item Admin confirms via email verification link.
+      \item System forwards transaction to Super Admin server for processing.
+      \item Super Admin accepts the payment and provides credit to Admin.
+      \item System updates Admin total balance with purchased credit.
+      \item Admin receives success confirmation message.
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item If corporate user cancels purchase, return to main dashboard.
+      \item If Admin cancels purchase, return to main dashboard.
       \item If email verification expires, resend verification email.
     \end{enumerate} \\ \hline
   \textbf{Exception Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item If admin refuses payment, display "Payment rejected" with rejection email.
+      \item If Super Admin refuses payment, display "Payment rejected" with rejection email.
       \item If transaction processing fails, show "Transaction failed, please retry".
       \item If network timeout occurs, display "Connection error, please retry".
     \end{enumerate} \\ \hline
 \end{longtable}
 
-\subsubsection{Use Case "Distribute credit across end users"}
+\subsubsection{Use Case "Distribute credit across users"}
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "Distribute credit across end users"}
+  \caption{Description of use case "Distribute credit across users"}
   \label{tab:uc_distribute_credit} \\
   \hline
-  \textbf{Title} & Distribute credit across end users \\ \hline
-  \textbf{Actors} & Corporate \\ \hline
-  \textbf{Description} & Corporate user distributes purchased credit to end users within their organization, with balance validation and transaction processing. \\ \hline
+  \textbf{Title} & Distribute credit across users \\ \hline
+  \textbf{Actors} & Admin \\ \hline
+  \textbf{Description} & Admin distributes purchased credit to end users within their organization, with balance validation and transaction processing. \\ \hline
   \textbf{Preconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
-      \item Corporate user is authenticated and has sufficient credit balance.
-      \item End users are registered within the corporate organization.
+      \item Admin is authenticated and has sufficient credit balance.
+      \item End users are registered within the organization.
       \item Transaction controller is operational for processing.
     \end{itemize} \\ \hline
   \textbf{Postconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
       \item Credit is successfully distributed to selected end users.
-      \item Corporate balance is reduced by distributed amount.
+      \item Admin balance is reduced by distributed amount.
       \item End users receive credit allocation notifications.
     \end{itemize} \\ \hline
   \textbf{Main Scenario} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item Corporate user selects "Distribute Credit" option.
+      \item Admin selects "Distribute Credit" option.
       \item System displays list of end users and distribution form.
-      \item Corporate user selects end users and specifies credit amounts.
-      \item System validates corporate balance sufficiency.
+      \item Admin selects end users and specifies credit amounts.
+      \item System validates Admin balance sufficiency.
       \item Transaction controller processes credit distribution.
-      \item System updates corporate balance and end user balances.
-      \item Corporate user receives success confirmation message.
+      \item System updates Admin balance and end user balances.
+      \item Admin receives success confirmation message.
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item If corporate user modifies distribution, recalculate totals.
+      \item If Admin modifies distribution, recalculate totals.
       \item If partial distribution succeeds, show successful and failed allocations.
     \end{enumerate} \\ \hline
   \textbf{Exception Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
       \item If insufficient balance, display "Not enough balance, credit distribution cancelled".
       \item If transaction processing fails, show "Distribution failed, please retry".
-      \item If end user account is inactive, skip and notify corporate user.
-    \end{enumerate} \\ \hline
-\end{longtable}
-
-\subsubsection{Use Case "Monitor end users transactions"}
-
-\begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "Monitor end users transactions"}
-  \label{tab:uc_monitor_transactions} \\
-  \hline
-  \textbf{Title} & Monitor end users transactions \\ \hline
-  \textbf{Actors} & Corporate \\ \hline
-  \textbf{Description} & Corporate user monitors all end user transactions within their organization to track credit usage and maintain oversight. \\ \hline
-  \textbf{Preconditions} & 
-    \begin{itemize}[nosep,leftmargin=*]
-      \item Corporate user is authenticated with monitoring permissions.
-      \item Transaction data is available in the system database.
-      \item End users have performed transactions to monitor.
-    \end{itemize} \\ \hline
-  \textbf{Postconditions} & 
-    \begin{itemize}[nosep,leftmargin=*]
-      \item Transaction monitoring data is retrieved and displayed.
-      \item Corporate user can filter and analyze transaction patterns.
-      \item Monitoring activity is logged for audit purposes.
-    \end{itemize} \\ \hline
- \textbf{Main Scenario} &
-    \begin{enumerate}[nosep,leftmargin=*]
-      \item Corporate user opens "Monitor Transactions" dashboard.
-      \item System retrieves all end user transaction data.
-      \item Transaction data is processed and formatted for display.
-      \item Interface displays transaction history with filtering options.
-      \item Corporate user can view detailed transaction information.
-      \item System provides analytics and usage summaries for oversight.
-    \end{enumerate} \\ \hline
-  \textbf{Alternative Scenarios} &
-    \begin{enumerate}[nosep,leftmargin=*]
-      \item If no transactions exist, display "No transactions found".
-      \item If date filter returns no results, show "No results for selected period".
-    \end{enumerate} \\ \hline
-  \textbf{Exception Scenarios} &
-    \begin{enumerate}[nosep,leftmargin=*]
-      \item If monitoring service fails, display "Failed to load transaction data".
-      \item If data access is restricted, show "Insufficient permissions".
+      \item If end user account is inactive, skip and notify Admin.
     \end{enumerate} \\ \hline
 \end{longtable}
 
@@ -170,14 +127,14 @@ In this section, we detail each use case identified for Sprint 3.
 
 \subsubsection{Sequence Diagram - Purchase Bulk Credit}
 
-This diagram (see figure \ref{fig:seq_purchase_bulk_credit}) models the bulk credit purchase process with email verification and admin approval:
+This diagram (see figure \ref{fig:seq_purchase_bulk_credit}) models the bulk credit purchase process with email verification and Super Admin approval:
 
 \begin{itemize}[nosep,leftmargin=*]
-  \item Corporate user initiates bulk credit purchase request.
+  \item Admin initiates bulk credit purchase request.
   \item System sends email verification and waits for confirmation.
-  \item Upon email confirmation, transaction is forwarded to admin server.
-  \item Admin processes payment and either accepts or refuses the transaction.
-  \item System updates corporate balance and provides confirmation.
+  \item Upon email confirmation, transaction is forwarded to Super Admin server.
+  \item Super Admin processes payment and either accepts or refuses the transaction.
+  \item System updates Admin balance and provides confirmation.
 \end{itemize}
 
 \begin{figure}[H] 
@@ -187,122 +144,88 @@ This diagram (see figure \ref{fig:seq_purchase_bulk_credit}) models the bulk cre
   \label{fig:seq_purchase_bulk_credit}
 \end{figure}
 
-\subsubsection{Sequence Diagram - Distribute Credit Across End Users}
+\subsubsection{Sequence Diagram - Distribute Credit Across Users}
 
 This diagram (see figure \ref{fig:seq_distribute_credit}) shows the credit distribution process with balance validation:
 
 \begin{itemize}[nosep,leftmargin=*]
-  \item Corporate user requests to distribute credits to end users.
-  \item System validates corporate balance sufficiency.
+  \item Admin requests to distribute credits to end users.
+  \item System validates Admin balance sufficiency.
   \item Transaction controller processes the credit distribution.
   \item System updates balances and provides success confirmation.
 \end{itemize}
 
-% \begin{figure}[H] 
-%   \centering
-%   \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_distribute_credit_across_end_users.png}
-%   \caption{Sequence Diagram "Distribute Credit Across End Users"}
-%   \label{fig:seq_distribute_credit}
-% \end{figure}
+\begin{figure}[H] 
+  \centering
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_distribute_credit_across_users.png}
+  \caption{Sequence Diagram "Distribute Credit Across Users"}
+  \label{fig:seq_distribute_credit}
+\end{figure}
 
 \subsection{Realization (Sprint 3)}
 
-In this section, we present the main interfaces developed during Sprint 3, dedicated to credit management functionality. This work involved implementing bulk credit purchasing, credit distribution systems, and transaction monitoring capabilities. Each interface is illustrated with screenshots and accompanied by descriptions of functionality and user journey.
+In this section, we present the main interfaces developed during Sprint 3, dedicated to credit management functionality. This work involved implementing bulk credit purchasing and credit distribution systems. Each interface is illustrated with screenshots and accompanied by descriptions of functionality and user journey.
 
-\subsubsection{Bulk credit purchase interface}
+\subsubsection{Bulk Credit Purchase Interface}
 
-The bulk credit purchase interface guides corporate users through the credit purchasing process with email verification and admin approval.
+The bulk credit purchase interface guides Admins through the credit purchasing process with email verification and Super Admin approval.
 
-\textbf{Credit Purchase Form:}
-
-Figure \ref{fig:credit_purchase_form} illustrates the credit purchase form, the initial step of the bulk credit acquisition process.
-
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.8\textwidth,keepaspectratio]{images/credit_purchase_form.png}
-%   \caption{Credit purchase form with amount selection}
-%   \label{fig:credit_purchase_form}
-% \end{figure}
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Bulk Credit Purchase Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the credit purchase form with amount selection, payment method,\\email verification process, and Super Admin approval workflow.\vspace{3cm}}}
+  \caption{Bulk Credit Purchase Interface}
+  \label{fig:sprint3_purchase_interface}
+\end{figure}
 
 — \textbf{States presented:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
   \item \textbf{Amount selection}  
-    Corporate user selects desired credit amount with pricing display.
+    Admin selects desired credit amount with pricing display.
   \item \textbf{Payment method}  
     Selection of payment method and billing information.
   \item \textbf{Email verification}  
     System sends verification email for transaction security.
+  \item \textbf{Super Admin approval}  
+    Transaction forwarded to Super Admin for processing.
 \end{itemize}
 
 — \textbf{Credit purchase flow:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
-  \item Corporate user is authenticated and accesses purchase form.
-  \item User selects credit amount and confirms purchase details.
+  \item Admin is authenticated and accesses purchase form.
+  \item Admin selects credit amount and confirms purchase details.
   \item System sends email verification for security confirmation.
-  \item Upon email verification, transaction is sent to admin for approval.
-  \item Admin processes payment and credits are added to corporate balance.
+  \item Upon email verification, transaction is sent to Super Admin for approval.
+  \item Super Admin processes payment and credits are added to Admin balance.
 \end{itemize}
 
-\subsubsection{Credit distribution dashboard}
+\subsubsection{Credit Distribution Dashboard}
 
-The credit distribution dashboard enables corporate users to allocate purchased credit across their end users (see Figure \ref{fig:credit_distribution}).
+The credit distribution dashboard enables Admins to allocate purchased credit across their end users.
 
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=\textwidth,keepaspectratio]{images/credit_distribution_dashboard.png}
-%   \caption{Credit Distribution Dashboard}
-%   \label{fig:credit_distribution}
-% \end{figure}
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Credit Distribution Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show the end user list, credit allocation inputs, balance validation,\\and distribution confirmation with real-time balance updates.\vspace{3cm}}}
+  \caption{Credit Distribution Dashboard}
+  \label{fig:sprint3_distribution_interface}
+\end{figure}
 
 — \textbf{States presented:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
   \item \textbf{End user list}  
-    Display of all end users within the corporate organization.
+    Display of all end users within the organization.
   \item \textbf{Credit allocation}  
     Input fields for specifying credit amounts per user.
   \item \textbf{Balance validation}  
-    Real-time validation of sufficient corporate balance.
+    Real-time validation of sufficient Admin balance.
   \item \textbf{Distribution confirmation}  
     Summary and confirmation of credit distribution.
 \end{itemize}
 
 — \textbf{Credit distribution flow:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
-  \item Corporate user accesses distribution dashboard.
+  \item Admin accesses distribution dashboard.
   \item System displays list of end users and current balances.
-  \item User specifies credit amounts for selected end users.
-  \item System validates sufficient corporate balance for distribution.
+  \item Admin specifies credit amounts for selected end users.
+  \item System validates sufficient Admin balance for distribution.
   \item Upon confirmation, credits are distributed and balances updated.
-\end{itemize}
-
-\subsubsection{Transaction monitoring interface}
-
-The transaction monitoring interface provides comprehensive oversight of all end user transactions within the corporate organization.
-
-\begin{figure}[H]
-  \centering
-  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Transaction Monitoring Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the monitoring dashboard with transaction history,\\filtering options, analytics summaries, and detailed transaction views.\vspace{2cm}}}
-  \caption{Transaction Monitoring Interface}
-  \label{fig:transaction_monitoring}
-\end{figure}
-
-— \textbf{States presented:}
-\begin{itemize}[nosep,leftmargin=*,label=•]
-  \item \textbf{Transaction history}  
-    Chronological display of all end user transactions.
-  \item \textbf{Filtering options}  
-    Date range, user, and transaction type filters.
-  \item \textbf{Analytics summary}  
-    Key metrics and spending patterns overview.
-  \item \textbf{Detailed views}  
-    Drill-down capability for individual transaction details.
-\end{itemize}
-
-— \textbf{Transaction monitoring flow:}
-\begin{itemize}[nosep,leftmargin=*,label=•]
-  \item Corporate user opens transaction monitoring dashboard.
-  \item System retrieves all end user transaction data.
-  \item Interface displays transaction history with filtering options.
-  \item User can apply filters and view detailed transaction information.
-  \item System provides analytics and usage summaries for oversight.
 \end{itemize}

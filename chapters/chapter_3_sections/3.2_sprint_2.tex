@@ -1,8 +1,38 @@
 \section{Sprint 2 - Transaction Management}
 
+\subsection{Sprint 2 Backlog}
+
+The second sprint focuses on implementing transaction management capabilities for the Credix mobile payment application. This sprint enables end users to view their wallet balance, transaction history, available stores, generate time-bound barcodes for payments, and receive real-time transaction confirmations. The following table presents the user stories prioritized for this sprint:
+
+\begin{table}[!htbp]
+  \centering
+  \small
+  \caption{Sprint 2 Backlog - Transaction Management}
+  \label{tab:sprint2_backlog}
+  \begin{tabular}{|p{1.5cm}|p{4cm}|p{6.5cm}|p{2cm}|}
+    \hline
+    \textbf{ID} & \textbf{User Story} & \textbf{Description} & \textbf{Priority} \\ \hline
+    US4 & Generate Time-bound Barcode  
+      & As an end user, I want to generate a secure, time-bound barcode containing my wallet's tokenizedId for payment processing.  
+      & Critical \\ \hline
+    US5 & View Real-time Transaction Confirmation  
+      & As an end user, I want to receive immediate confirmation and detailed information about completed payment transactions.  
+      & Critical \\ \hline
+    US6 & View Balance  
+      & As an end user, I want to view my current wallet balance with real-time updates and refresh capabilities.  
+      & High \\ \hline
+    US7 & View Transactions History  
+      & As an end user, I want to access my complete transaction history with filtering and search capabilities.  
+      & High \\ \hline
+    US8 & View Stores  
+      & As an end user, I want to view a list of stores where I can use my wallet for payments, including store details and locations.  
+      & Medium \\ \hline
+  \end{tabular}
+\end{table}
+
 \subsection{Use Case Diagram}
 
-The following diagram illustrates the main use cases implemented during Sprint 2, showing the interactions between End Users and the transaction management system, focusing on barcode generation, payment processing, and transaction history management.
+The following diagram illustrates the main use cases implemented during Sprint 2, showing the interactions between End Users and the transaction management system, focusing on wallet balance viewing, transaction history, store listings, barcode generation, and real-time transaction confirmation.
 
 \begin{figure}[H]
 \centering
@@ -21,7 +51,7 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \textbf{Use Case Name} & Generate Time-bound Barcode \\
 \hline
-\textbf{Description} & This use case allows end users to generate a secure, time-bound barcode containing their wallet's tokenizedId for payment processing at vendor locations. \\
+\textbf{Description} & This use case allows end users to generate a secure, time-bound barcode containing their wallet's tokenizedId for payment processing. \\
 \hline
 \textbf{Primary Actor} & End User \\
 \hline
@@ -31,14 +61,13 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \begin{itemize}[nosep,leftmargin=*]
 \item End user is authenticated and has access to their wallet
 \item Wallet exists and is active in the system
-\item Mobile device has barcode display capability
 \end{itemize} \\
 \hline
 \textbf{Postconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
 \item Time-bound barcode is generated using wallet's tokenizedId
-\item Barcode expires after 30 seconds for security
-\item User can present barcode to vendor for scanning
+\item Barcode expires after a set time period for security
+\item User can regenerate barcode as needed
 \end{itemize} \\
 \hline
 \textbf{Main Flow} & 
@@ -46,18 +75,16 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \item End user opens wallet application and navigates to payment section
 \item User selects "Generate Payment Barcode" option
 \item System retrieves user's wallet tokenizedId from database
-\item System generates Code128 barcode encoding the tokenizedId
-\item System displays barcode on screen with 30-second countdown timer
-\item User presents device screen to vendor for barcode scanning
-\item Barcode automatically expires after 30 seconds for security
+\item System generates barcode encoding the tokenizedId
+\item System displays barcode on screen with countdown timer
+\item Barcode automatically expires after the time limit for security
 \item User can regenerate new barcode if needed
 \end{enumerate} \\
 \hline
 \textbf{Alternative Flow} & 
 \begin{itemize}[nosep,leftmargin=*]
 \item \textbf{A1:} Barcode expires - User can generate new barcode immediately
-\item \textbf{A2:} Screen brightness adjustment - System automatically increases brightness for better scanning
-\item \textbf{A3:} Multiple payment attempts - User can generate multiple barcodes in sequence
+\item \textbf{A2:} Multiple payment attempts - User can generate multiple barcodes in sequence
 \end{itemize} \\
 \hline
 \textbf{Exception Flow} & 
@@ -81,12 +108,11 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \textbf{Primary Actor} & End User \\
 \hline
-\textbf{Secondary Actor} & Transaction System, ASM POS Integration \\
+\textbf{Secondary Actor} & Transaction System \\
 \hline
 \textbf{Preconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
 \item User has initiated a payment transaction
-\item Vendor has scanned user's barcode
 \item Payment processing is in progress
 \end{itemize} \\
 \hline
@@ -99,12 +125,11 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \textbf{Main Flow} & 
 \begin{enumerate}[nosep,leftmargin=*]
-\item User presents barcode to vendor for scanning
-\item Vendor scans barcode and enters transaction amount
-\item System processes payment through ASM POS integration
+\item User initiates a payment transaction
+\item System processes payment through the transaction controller
 \item System validates transaction and updates wallet balance
 \item User receives real-time notification of successful payment
-\item System displays transaction confirmation with details (amount, timestamp, vendor, balance)
+\item System displays transaction confirmation with details (amount, timestamp, store, balance)
 \item User can view digital receipt immediately
 \end{enumerate} \\
 \hline
@@ -155,7 +180,7 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \item User opens wallet application home screen
 \item System automatically retrieves current wallet balance
 \item System displays balance prominently on home interface
-\item User can pull-to-refresh to update balance manually
+\item User can refresh to update balance manually
 \item System shows last updated timestamp for transparency
 \item Balance updates automatically after transactions
 \end{enumerate} \\
@@ -206,10 +231,10 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \item User navigates to "Transaction History" from main menu
 \item System retrieves all transactions associated with user's wallet
 \item System displays transactions in reverse chronological order
-\item Each transaction shows: date, amount, vendor, status, and type
+\item Each transaction shows: date, amount, store, status, and type
 \item User can tap on any transaction to view detailed information
 \item Detailed view includes: transaction ID, timestamp, description, receipt
-\item User can filter transactions by date range, amount, or vendor
+\item User can filter transactions by date range, amount, or store
 \item User can search transactions using keywords
 \end{enumerate} \\
 \hline
@@ -218,6 +243,7 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \item \textbf{A1:} No transactions - System displays empty state with helpful guidance
 \item \textbf{A2:} Large transaction history - System implements pagination for performance
 \item \textbf{A3:} Export functionality - User can export transaction history as PDF/CSV
+\item \textbf{A4:} Print receipt - User can print individual transaction receipts
 \end{itemize} \\
 \hline
 \textbf{Exception Flow} & 
@@ -225,6 +251,59 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \item \textbf{E1:} Data loading failure - System displays cached transactions with sync indicator
 \item \textbf{E2:} Corrupted transaction data - System displays available information with error notice
 \item \textbf{E3:} Network timeout - System shows retry option with offline data
+\end{itemize} \\
+\hline
+\end{longtable}
+
+\subsubsection{UC8: View Stores}
+
+\begin{longtable}{|p{3cm}|p{11cm}|}
+\hline
+\textbf{Use Case ID} & UC8 \\
+\hline
+\textbf{Use Case Name} & View Stores \\
+\hline
+\textbf{Description} & This use case allows end users to view a list of stores where they can use their wallet for payments, including store details and locations. \\
+\hline
+\textbf{Primary Actor} & End User \\
+\hline
+\textbf{Secondary Actor} & Store System, Database \\
+\hline
+\textbf{Preconditions} & 
+\begin{itemize}[nosep,leftmargin=*]
+\item User is authenticated and has wallet access
+\item Store data is available in the system
+\end{itemize} \\
+\hline
+\textbf{Postconditions} & 
+\begin{itemize}[nosep,leftmargin=*]
+\item List of stores is displayed to the user
+\item User can view store details including name, type, and location
+\item User can navigate to store locations
+\end{itemize} \\
+\hline
+\textbf{Main Flow} & 
+\begin{enumerate}[nosep,leftmargin=*]
+\item User navigates to "Stores" from main menu
+\item System retrieves list of available stores from database
+\item System displays stores with name, description, and type
+\item User can view store details including location (latitude, longitude)
+\item User can filter stores by type (Retail, Restaurant, Cafe, Clothing, Grocery, Pharmacy, Electronics, Bookstore, Gas Station, Bakery)
+\item User can search for specific stores by name
+\item User can view store location on map
+\end{enumerate} \\
+\hline
+\textbf{Alternative Flow} & 
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{A1:} No stores available - System displays empty state with message
+\item \textbf{A2:} Location services enabled - System shows nearby stores first
+\item \textbf{A3:} Favorite stores - User can mark stores as favorites for quick access
+\end{itemize} \\
+\hline
+\textbf{Exception Flow} & 
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{E1:} Data loading failure - System displays cached store list with sync indicator
+\item \textbf{E2:} Network timeout - System shows retry option with offline data
 \end{itemize} \\
 \hline
 \end{longtable}
@@ -253,9 +332,18 @@ This diagram shows the transaction history retrieval process. The end user reque
 \label{fig:seq_view_transactions}
 \end{figure}
 
-\subsection{Class Diagram}
+\subsection{Class Diagram (Sprint 2)}
 
-The Sprint 2 class diagram extends the foundational entities from Sprint 1 with transaction management capabilities, showing the relationships between User, Corporate, Wallet, Transaction, TransactionType, and TransactionStatus entities.
+The Sprint 2 class diagram extends the foundational entities from Sprint 1 with transaction management and store listing capabilities. The diagram shows the relationships between User hierarchy (Super Admin, Admin, End User), Wallet, Transaction, Store entities, and their associated enums (TransactionType, TransactionStatus, StoreType).
+
+Key additions in Sprint 2:
+\begin{itemize}[nosep,leftmargin=*]
+\item \textbf{Transaction}: Records wallet transactions with amount, description, timestamp, type, and status
+\item \textbf{TransactionType}: Enum defining CREDIT and DEBIT transaction types
+\item \textbf{TransactionStatus}: Enum defining transaction states (PENDING, COMPLETED, FAILED, REFUNDED)
+\item \textbf{Store}: Represents merchant locations with name, description, location coordinates, and type
+\item \textbf{StoreType}: Enum defining store categories (RETAIL, RESTAURANT, CAFE, CLOTHING, GROCERY, PHARMACY, ELECTRONICS, BOOKSTORE, GAS\_STATION, BAKERY)
+\end{itemize}
 
 \begin{figure}[H]
 \centering
@@ -264,39 +352,108 @@ The Sprint 2 class diagram extends the foundational entities from Sprint 1 with 
 \label{fig:class_sprint2}
 \end{figure}
 
-\subsection{Realization}
+\subsection{Realization (Sprint 2)}
 
-This section presents the actual implementation of Sprint 2 use cases through screenshots of the developed Flutter mobile application and web admin portal.
+This section presents the actual implementation of Sprint 2 use cases through the developed web application interfaces. Each interface is illustrated with screenshots and accompanied by functionality descriptions.
 
-\subsubsection{UC4: Generate Time-bound Barcode - Realization}
+\subsubsection{Wallet Balance Interface}
 
-The barcode generation interface provides secure, time-bound payment codes for vendor scanning. The implementation includes Code128 barcode generation using the wallet's tokenizedId with a 30-second expiry timer.
+The wallet balance interface displays the current balance prominently on the home screen with real-time updates and refresh functionality.
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.6\textwidth]{images/barcode_generation_screen.png}
-% \caption{Barcode Generation Screen - Flutter Mobile App}
-% \label{fig:barcode_generation_realization}
-% \end{figure}
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Wallet Balance Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the wallet home screen with prominent balance display,\\real-time updates, refresh functionality, and last updated timestamp.\vspace{3cm}}}
+  \caption{Wallet Balance Interface}
+  \label{fig:sprint2_balance_interface}
+\end{figure}
 
-\subsubsection{UC6: View Balance - Realization}
+— \textbf{Key Features:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Prominent balance display on home screen
+\item Real-time balance updates after transactions
+\item Manual refresh functionality
+\item Last updated timestamp for transparency
+\item Offline mode with cached balance indicator
+\end{itemize}
 
-The wallet balance interface displays the current balance prominently on the home screen with real-time updates and pull-to-refresh functionality.
+\subsubsection{Transaction History Interface}
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.6\textwidth]{images/home_balance_screen.png}
-% \caption{Home Screen with Balance Display - Flutter Mobile App}
-% \label{fig:balance_view_realization}
-% \end{figure}
+The transaction history interface provides comprehensive transaction management with chronological listing, detailed transaction information, and the ability to print transaction receipts.
 
-\subsubsection{UC7: View Transactions History - Realization}
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Transaction History Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the transaction history list with chronological ordering,\\filtering options, search functionality, and detailed transaction views.\vspace{3cm}}}
+  \caption{Transaction History Interface}
+  \label{fig:sprint2_transactions_interface}
+\end{figure}
 
-The transaction history interface provides comprehensive transaction management with chronological listing and detailed transaction information.
+— \textbf{Key Features:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Chronological transaction listing
+\item Detailed transaction information (date, amount, store, status, type)
+\item Filtering by date range, amount, or store
+\item Search functionality using keywords
+\item Print receipt capability for individual transactions
+\item Export functionality (PDF/CSV)
+\end{itemize}
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.6\textwidth]{images/transaction_history_screen.png}
-% \caption{Transaction History Screen - Flutter Mobile App}
-% \label{fig:transaction_history_realization}
-% \end{figure}
+\subsubsection{Barcode Generation Interface}
+
+The barcode generation interface provides secure, time-bound payment codes using the wallet's tokenizedId with an expiry timer for security.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Barcode Generation Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the barcode display with countdown timer,\\tokenizedId encoding, regeneration option, and security features.\vspace{3cm}}}
+  \caption{Barcode Generation Interface}
+  \label{fig:sprint2_barcode_interface}
+\end{figure}
+
+— \textbf{Key Features:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Time-bound barcode generation using wallet tokenizedId
+\item Countdown timer showing barcode expiry
+\item Automatic expiration for security
+\item Regeneration option for new barcodes
+\item Balance warning display if insufficient funds
+\end{itemize}
+
+\subsubsection{Real-time Transaction Confirmation Interface}
+
+The transaction confirmation interface provides immediate feedback on completed payments with detailed transaction information.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Transaction Confirmation Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the real-time transaction confirmation with payment details,\\updated balance, digital receipt, and success indicators.\vspace{3cm}}}
+  \caption{Real-time Transaction Confirmation Interface}
+  \label{fig:sprint2_confirmation_interface}
+\end{figure}
+
+— \textbf{Key Features:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Immediate transaction confirmation notification
+\item Detailed transaction information (amount, timestamp, store, balance)
+\item Real-time wallet balance update
+\item Digital receipt viewing capability
+\item Processing indicator for slow connections
+\end{itemize}
+
+\subsubsection{Stores Listing Interface}
+
+The stores interface displays a list of available merchant locations where users can make payments, with filtering and search capabilities.
+
+\begin{figure}[H]
+  \centering
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Stores Listing Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the stores list with name, description, type, location information,\\filtering by store type, search functionality, and map integration.\vspace{3cm}}}
+  \caption{Stores Listing Interface}
+  \label{fig:sprint2_stores_interface}
+\end{figure}
+
+— \textbf{Key Features:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item List of stores with name, description, and type
+\item Store type filtering (Retail, Restaurant, Cafe, Clothing, Grocery, Pharmacy, Electronics, Bookstore, Gas Station, Bakery)
+\item Search functionality by store name
+\item Location information (latitude, longitude)
+\item Map integration for store locations
+\item Favorite stores marking capability
+\end{itemize}

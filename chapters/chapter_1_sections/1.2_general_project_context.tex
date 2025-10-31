@@ -4,7 +4,7 @@ In a rapidly evolving retail environment, the demand for seamless, secure, and e
 
 The \textbf{Credix} platform was conceived as a response to recurring issues identified in traditional Point of Sale (POS) systems, such as limited integration, manual transaction processing, and a lack of flexible credit management for businesses. Designed as a cross-platform mobile application with a robust backend architecture, Credix aims to modernize how transactions are initiated, processed, and monitored in real time across Tunisia's retail and food service sectors.
 
-Beyond offering a simple digital payment method, the solution introduces features such as tokenized wallet-based payments, biometric authentication, credit allocation for corporate clients, and real-time barcode validation via direct integration with POS terminals. These enhancements are intended not only to streamline the customer experience but also to enable better control, visibility, and security for all stakeholders—vendors, employees, and enterprise clients alike.
+Beyond offering a simple digital payment method, the solution introduces features such as tokenized wallet-based payments, biometric authentication, credit allocation for admin clients, and real-time barcode validation via direct integration with POS terminals. These enhancements are intended not only to streamline the customer experience but also to enable better control, visibility, and security for all stakeholders—vendors, employees, and enterprise clients alike.
 
 The development of Credix relied on modern, scalable technologies—Flutter for the front-end mobile interface and Spring Boot for the back-end API layer—ensuring maintainability, performance, and ease of integration with existing ASM POS systems. It also takes into account regional requirements, including multilingual support (English, French, Arabic) and offline functionality in areas with unstable internet connectivity.
 
@@ -19,7 +19,7 @@ Despite increasing adoption of digital tools in the retail and restaurant sector
 
     \item \textbf{Manual processes and limited automation:} Many vendors still rely on partially manual operations\hspace{0pt}\textemdash\ especially for validating payments or managing employee credit balances—which increases the risk of delays and fraud.
     
-    \item \textbf{Inflexible credit management:} Current POS platforms do not support corporate-specific credit rules, such as monthly limits, dynamic allocations, or centralized credit distribution.
+    \item \textbf{Inflexible credit management:} Current POS platforms do not support admin-specific credit rules, such as monthly limits, dynamic allocations, or centralized credit distribution.
     
     \item \textbf{Security concerns:} Traditional systems often lack modern authentication and fraud prevention mechanisms, making them vulnerable to misuse, particularly in high-volume retail contexts.
     
@@ -32,7 +32,7 @@ These limitations hinder operational efficiency, reduce trust between businesses
     \item Centralizes all core payment and credit management features;
     \item Automates key processes, including validation, fraud detection, and settlement;
     \item Offers a seamless and localized user experience across devices;
-    \item Ensures compliance with both corporate policies and data protection standards.
+    \item Ensures compliance with both admin policies and data protection standards.
 \end{itemize}
 
 The Credix solution was therefore designed to overcome these challenges through a tightly integrated mobile and backend system, tailored specifically to the needs of ASM’s partners and clients in the Tunisian market.
@@ -71,7 +71,7 @@ In this section, we proceed with a critical analysis of digital payment and reta
     \label{fig:pluxee_interface}
 \end{figure}
 
-\textbf{Pluxee Tunisia:} (Figure~\ref{fig:pluxee_interface}) is a Tunisian application dedicated to digital meal vouchers and employee benefit management, offering a digital card for balance viewing, QR code payment functionality, and basic transaction history. It benefits from an established corporate client base and regulatory compliance with Tunisian financial authorities. However, it suffers from frequent application crashes and instability, which disrupts the payment process across retail establishments. It provides a limited and often inaccurate list of available vendors, restricting usage primarily to restaurants and excluding other retail categories like markets, boutiques, and pharmacies. The user interface is characterized by poor design and non-intuitive navigation, leading to a frustrating user experience. Furthermore, it lacks advanced corporate control features for employers, exhibits slow transaction processing times, and has minimal integration with diverse POS systems used across different retail sectors.
+\textbf{Pluxee Tunisia:} (Figure~\ref{fig:pluxee_interface}) is a Tunisian application dedicated to digital meal vouchers and employee benefit management, offering a digital card for balance viewing, QR code payment functionality, and basic transaction history. It benefits from an established admin client base and regulatory compliance with Tunisian financial authorities. However, it suffers from frequent application crashes and instability, which disrupts the payment process across retail establishments. It provides a limited and often inaccurate list of available vendors, restricting usage primarily to restaurants and excluding other retail categories like markets, boutiques, and pharmacies. The user interface is characterized by poor design and non-intuitive navigation, leading to a frustrating user experience. Furthermore, it lacks advanced admin control features for employers, exhibits slow transaction processing times, and has minimal integration with diverse POS systems used across different retail sectors.
 
 \clearpage
 
@@ -103,7 +103,7 @@ In this section, we proceed with a critical analysis of digital payment and reta
 
 \textbf{Ooredoo Money:} Represented by the interface shown in Figure~\ref{fig:ooredoo_interface}, this Tunisian mobile payment solution offers digital wallet functionality with support for various retail transactions including bill payments, mobile top-ups, and merchant payments. It benefits from Ooredoo's extensive telecommunications infrastructure and has established partnerships with major Tunisian retailers across multiple categories. The platform provides basic QR code payment functionality and integration with some local banking systems.
 
-However, Ooredoo Money faces significant limitations in comprehensive retail integration. It lacks sophisticated POS system compatibility, particularly with specialized retail management systems like ASM POS. The platform provides minimal corporate credit management features, making it unsuitable for employee benefit programs. Transaction processing can be slow during peak hours, and the vendor onboarding process is complex and time-consuming. Additionally, it offers limited real-time reporting capabilities for businesses and lacks advanced fraud detection mechanisms required for high-volume retail environments across diverse commercial sectors.
+However, Ooredoo Money faces significant limitations in comprehensive retail integration. It lacks sophisticated POS system compatibility, particularly with specialized retail management systems like ASM POS. The platform provides minimal admin credit management features, making it unsuitable for employee benefit programs. Transaction processing can be slow during peak hours, and the vendor onboarding process is complex and time-consuming. Additionally, it offers limited real-time reporting capabilities for businesses and lacks advanced fraud detection mechanisms required for high-volume retail environments across diverse commercial sectors.
 
 \clearpage
 
@@ -137,7 +137,7 @@ However, Ooredoo Money faces significant limitations in comprehensive retail int
 
 \textbf{Square:} Square (see Figure~\ref{fig:square_interface}) is a comprehensive international payment and POS solution serving millions of businesses worldwide across restaurants, retail stores, markets, boutiques, and service providers. The platform offers integrated hardware and software solutions with real-time payment processing, inventory management, and detailed analytics. It benefits from seamless integration across multiple retail categories, robust API ecosystem for third-party integrations, and comprehensive business management tools including payroll, invoicing, and customer relationship management.
 
-However, Square's approach is primarily designed for direct merchant-customer transactions rather than corporate credit or employee benefit management. The platform lacks sophisticated corporate account management features, has no built-in employee spending controls or credit allocation systems, and provides minimal support for complex organizational hierarchies. Additionally, Square's pricing model can become expensive for high-volume transactions, and it has limited customization options for specific regional compliance requirements, particularly in emerging markets like Tunisia.
+However, Square's approach is primarily designed for direct merchant-customer transactions rather than admin credit or employee benefit management. The platform lacks sophisticated admin account management features, has no built-in employee spending controls or credit allocation systems, and provides minimal support for complex organizational hierarchies. Additionally, Square's pricing model can become expensive for high-volume transactions, and it has limited customization options for specific regional compliance requirements, particularly in emerging markets like Tunisia.
 
 \clearpage
 
@@ -169,11 +169,11 @@ However, Square's approach is primarily designed for direct merchant-customer tr
 
 \textbf{Stripe Terminal:} Stripe Terminal (see Figure~\ref{fig:stripe_interface}) provides in-person payment capabilities as part of Stripe's comprehensive payment infrastructure, supporting businesses across retail, hospitality, healthcare, and professional services globally. The platform offers advanced payment processing with support for multiple payment methods, sophisticated fraud detection, and extensive API integration capabilities. It benefits from Stripe's robust global payment infrastructure, comprehensive developer tools, and seamless integration with e-commerce and in-store transactions.
 
-Nevertheless, Stripe Terminal focuses primarily on payment processing rather than comprehensive retail management or corporate spending programs. The platform lacks built-in inventory management, employee benefit administration, and corporate credit allocation features. It requires significant technical expertise for implementation and customization, making it less accessible for smaller retailers. The system provides minimal out-of-the-box POS functionality and requires extensive third-party integrations for complete retail management. Furthermore, Stripe's services have limited availability in certain regions and may face regulatory constraints in emerging markets.
+Nevertheless, Stripe Terminal focuses primarily on payment processing rather than comprehensive retail management or admin spending programs. The platform lacks built-in inventory management, employee benefit administration, and admin credit allocation features. It requires significant technical expertise for implementation and customization, making it less accessible for smaller retailers. The system provides minimal out-of-the-box POS functionality and requires extensive third-party integrations for complete retail management. Furthermore, Stripe's services have limited availability in certain regions and may face regulatory constraints in emerging markets.
 
 \subsubsection{General Critique}
 
-This analysis has allowed us to identify the various approaches and functionalities offered by existing digital payment and retail transaction applications, both nationally and internationally. We have evaluated their strengths and limitations, with particular attention to multi-category retail support, POS system integration, corporate credit management, vendor onboarding processes, and cross-sector compatibility. Table~\ref{tab:summary_existing_study} below presents a synthesis of this comparison.
+This analysis has allowed us to identify the various approaches and functionalities offered by existing digital payment and retail transaction applications, both nationally and internationally. We have evaluated their strengths and limitations, with particular attention to multi-category retail support, POS system integration, admin credit management, vendor onboarding processes, and cross-sector compatibility. Table~\ref{tab:summary_existing_study} below presents a synthesis of this comparison.
 
 \begin{table}[!htbp]
     \caption{Summary of the Existing System Study}
@@ -200,7 +200,7 @@ This analysis has allowed us to identify the various approaches and functionalit
         & \textcolor{green}{\ding{51}}
         & \textcolor{green}{\ding{51}} \\
         \hline
-        Corporate Credit Management
+        Admin Credit Management
         & \textcolor{red}{\ding{55}}
         & \textcolor{red}{\ding{55}}
         & \textcolor{red}{\ding{55}}
@@ -233,4 +233,4 @@ This analysis has allowed us to identify the various approaches and functionalit
     \end{tabular}
 \end{table}
 
-Based on these results, we can integrate best practices and address the identified shortcomings in the design of Credix, in order to precisely meet the expectations of diverse retail establishments, corporate clients, and end-users across multiple commercial sectors.
+Based on these results, we can integrate best practices and address the identified shortcomings in the design of Credix, in order to precisely meet the expectations of diverse retail establishments, admin clients, and end-users across multiple commercial sectors.
