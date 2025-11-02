@@ -2,7 +2,7 @@
 
 \subsection{General presentation of the solution}
 
-To address the identified needs and overcome the shortcomings of existing applications, we propose \textbf{Credix}, a comprehensive, modular, and scalable web-based application. It centralizes the management of digital meal vouchers, secure payments, admin credit distribution, and real-time transaction tracking within a secure and ergonomic interface. Designed with Angular for the front-end and Spring Boot for the back-end, Credix relies on a robust, continuously deployed architecture via CI/CD pipelines, ensuring rapid updates, reliability, and accessibility from any device.
+To address the identified needs and overcome the shortcomings of existing applications, we propose \textbf{Credix}, a comprehensive, modular, and scalable web-based application. It centralizes the management of digital meal vouchers, secure payments, corporate credit distribution, and real-time transaction tracking within a secure and ergonomic interface. Designed with Angular for the front-end and Spring Boot for the back-end, Credix relies on a robust, continuously deployed architecture via CI/CD pipelines, ensuring rapid updates, reliability, and accessibility from any device.
 
 \subsection{Key Solution Functions}
 
@@ -16,13 +16,13 @@ Credix offers a suite of functionalities designed to streamline credit managemen
     Users can initiate payments by generating a unique, time-bound 1D barcode (Code128 format) directly from their wallet interface. Each barcode has a 30-second validity window to prevent unauthorized reuse or interception. Upon scanning, the Spring Boot backend validates the barcode in real-time, verifies the user's wallet balance, processes the transaction by debiting the user's wallet and crediting the merchant's account, and returns an immediate confirmation or error message.
 
     \item \textbf{Hierarchical Credit Management:}
-    Credix implements a three-tier role-based system (SUPER\_ADMIN, ADMIN, USER) enabling efficient credit distribution across organizational hierarchies. SUPER\_ADMIN users can purchase and distribute bulk credit to ADMIN users, who in turn allocate credit to end-USER accounts. Each wallet can be configured with specific transfer amounts, allowing precise control over credit allocation limits. The system supports bulk credit transfer operations, enabling administrators to distribute credits to multiple users simultaneously based on predefined wallet transfer amounts, significantly reducing manual effort and ensuring consistent allocation.
+    Credix implements a three-tier role-based system (SUPER\_ADMIN, ADMIN, USER) enabling efficient credit distribution across organizational hierarchies. SUPER\_ADMIN users distribute bulk credit to ADMIN users after Admins provide cash payment at ASM (physical location). Admins in turn allocate credit to end-USER accounts. Each wallet can be configured with specific transfer amounts, allowing precise control over credit allocation limits. The system supports bulk credit transfer operations, enabling administrators to distribute credits to multiple users simultaneously based on predefined wallet transfer amounts, significantly reducing manual effort and ensuring consistent allocation.
 
     \item \textbf{Comprehensive Dashboards and Reporting:}
     Administrators have access to real-time dashboards displaying credit consumption trends, user spending patterns, and transaction summaries. The system generates detailed financial reports in PDF and CSV formats, including credit allocation histories, usage summaries, and transaction details. Visual graphs and charts provide insights into spending behavior, with dynamic filtering capabilities by period, user, and transaction type. Users can view their personal transaction history and current wallet balance through intuitive interfaces.
 
     \item \textbf{Admin and User Portals:}
-    The platform provides role-specific web interfaces tailored to each user type. SUPER\_ADMIN and ADMIN users access comprehensive management dashboards for user account creation, wallet management, bulk credit distribution, and system monitoring. End-USER accounts access simplified interfaces displaying wallet balance, transaction history, barcode generation for payments, and profile management. All interfaces are designed with responsive layouts ensuring optimal user experience across desktop and mobile devices.
+    The platform provides role-specific web interfaces tailored to each user type. SUPER\_ADMIN and ADMIN users access comprehensive management dashboards for user account creation, wallet management, credit distribution, and system monitoring. End-USER accounts access simplified interfaces displaying wallet balance, transaction history, barcode generation for payments, and profile management. All interfaces are designed with responsive layouts ensuring optimal user experience across desktop and mobile devices.
 
     \item \textbf{Robust Security Architecture:}
     The system implements JWT-based authentication with secure token refresh mechanisms, ensuring session security without compromising user experience. All sensitive data, including wallet IDs and transaction details, are encrypted both in transit and at rest. The platform enforces role-based access control (RBAC), ensuring users can only access functionalities appropriate to their permission level. Transaction logs are maintained for audit purposes, providing complete traceability of all credit movements and system operations.
@@ -49,9 +49,9 @@ Credix offers a suite of functionalities designed to streamline credit managemen
         & \textcolor{orange}{\ding{70}} Desktop applications required
         & \textcolor{green}{\ding{51}} Modern Angular interface accessible anywhere \\
         \hline
-        Bulk Credit Transfer Operations
+        Credit Distribution Operations
         & \textcolor{red}{\ding{55}} Manual individual transfers
-        & \textcolor{green}{\ding{51}} Automated bulk transfers with predefined amounts \\
+        & \textcolor{green}{\ding{51}} Hierarchical distribution from Super Admin to Admin to Users \\
         \hline
         Real-time Transaction Processing
         & \textcolor{orange}{\ding{70}} Delayed batch processing
@@ -60,6 +60,10 @@ Credix offers a suite of functionalities designed to streamline credit managemen
         Configurable Wallet Transfer Limits
         & \textcolor{orange}{\ding{70}} Fixed allocation rules
         & \textcolor{green}{\ding{51}} Flexible per-wallet transfer amount configuration \\
+        \hline
+        Comprehensive Reporting
+        & \textcolor{orange}{\ding{70}} Basic transaction lists
+        & \textcolor{green}{\ding{51}} Visual dashboards with PDF/CSV export \\
         \hline
         Role-Based Access Control
         & \textcolor{orange}{\ding{70}} Basic user permissions

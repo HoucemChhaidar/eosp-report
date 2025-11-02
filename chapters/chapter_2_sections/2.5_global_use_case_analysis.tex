@@ -6,7 +6,7 @@ The global use case diagram provides a comprehensive overview of the Credix paym
 
 The Credix ecosystem operates through three primary actors, each with distinct roles and access privileges:
 
-\textbf{SUPER\_ADMIN Actor:} Represents the top-level system administrators who oversee the entire Credix platform. This actor manages ADMIN accounts, distributes bulk credits to ADMINs, monitors system-wide activity, and maintains overall platform governance and operational oversight.
+\textbf{SUPER\_ADMIN Actor:} Represents the top-level system administrators who oversee the entire Credix platform. This actor manages ADMIN accounts, distributes bulk credits to ADMINs after they provide cash payment at ASM, monitors system-wide activity, and maintains overall platform governance and operational oversight.
 
 \textbf{ADMIN Actor:} Represents the business entities that utilize Credix for employee payment management. This actor encompasses the administrative and managerial functions essential for organizational payment operations, including bulk credit management, user administration, financial oversight, and comprehensive analytics capabilities.
 
@@ -29,7 +29,7 @@ The global use case diagram strategically organizes system functionality across 
 
 \textbf{Sprint 2 (Blue):} Implements core user transactional capabilities, including balance viewing, transaction history access, time-bound barcode generation for secure payments, and real-time transaction confirmation systems. This sprint delivers the essential payment functionality that users require for daily operations.
 
-\textbf{Sprint 3 (Orange):} Focuses on advanced credit management operations, enabling ADMIN actors to purchase bulk credit, distribute credit across users, and monitor user transactions. This sprint addresses the sophisticated financial management requirements of admin clients.
+\textbf{Sprint 3 (Orange):} Focuses on hierarchical credit management operations, enabling SUPER\_ADMIN to distribute bulk credit to ADMIN after cash payment at ASM, and ADMIN to distribute credit across end users. This sprint addresses the sophisticated financial management requirements of the credit distribution hierarchy.
 
 \textbf{Sprint 4 (Red):} Delivers comprehensive analytics and reporting capabilities, allowing ADMIN actors to view spending analytics and generate detailed financial reports. This sprint provides the business intelligence tools necessary for informed decision-making and financial oversight.
 

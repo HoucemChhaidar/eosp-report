@@ -113,7 +113,8 @@ Prior to the core development cycle, we conducted a two-week preliminary phase c
 \textbf{Sprint 3} & 
 \begin{itemize}
   \item Hierarchical credit distribution (SUPER\_ADMIN to ADMIN to USER)
-  \item Bulk credit transfer functionality
+  \item Super Admin distributes credit to Admin after cash payment at ASM
+  \item Admin distributes credit to end users
   \item Wallet transfer amount configuration
 \end{itemize}
 & 4 weeks \\
@@ -121,7 +122,8 @@ Prior to the core development cycle, we conducted a two-week preliminary phase c
 
 \textbf{Sprint 4} & 
 \begin{itemize}
-  \item View analytics dashboard
+  \item View spending analytics dashboard
+  \item Generate financial reports (CSV/PDF)
   \item CI/CD pipelines and deployment automation
 \end{itemize}
 & 4 weeks \\
@@ -149,14 +151,12 @@ To align with Scrum methodology, the project is structured into two releases, ea
     sprintGreen/.style={draw, fill=green!30, rounded corners=4pt, minimum width=2cm, minimum height=1cm, align=center, font=\small\bfseries}
   ]
   
-  % Release 1
   \node[box, fill=blue!30] (r1) at (0,0) {};
   \node at (r1.north) [yshift=0.3cm, font=\bfseries\large] {Release 1};
   \node at (r1.center) [yshift=0.8cm, font=\small] {From April 1 to June 1};
   \node[sprintOrange] at ([xshift=-1.2cm, yshift=-0.3cm]r1.center) {Sprint 1};
   \node[sprintYellow] at ([xshift=1.2cm, yshift=-0.3cm]r1.center) {Sprint 2};
   
-  % Release 2
   \node[box, fill=red!30] (r2) at (7,0) {};
   \node at (r2.north) [yshift=0.3cm, font=\bfseries\large] {Release 2};
   \node at (r2.center) [yshift=0.8cm, font=\small] {From June 2 to August 31};

@@ -13,17 +13,17 @@ In this section, we first detail the Sprint 3 backlog, then present the design a
   \begin{tabular}{|p{1cm}|p{4cm}|p{7cm}|p{2cm}|}
     \hline
     \textbf{ID} & \textbf{User Story}               & \textbf{Description}                                                                                             & \textbf{Priority} \\ \hline
-    US7         & Purchase bulk credit & As an Admin, I want to purchase bulk credit for my organization to enable payment transactions for end users. & High            \\ \hline
-    US8         & Distribute credit across users       & As an Admin, I want to distribute purchased credit across end users to enable their payment capabilities. & Critical         \\ \hline
+    US7         & Distribute bulk credit to Admin & As a Super Admin, I want to distribute bulk credit to an Admin after they provide cash at ASM to enable their organizational payment capabilities. & High            \\ \hline
+    US8         & Distribute credit across users       & As an Admin, I want to distribute received credit across end users to enable their payment capabilities. & Critical         \\ \hline
   \end{tabular}
 \end{table}
 
 \subsection{Use Case Diagram}
 
-Figure~\ref{fig:uc_sprint3} presents the two major use cases developed during Sprint 3: purchasing bulk credit and distributing credit across users. It illustrates their respective interactions with the \textit{Admin} actor and the authentication system.
+Figure~\ref{fig:uc_sprint3} presents the two major use cases developed during Sprint 3: Super Admin distributing bulk credit to Admin and Admin distributing credit across users. It illustrates their respective interactions with the \textit{Super Admin} and \textit{Admin} actors and the authentication system.
 
 \begin{figure}[H]
-   \centering
+  \centering
   \includegraphics[width=0.8\textwidth]{images/usecase_sprint3.png}
   \caption{Use Case Diagram – Sprint 3}
   \label{fig:uc_sprint3}
@@ -33,48 +33,52 @@ Figure~\ref{fig:uc_sprint3} presents the two major use cases developed during Sp
 
 In this section, we detail each use case identified for Sprint 3.
 
-\subsubsection{Use Case "Purchase bulk credit"}
+\subsubsection{Use Case "Distribute bulk credit per admin"}
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "Purchase bulk credit"}
-  \label{tab:uc_purchase_bulk_credit} \\
+  \caption{Description of use case "Distribute bulk credit per admin"}
+  \label{tab:uc_distribute_bulk_credit_admin} \\
   \hline
-  \textbf{Title} & Purchase bulk credit \\ \hline
-  \textbf{Actors} & Admin \\ \hline
-  \textbf{Description} & The Admin purchases bulk credit for their organization through email verification and Super Admin approval process. \\ \hline
+  \textbf{Title} & Distribute bulk credit per admin \\ \hline
+  \textbf{Actors} & Super Admin \\ \hline
+  \textbf{Description} & The Super Admin distributes bulk credit to an Admin after the Admin provides cash payment at ASM (physical location). This process involves balance verification and transaction processing through the web application. \\ \hline
   \textbf{Preconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
-      \item The Admin is authenticated with valid credentials.
-      \item The Admin has sufficient funds or valid payment method.
-      \item Super Admin server is available for transaction processing.
+      \item The Super Admin is authenticated with valid credentials.
+      \item The Admin has provided cash payment at ASM.
+      \item Super Admin has sufficient balance to distribute.
+      \item Transaction controller is operational for processing.
     \end{itemize} \\ \hline
   \textbf{Postconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
-      \item Bulk credit is purchased and added to Admin balance.
-      \item Transaction record is created with purchase details.
-      \item Admin receives confirmation of successful purchase.
+      \item Bulk credit is distributed and added to Admin balance.
+      \item Transaction record is created with distribution details.
+      \item Super Admin receives confirmation of successful distribution.
+      \item Admin receives notification of credit allocation.
     \end{itemize} \\ \hline
   \textbf{Main Scenario} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item Admin selects "Purchase Bulk Credit" option.
-      \item System displays credit purchase form with amount selection.
-      \item Admin enters desired credit amount and confirms.
-      \item System sends email verification to Admin.
-      \item Admin confirms via email verification link.
-      \item System forwards transaction to Super Admin server for processing.
-      \item Super Admin accepts the payment and provides credit to Admin.
-      \item System updates Admin total balance with purchased credit.
-      \item Admin receives success confirmation message.
+      \item Admin provides cash payment at ASM physical location.
+      \item Super Admin logs into the web application.
+      \item Super Admin selects "Distribute Credit to Admin" option.
+      \item System displays Admin selection form with amount input.
+      \item Super Admin selects target Admin and enters credit amount.
+      \item System validates Super Admin balance sufficiency.
+      \item Transaction controller processes credit distribution.
+      \item System updates Super Admin and Admin balances.
+      \item Super Admin receives success confirmation message.
+      \item Admin receives credit allocation notification.
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item If Admin cancels purchase, return to main dashboard.
-      \item If email verification expires, resend verification email.
+      \item If Super Admin modifies amount, recalculate and revalidate balance.
+      \item If Admin is not found, display Admin selection error.
     \end{enumerate} \\ \hline
   \textbf{Exception Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item If Super Admin refuses payment, display "Payment rejected" with rejection email.
-      \item If transaction processing fails, show "Transaction failed, please retry".
+      \item If insufficient Super Admin balance, display "Not enough balance, credit distribution cancelled".
+      \item If transaction processing fails, show "Distribution failed, please retry".
+      \item If Admin account is inactive, display "Cannot distribute to inactive Admin".
       \item If network timeout occurs, display "Connection error, please retry".
     \end{enumerate} \\ \hline
 \end{longtable}
@@ -87,7 +91,7 @@ In this section, we detail each use case identified for Sprint 3.
   \hline
   \textbf{Title} & Distribute credit across users \\ \hline
   \textbf{Actors} & Admin \\ \hline
-  \textbf{Description} & Admin distributes purchased credit to end users within their organization, with balance validation and transaction processing. \\ \hline
+  \textbf{Description} & Admin distributes received credit to end users within their organization, with balance validation and transaction processing. \\ \hline
   \textbf{Preconditions} & 
     \begin{itemize}[nosep,leftmargin=*]
       \item Admin is authenticated and has sufficient credit balance.
@@ -125,23 +129,23 @@ In this section, we detail each use case identified for Sprint 3.
 
 \subsection{Sequence Diagrams}
 
-\subsubsection{Sequence Diagram - Purchase Bulk Credit}
+\subsubsection{Sequence Diagram - Distribute Bulk Credit to Admin}
 
-This diagram (see figure \ref{fig:seq_purchase_bulk_credit}) models the bulk credit purchase process with email verification and Super Admin approval:
+This diagram (see figure \ref{fig:seq_distribute_credit_to_admin}) models the bulk credit distribution process from Super Admin to Admin after cash payment at ASM:
 
 \begin{itemize}[nosep,leftmargin=*]
-  \item Admin initiates bulk credit purchase request.
-  \item System sends email verification and waits for confirmation.
-  \item Upon email confirmation, transaction is forwarded to Super Admin server.
-  \item Super Admin processes payment and either accepts or refuses the transaction.
-  \item System updates Admin balance and provides confirmation.
+  \item Super Admin initiates credit distribution request after Admin provides cash at ASM.
+  \item System validates Super Admin balance sufficiency.
+  \item Transaction controller processes the credit distribution.
+  \item System updates both Super Admin and Admin balances.
+  \item Super Admin receives success confirmation or error message.
 \end{itemize}
 
 \begin{figure}[H] 
   \centering
-  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_purchase_bulk_credit.png}
-  \caption{Sequence Diagram "Purchase Bulk Credit"}
-  \label{fig:seq_purchase_bulk_credit}
+  \includegraphics[width=0.9\textwidth,keepaspectratio]{images/seq_distribute_credit_to_admin.png}
+  \caption{Sequence Diagram "Distribute Bulk Credit to Admin"}
+  \label{fig:seq_distribute_credit_admin}
 \end{figure}
 
 \subsubsection{Sequence Diagram - Distribute Credit Across Users}
@@ -164,43 +168,44 @@ This diagram (see figure \ref{fig:seq_distribute_credit}) shows the credit distr
 
 \subsection{Realization (Sprint 3)}
 
-In this section, we present the main interfaces developed during Sprint 3, dedicated to credit management functionality. This work involved implementing bulk credit purchasing and credit distribution systems. Each interface is illustrated with screenshots and accompanied by descriptions of functionality and user journey.
+In this section, we present the main interfaces developed during Sprint 3, dedicated to credit management functionality. This work involved implementing Super Admin credit distribution to Admins and Admin credit distribution to end users. Each interface is illustrated with screenshots and accompanied by descriptions of functionality and user journey.
 
-\subsubsection{Bulk Credit Purchase Interface}
+\subsubsection{Super Admin Credit Distribution Interface}
 
-The bulk credit purchase interface guides Admins through the credit purchasing process with email verification and Super Admin approval.
+The Super Admin credit distribution interface enables Super Admins to allocate credit to Admins after they provide cash payment at ASM.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Bulk Credit Purchase Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the credit purchase form with amount selection, payment method,\\email verification process, and Super Admin approval workflow.\vspace{3cm}}}
-  \caption{Bulk Credit Purchase Interface}
-  \label{fig:sprint3_purchase_interface}
+  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Super Admin Credit Distribution Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the Admin selection dropdown, credit amount input field,\\balance validation display, and distribution confirmation with real-time balance updates.\vspace{3cm}}}
+  \caption{Super Admin Credit Distribution Interface}
+  \label{fig:sprint3_superadmin_distribution_interface}
 \end{figure}
 
 — \textbf{States presented:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
-  \item \textbf{Amount selection}  
-    Admin selects desired credit amount with pricing display.
-  \item \textbf{Payment method}  
-    Selection of payment method and billing information.
-  \item \textbf{Email verification}  
-    System sends verification email for transaction security.
-  \item \textbf{Super Admin approval}  
-    Transaction forwarded to Super Admin for processing.
+  \item \textbf{Admin selection}  
+    Dropdown list of all Admins with their current balance display.
+  \item \textbf{Amount input}  
+    Input field for specifying credit amount to distribute.
+  \item \textbf{Balance validation}  
+    Real-time validation of sufficient Super Admin balance.
+  \item \textbf{Distribution confirmation}  
+    Summary and confirmation of credit distribution to Admin.
 \end{itemize}
 
-— \textbf{Credit purchase flow:}
+— \textbf{Credit distribution flow:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
-  \item Admin is authenticated and accesses purchase form.
-  \item Admin selects credit amount and confirms purchase details.
-  \item System sends email verification for security confirmation.
-  \item Upon email verification, transaction is sent to Super Admin for approval.
-  \item Super Admin processes payment and credits are added to Admin balance.
+  \item Admin provides cash payment at ASM physical location.
+  \item Super Admin is authenticated and accesses distribution interface.
+  \item Super Admin selects target Admin from dropdown list.
+  \item Super Admin enters credit amount corresponding to cash received.
+  \item System validates sufficient Super Admin balance for distribution.
+  \item Upon confirmation, credit is distributed and both balances are updated.
 \end{itemize}
 
 \subsubsection{Credit Distribution Dashboard}
 
-The credit distribution dashboard enables Admins to allocate purchased credit across their end users.
+The credit distribution dashboard enables Admins to allocate received credit across their end users.
 
 \begin{figure}[H]
   \centering
