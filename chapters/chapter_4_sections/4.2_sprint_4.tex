@@ -97,51 +97,82 @@ This diagram (see figure \ref{fig:seq_view_analytics}) models the analytics view
 
 \subsection{CI/CD Pipeline Implementation}
 
-To ensure rapid and reliable delivery of Credix enhancements, we implemented comprehensive CI/CD pipelines for both frontend and backend components using GitHub Actions and Docker. While not represented as a use case in the diagram, this technical implementation is crucial for system deployment and maintenance.
+To ensure rapid and reliable delivery of Credix enhancements, we implemented comprehensive CI/CD pipelines for both frontend and backend components. The frontend uses Jenkins with GitHub webhooks, while the backend leverages Render platform for automated deployment.
 
-\textbf{GitHub Actions Pipeline:}
+\subsubsection{Frontend Pipeline (Next.js)}
 
-The workflow file \texttt{.github/workflows/ci-cd.yml} (see figure \ref{fig:github_actions_workflow}) defines the pipeline stages: code checkout, dependency installation, testing, building, and deployment to production.
+The Jenkinsfile (see figure \ref{fig:jenkinsfile_credix}) located at the repository root defines the pipeline stages: code checkout, dependency installation, build, testing, and artifact generation.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[GitHub Actions Workflow Screenshot Placeholder]\\\vspace{0.5cm}This will show the CI/CD workflow configuration with stages:\\code checkout, dependency installation, testing, building, and deployment.\vspace{2cm}}}
-  \caption{GitHub Actions CI/CD workflow configuration}
-  \label{fig:github_actions_workflow}
+  \includegraphics[width=0.9\textwidth]{images/jenkinsfile}
+  \caption{Jenkinsfile in the Credix GitHub repository}
+  \label{fig:jenkinsfile_credix}
 \end{figure}
 
 \textbf{GitHub Repository:}
 
-The GitHub repository (see figure \ref{fig:github_repo_credix}) shows the automated workflow triggers on main branch commits, with status badges indicating build health.
+On GitHub (see figure \ref{fig:github_webhook_credix}), the webhook configured on the main branch automatically triggers Jenkins on every push. The view below highlights the presence of the Jenkinsfile in the project root directory.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[GitHub Repository Screenshot Placeholder]\\\vspace{0.5cm}This will show the repository with automated workflow triggers,\\status badges, and build health indicators.\vspace{2cm}}}
-  \caption{GitHub repository with CI/CD workflow status}
-  \label{fig:github_repo_credix}
+  \includegraphics[width=0.9\textwidth]{images/github_commit_trigger}
+  \caption{GitHub repository view with Jenkinsfile and webhook configuration}
+  \label{fig:github_webhook_credix}
 \end{figure}
 
-\textbf{Docker Containerization:}
+\textbf{Jenkins Dashboard:}
 
-The \texttt{Dockerfile} (see figure \ref{fig:dockerfile_credix}) enables consistent deployment across environments with optimized multi-stage builds.
+The Jenkins dashboard (see figure \ref{fig:jenkins_dashboard_credix}) provides a detailed view of each build's status, displaying the different pipeline stages and their status (green for success, red for failure).
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{0.7\textwidth}{\centering\vspace{2cm}[Dockerfile Screenshot Placeholder]\\\vspace{0.5cm}This will show the Dockerfile configuration\\for containerization with multi-stage builds.\vspace{2cm}}}
-  \caption{Dockerfile for Credix application containerization}
+  \includegraphics[width=0.9\textwidth]{images/jenkins_dashboard}
+  \caption{Jenkins dashboard showing successful pipeline execution}
+  \label{fig:jenkins_dashboard_credix}
+\end{figure}
+
+\textbf{Google Drive (Artifacts):}
+
+Once the pipeline executes successfully, Jenkins automatically deposits the artifacts (build files for testing and deployment) into a shared folder on Google Drive (see figure \ref{fig:google_drive_artifacts}), facilitating their distribution within the team.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/google_drive_artifacts}
+  \caption{Google Drive folder containing generated build artifacts}
+  \label{fig:google_drive_artifacts}
+\end{figure}
+
+\subsubsection{Backend Pipeline (Supabase Functions)}
+
+Each push to the backend GitHub repository triggers our CI/CD pipeline on Render. The first step consists of building the Docker image of the service from the Dockerfile (see figure \ref{fig:dockerfile_credix}) included in the project.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/dockerfile}
+  \caption{Dockerfile excerpt used for building the backend image}
   \label{fig:dockerfile_credix}
 \end{figure}
 
-\textbf{Production Deployment:}
-
-The production environment (see figure \ref{fig:production_deployment}) runs on cloud infrastructure with automated scaling and monitoring.
+Once the commit is validated on GitHub (see figure \ref{fig:github_commit_trigger}), Render automatically detects the new revision and retrieves the code. On the GitHub interface (below), we can see the main branch and the triggering commit highlighted.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}[Production Deployment Screenshot Placeholder]\\\vspace{0.5cm}This will show the production environment dashboard\\with automated scaling and monitoring capabilities.\vspace{2cm}}}
-  \caption{Production deployment dashboard showing system health}
-  \label{fig:production_deployment}
+  \includegraphics[width=0.9\textwidth]{images/github_commit_trigger}
+  \caption{GitHub repository view with CI/CD triggering commit}
+  \label{fig:github_commit_trigger}
 \end{figure}
+
+Finally, Render (see figure \ref{fig:render_dashboard_credix}) builds the Docker image, deploys it on its infrastructure, and updates the production container. The Render dashboard displays the build history and their status (success or failure) in real-time.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/render_dashboard}
+  \caption{Render dashboard showing automatic backend deployment}
+  \label{fig:render_dashboard_credix}
+\end{figure}
+
+Thanks to this organization, each contributor focuses on the functional quality of their code; Jenkins and Render handle the construction, testing, and production deployment. The result is a short, reliable, and fully traceable delivery cycle, meeting Credix's requirements for responsiveness and robustness.
 
 \subsection{Realization (Sprint 4)}
 

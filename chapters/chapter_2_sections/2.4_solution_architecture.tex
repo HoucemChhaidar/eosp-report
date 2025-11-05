@@ -8,7 +8,7 @@ To ensure better scalability, a clear separation of responsibilities, and the po
 
 \begin{itemize}
     \item \textbf{Layer Decoupling:} The front-end (Flutter) communicates via HTTP with a Spring Boot back-end, which exposes REST APIs. This allows the user interface to evolve independently of the business logic.
-    \item \textbf{Service Reusability:} Each core component (e.g., authentication, payment processing, admin credit management, fraud detection) becomes a distinct, reusable service.
+    \item \textbf{Service Reusability:} Each core component (e.g., authentication, payment processing, corporate credit management, fraud detection) becomes a distinct, reusable service.
     \item \textbf{Fine-grained Scalability:} Critical services (e.g., real-time payment validation, fraud engine) can be scaled autonomously based on load, without impacting the other services.
     \item \textbf{Third-party Service Integration:} We seamlessly integrate with external services, notably ASM POS APIs for barcode scanning and validation, without additional complexity in the core business code.
     \item \textbf{Resilience and Maintenance:} In case of a service failure (e.g., a specific payment gateway issue), the rest of the application continues to function, and each service can be updated or redeployed separately, ensuring high availability.
@@ -27,7 +27,6 @@ Our architecture distinguishes three main layers:
 
 The Spring Boot back-end is structured into three main layers:
 
-% Updated to use new backend architecture diagram
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{images/backend_architecture_diagram.png}
@@ -37,15 +36,14 @@ The Spring Boot back-end is structured into three main layers:
 
 \begin{itemize}
     \item \textbf{Controllers Layer:} Exposes the REST APIs for the Flutter front-end and handles incoming requests from ASM POS systems. It acts as the entry point for all client and third-party interactions.
-    \item \textbf{Business Layer (Services):} Implements the core business rules, including user authentication and authorization, payment processing logic, admin credit management workflows, fraud detection algorithms, and data validation.
-    \item \textbf{Data Access Layer (Repositories \& Persistence):} Defines Spring Data interfaces (e.g., JPA Repositories) and manages persistence in the PostgreSQL database for all application data, such as user profiles, transaction records, admin accounts, and audit logs.
+    \item \textbf{Business Layer (Services):} Implements the core business rules, including user authentication and authorization, payment processing logic, corporate credit management workflows, fraud detection algorithms, and data validation.
+    \item \textbf{Data Access Layer (Repositories \& Persistence):} Defines Spring Data interfaces (e.g., JPA Repositories) and manages persistence in the PostgreSQL database for all application data, such as user profiles, transaction records, corporate accounts, and audit logs.
 \end{itemize}
 
 \subsection{Frontend Components}
 
 The Flutter client follows Clean Architecture principles with a clear five-layer decomposition, promoting maintainability, testability, and separation of concerns:
 
-% Updated to use new frontend architecture diagram
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{images/frontend_architecture_diagram.png}
@@ -69,7 +67,6 @@ The Flutter client follows Clean Architecture principles with a clear five-layer
 
 Credix leverages automated CI/CD pipelines to ensure rapid, reliable, and consistent delivery of software updates for both its backend and frontend components.
 
-% Updated to use new CI/CD pipeline diagram
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/ci_cd_pipeline_diagram.png}
@@ -81,8 +78,8 @@ Credix leverages automated CI/CD pipelines to ensure rapid, reliable, and consis
 
 \begin{itemize}
     \item \textbf{Back-end (Spring Boot):}
-    When a developer pushes code to the backend's GitHub repository, a GitHub Actions pipeline is immediately triggered. This pipeline builds a new Docker image of the Spring Boot service, runs automated tests, and then deploys the updated application to the production environment without manual intervention. This ensures that new backend features and bug fixes are continuously delivered and available.
+    When a developer pushes code to the backend's GitHub repository, a GitHub webhook triggers a Jenkins pipeline. Jenkins builds a new Docker image of the Spring Boot service using the Dockerfile, runs automated tests, and pushes the image to Docker Hub. The updated application is then automatically deployed to Render's production environment. Build artifacts are stored in Google Drive for version tracking. This ensures that new backend features and bug fixes are continuously delivered and available without manual intervention.
 
     \item \textbf{Front-end (Flutter):}
-    Similarly, as soon as a front-end developer pushes their modifications to GitHub, a dedicated GitHub Actions pipeline for Flutter executes. This pipeline compiles the mobile application, runs automated tests, generates an APK for internal testing phases, and an AAB (Android App Bundle) for the Google Play Store. These artifacts are then stored in the project's "Releases" section. This automation allows for rapid publication of new versions of the Credix mobile application to Google Play, while minimizing errors associated with manual deployment processes.
+    Similarly, as soon as a front-end developer pushes their modifications to GitHub, a dedicated Jenkins pipeline for Flutter executes. This pipeline compiles the mobile application, runs automated tests, generates an APK for internal testing phases, and an AAB (Android App Bundle) for the Google Play Store. These artifacts are then stored in Google Drive and the project's "Releases" section. This automation allows for rapid publication of new versions of the Credix mobile application to Google Play, while minimizing errors associated with manual deployment processes.
 \end{itemize}
