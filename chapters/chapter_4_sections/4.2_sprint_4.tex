@@ -56,7 +56,7 @@ In this section, we detail the use case identified for Sprint 4.
     \begin{enumerate}[nosep,leftmargin=*]
       \item Admin requests to display analytics dashboard.
       \item Analytics interface submits request to analytics controller.
-      \item Analytics controller processes request and retrieves data.
+      \item Controller processes request and retrieves data.
       \item System returns analytics data to the interface.
       \item Interface displays data in charts and graphs.
       \item Admin can interact with analytics and apply filters.
@@ -149,19 +149,19 @@ This section presents the interfaces and features implemented during Sprint 4, f
 
 \subsubsection{Analytics Dashboard}
 
-The analytics dashboard provides comprehensive visualization of organizational transaction patterns and credit usage.
+The analytics dashboard provides comprehensive visualization of organizational transaction patterns and credit usage with interactive charts.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Analytics Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show interactive charts, time period filters,\\category breakdowns, and trend analysis visualizations.\vspace{3cm}}}
-  \caption{Analytics Dashboard}
+  \includegraphics[width=0.9\textwidth]{images/web_dashboard}
+  \caption{Analytics Dashboard - Comprehensive Transaction Analytics}
   \label{fig:sprint4_analytics_dashboard}
 \end{figure}
 
 — \textbf{States presented:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
   \item \textbf{Interactive charts}  
-    Visual representation of transaction patterns with drill-down capabilities.
+    Visual representation of transaction patterns with drill-down capabilities (Linear, Bar, Pie, Doughnut charts).
   \item \textbf{Time period filters}  
     Selection of daily, weekly, monthly, or custom date ranges.
   \item \textbf{Category breakdown}  

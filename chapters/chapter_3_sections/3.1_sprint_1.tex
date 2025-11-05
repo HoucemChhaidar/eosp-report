@@ -204,7 +204,7 @@ This diagram shows the user creation process initiated by an Admin. The Admin su
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{images/seq_user_creation.png}
+\includegraphics[width=0.9\textwidth]{images/seq_user_creation.png}
 \caption{User Creation Sequence Diagram}
 \label{fig:seq_user_creation}
 \end{figure}
@@ -240,9 +240,16 @@ The login interface provides secure access for all user types: Super Admin, Admi
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Authentication Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the login form with email and password fields,\\role-based authentication, JWT token generation, and error handling.\vspace{3cm}}}
-  \caption{Authentication Interface}
-  \label{fig:sprint1_auth_interface}
+  \includegraphics[width=0.75\textwidth]{images/web_sign_in}
+  \caption{Web Authentication Interface}
+  \label{fig:sprint1_web_auth}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/mobile_sign_in}
+  \caption{Mobile Authentication Interface}
+  \label{fig:sprint1_mobile_auth}
 \end{figure}
 
 — \textbf{Key Features:}
@@ -267,8 +274,8 @@ The web-based Super Admin dashboard provides comprehensive admin account managem
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Super Admin Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show admin management interface with create, update, delete, and view\\capabilities, system oversight, audit logging, and role-based access control.\vspace{3cm}}}
-  \caption{Super Admin Dashboard}
+  \includegraphics[width=0.9\textwidth]{images/web_admins_list}
+  \caption{Super Admin Dashboard - Admin Management Interface}
   \label{fig:sprint1_superadmin_dashboard}
 \end{figure}
 
@@ -288,23 +295,42 @@ The web-based Super Admin dashboard provides comprehensive admin account managem
 \item Manages admin permissions and access levels
 \end{itemize}
 
-\subsubsection{Admin Dashboard}
+\subsubsection{User Management Interface}
 
-The web-based Admin dashboard provides comprehensive user and wallet management capabilities.
+The user management interface allows Admins to create, update, delete, and view end user accounts.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Admin Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show user and wallet management interface with create, update, delete,\\and view capabilities, bulk operations, and audit logging.\vspace{3cm}}}
-  \caption{Admin Dashboard}
-  \label{fig:sprint1_admin_dashboard}
+  \includegraphics[width=0.9\textwidth]{images/web_users_list}
+  \caption{User Management Interface - Admin View}
+  \label{fig:sprint1_user_management}
 \end{figure}
 
 — \textbf{Key Features:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
 \item User management: Create, update, delete, and view end user accounts
-\item Wallet management: Create, update, delete, and view wallets with balances and status
 \item Bulk operations for efficient user onboarding
+\item User status monitoring and account activation controls
 \item Audit logging for all administrative actions
+\end{itemize}
+
+\subsubsection{Wallet Management Interface}
+
+The wallet management interface enables Admins to manage end user wallets with balance and status controls.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/web_wallets_list}
+  \caption{Wallet Management Interface - Admin View}
+  \label{fig:sprint1_wallet_management}
+\end{figure}
+
+— \textbf{Key Features:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Wallet management: Create, update, delete, and view wallets with balances and status
+\item Real-time balance monitoring and updates
+\item Wallet activation and deactivation controls
+\item Transaction history access per wallet
 \end{itemize}
 
 — \textbf{Admin Workflow:}
@@ -317,12 +343,12 @@ The web-based Admin dashboard provides comprehensive user and wallet management 
 
 \subsubsection{End User Interface}
 
-The web application provides end users with secure access to their wallet information and basic account management.
+The mobile application provides end users with secure access to their wallet information and basic account management.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[End User Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the user wallet interface with balance display, account information,\\profile management, and responsive design for various devices.\vspace{3cm}}}
-  \caption{End User Interface}
+  \includegraphics[width=0.35\textwidth]{images/mobile_home}
+  \caption{End User Mobile Interface - Wallet Home Screen}
   \label{fig:sprint1_user_interface}
 \end{figure}
 

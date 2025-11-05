@@ -23,7 +23,7 @@ In this section, we first detail the Sprint 3 backlog, then present the design a
 Figure~\ref{fig:uc_sprint3} presents the two major use cases developed during Sprint 3: Super Admin distributing bulk credit to Admin and Admin distributing credit across users. It illustrates their respective interactions with the \textit{Super Admin} and \textit{Admin} actors and the authentication system.
 
 \begin{figure}[H]
-  \centering
+   \centering
   \includegraphics[width=0.8\textwidth]{images/usecase_sprint3.png}
   \caption{Use Case Diagram – Sprint 3}
   \label{fig:uc_sprint3}
@@ -131,7 +131,7 @@ In this section, we detail each use case identified for Sprint 3.
 
 \subsubsection{Sequence Diagram - Distribute Bulk Credit to Admin}
 
-This diagram (see figure \ref{fig:seq_distribute_credit_to_admin}) models the bulk credit distribution process from Super Admin to Admin after cash payment at ASM:
+This diagram (see figure \ref{fig:seq_distribute_credit_admin}) models the bulk credit distribution process from Super Admin to Admin after cash payment at ASM:
 
 \begin{itemize}[nosep,leftmargin=*]
   \item Super Admin initiates credit distribution request after Admin provides cash at ASM.
@@ -172,12 +172,12 @@ In this section, we present the main interfaces developed during Sprint 3, dedic
 
 \subsubsection{Super Admin Credit Distribution Interface}
 
-The Super Admin credit distribution interface enables Super Admins to allocate credit to Admins after they provide cash payment at ASM.
+The Super Admin credit distribution interface enables Super Admins to allocate credit to Admins after they provide cash payment at ASM. This interface is accessed through the wallet management view.
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Super Admin Credit Distribution Interface Screenshot Placeholder]\\\vspace{0.5cm}This will show the Admin selection dropdown, credit amount input field,\\balance validation display, and distribution confirmation with real-time balance updates.\vspace{3cm}}}
-  \caption{Super Admin Credit Distribution Interface}
+  \includegraphics[width=0.9\textwidth]{images/web_wallets_list}
+  \caption{Super Admin Credit Distribution Interface - Wallet Management View}
   \label{fig:sprint3_superadmin_distribution_interface}
 \end{figure}
 
@@ -209,8 +209,8 @@ The credit distribution dashboard enables Admins to allocate received credit acr
 
 \begin{figure}[H]
   \centering
-  \fbox{\parbox{\textwidth}{\centering\vspace{3cm}[Credit Distribution Dashboard Screenshot Placeholder]\\\vspace{0.5cm}This will show the end user list, credit allocation inputs, balance validation,\\and distribution confirmation with real-time balance updates.\vspace{3cm}}}
-  \caption{Credit Distribution Dashboard}
+  \includegraphics[width=0.9\textwidth]{images/web_distribute_credit_users}
+  \caption{Credit Distribution Dashboard - Admin to Users Distribution}
   \label{fig:sprint3_distribution_interface}
 \end{figure}
 
