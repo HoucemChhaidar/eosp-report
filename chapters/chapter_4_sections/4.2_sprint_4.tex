@@ -12,7 +12,7 @@ In this section, we first present the Sprint 4 backlog, then detail the design a
   \begin{tabular}{|p{1cm}|p{5cm}|p{6cm}|p{2cm}|}
     \hline
     \textbf{ID} & \textbf{User Story} & \textbf{Description} & \textbf{Priority} \\ \hline
-    US10 & View analytics & As an Admin, I want to view comprehensive analytics to understand transaction patterns and credit usage across my organization. & Critical \\ \hline
+    US10 & View Comprehensive Analytics Dashboard & As an Admin, I want to view comprehensive analytics to understand transaction patterns and credit usage across my organization. & Critical \\ \hline
   \end{tabular}
 \end{table}
 
@@ -31,13 +31,13 @@ Figure~\ref{fig:uc_sprint4} presents the use case for Sprint 4: viewing analytic
 
 In this section, we detail the use case identified for Sprint 4.
 
-\subsubsection{Use Case "View analytics"}
+\subsubsection{View Comprehensive Analytics Dashboard}
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "View analytics"}
+  \caption{Description of use case "View Comprehensive Analytics Dashboard"}
   \label{tab:uc_view_analytics} \\
   \hline
-  \textbf{Title} & View analytics \\ \hline
+  \textbf{Title} & View Comprehensive Analytics Dashboard \\ \hline
   \textbf{Actors} & Admin \\ \hline
   \textbf{Description} & Admin views comprehensive analytics to understand transaction patterns, credit usage, and organizational financial behavior. \\ \hline
   \textbf{Preconditions} & 
@@ -99,7 +99,7 @@ This diagram (see figure \ref{fig:seq_view_analytics}) models the analytics view
 
 To ensure rapid and reliable delivery of Credix enhancements, we implemented comprehensive CI/CD pipelines for both frontend and backend components. The frontend uses Jenkins with GitHub webhooks, while the backend leverages Render platform for automated deployment.
 
-\subsubsection{Frontend Pipeline (Next.js)}
+\subsubsection{Frontend Pipeline}
 
 The Jenkinsfile (see figure \ref{fig:jenkinsfile_credix}) located at the repository root defines the pipeline stages: code checkout, dependency installation, build, testing, and artifact generation.
 
@@ -138,7 +138,7 @@ Once the pipeline executes successfully, Jenkins automatically deposits the arti
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/google_drive_artifacts}
+  \includegraphics[width=0.9\textwidth]{images/google_drive_artifacts}
   \caption{Google Drive folder containing generated build artifacts}
   \label{fig:google_drive_artifacts}
 \end{figure}
@@ -184,8 +184,23 @@ The analytics dashboard provides comprehensive visualization of organizational t
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{images/web_dashboard}
-  \caption{Analytics Dashboard - Comprehensive Transaction Analytics}
+  \begin{subfigure}[b]{0.9\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/web_dashboard_1}
+    \caption{Transaction Overview and Statistics}
+    \label{fig:sprint4_analytics_dashboard_1}
+  \end{subfigure}
+  
+  \vspace{0.5cm}
+  
+  \begin{subfigure}[b]{0.9\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/web_dashboard_2}
+    \caption{Detailed Charts and Trend Analysis}
+    \label{fig:sprint4_analytics_dashboard_2}
+  \end{subfigure}
+  
+  \caption{Admin Analytics Dashboard - Comprehensive View}
   \label{fig:sprint4_analytics_dashboard}
 \end{figure}
 

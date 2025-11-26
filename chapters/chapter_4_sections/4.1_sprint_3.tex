@@ -7,14 +7,14 @@ In this section, we first detail the Sprint 3 backlog, then present the design a
 \begin{table}[!htbp]
   \centering
   \small
-  \caption{Sprint 3 Backlog} 
+  \caption{Sprint 3 Backlog – Credit Management} 
   \label{tab:backlog_sprint3}
   \renewcommand{\arraystretch}{1.2}
   \begin{tabular}{|p{1cm}|p{4cm}|p{7cm}|p{2cm}|}
     \hline
     \textbf{ID} & \textbf{User Story}               & \textbf{Description}                                                                                             & \textbf{Priority} \\ \hline
-    US7         & Distribute bulk credit to Admin & As a Super Admin, I want to distribute bulk credit to an Admin after they provide cash at ASM to enable their organizational payment capabilities. & High            \\ \hline
-    US8         & Distribute credit across users       & As an Admin, I want to distribute received credit across end users to enable their payment capabilities. & Critical         \\ \hline
+    US7         & Bulk Credit Distribution to Admin After Cash Payment & As a Super Admin, I want to distribute bulk credit to an Admin after they provide cash at ASM to enable their organizational payment capabilities. & High            \\ \hline
+    US8         & Distribute Credit Across End Users       & As an Admin, I want to distribute received credit across end users to enable their payment capabilities. & Critical         \\ \hline
   \end{tabular}
 \end{table}
 
@@ -23,7 +23,7 @@ In this section, we first detail the Sprint 3 backlog, then present the design a
 Figure~\ref{fig:uc_sprint3} presents the two major use cases developed during Sprint 3: Super Admin distributing bulk credit to Admin and Admin distributing credit across users. It illustrates their respective interactions with the \textit{Super Admin} and \textit{Admin} actors and the authentication system.
 
 \begin{figure}[H]
-   \centering
+  \centering
   \includegraphics[width=0.8\textwidth]{images/usecase_sprint3.png}
   \caption{Use Case Diagram – Sprint 3}
   \label{fig:uc_sprint3}
@@ -33,13 +33,13 @@ Figure~\ref{fig:uc_sprint3} presents the two major use cases developed during Sp
 
 In this section, we detail each use case identified for Sprint 3.
 
-\subsubsection{Use Case "Distribute bulk credit per admin"}
+\subsubsection{Bulk Credit Distribution to Admin After Cash Payment}
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "Distribute bulk credit per admin"}
+  \caption{Description of use case "Bulk Credit Distribution to Admin After Cash Payment"}
   \label{tab:uc_distribute_bulk_credit_admin} \\
   \hline
-  \textbf{Title} & Distribute bulk credit per admin \\ \hline
+  \textbf{Title} & Bulk Credit Distribution to Admin After Cash Payment \\ \hline
   \textbf{Actors} & Super Admin \\ \hline
   \textbf{Description} & The Super Admin distributes bulk credit to an Admin after the Admin provides cash payment at ASM (physical location). This process involves balance verification and transaction processing through the web application. \\ \hline
   \textbf{Preconditions} & 
@@ -83,13 +83,13 @@ In this section, we detail each use case identified for Sprint 3.
     \end{enumerate} \\ \hline
 \end{longtable}
 
-\subsubsection{Use Case "Distribute credit across users"}
+\subsubsection{Distribute Credit Across End Users}
 
 \begin{longtable}{|p{0.2\textwidth}|p{0.75\textwidth}|}
-  \caption{Description of use case "Distribute credit across users"}
+  \caption{Description of use case "Distribute Credit Across End Users"}
   \label{tab:uc_distribute_credit} \\
   \hline
-  \textbf{Title} & Distribute credit across users \\ \hline
+  \textbf{Title} & Distribute Credit Across End Users \\ \hline
   \textbf{Actors} & Admin \\ \hline
   \textbf{Description} & Admin distributes received credit to end users within their organization, with balance validation and transaction processing. \\ \hline
   \textbf{Preconditions} & 

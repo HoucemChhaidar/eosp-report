@@ -4,17 +4,17 @@ Non-functional requirements define the quality, performance, and security constr
 
 \subsection{Security}
 \begin{itemize}
-    \item Encryption of sensitive data (JWT tokens, user credentials, transaction details, and any stored media).
+    \item Encryption of sensitive data (JWT tokens, end user credentials, transaction details, and any stored media).
     \item Protection against common web vulnerabilities (e.g., Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), SQL injection).
     \item Implementation of comprehensive security logs and a robust logging system for critical actions and system events.
     \item Secure API endpoints with proper authentication and authorization mechanisms.
-    \item Data anonymization or pseudonymization for sensitive user information where applicable.
+    \item Data anonymization or pseudonymization for sensitive end user information where applicable.
 \end{itemize}
 
 \subsection{Performance and Scalability}
 \begin{itemize}
-    \item Ensure fast API response times for user requests, especially critical for real-time payment validation during peak usage periods.
-    \item The system must be capable of handling a high volume of concurrent transactions, scaling horizontally to accommodate future growth in users and transaction volume.
+    \item Ensure fast API response times for end user requests, especially critical for real-time payment validation during peak usage periods.
+    \item The system must be capable of handling a high volume of concurrent transactions, scaling horizontally to accommodate future growth in end users and transaction volume.
     \item Optimize database queries and backend processes to ensure efficient data retrieval and processing.
     \item Design the system architecture to support scalability and maintain performance under increasing load.
 \end{itemize}
@@ -30,9 +30,9 @@ Non-functional requirements define the quality, performance, and security constr
 \subsection{Usability (UX/UI)}
 \begin{itemize}
     \item Develop a clear, accessible, and responsive interface that adapts seamlessly across various devices and screen sizes.
-    \item Adhere to established ergonomic standards, ensuring intuitive navigation, minimal cognitive load, and a consistent user experience across all modules.
-    \item Utilize a modern and professional design aesthetic, with fluid transitions and interactions between different application sections, enhancing user satisfaction for all user roles.
-    \item Provide clear feedback mechanisms for user actions, such as payment confirmations and error messages.
+    \item Adhere to established ergonomic standards, ensuring intuitive navigation, minimal cognitive load, and a consistent end user experience across all modules.
+    \item Utilize a modern and professional design aesthetic, with fluid transitions and interactions between different application sections, enhancing end user satisfaction for all user roles.
+    \item Provide clear feedback mechanisms for end user actions, such as payment confirmations and error messages.
 \end{itemize}
 
 \subsection{Technology Choices and Development Environment}
@@ -48,9 +48,9 @@ Below, we present the main technologies and tools utilized for the development a
             \hline
             \textbf{Logo} & \textbf{Technology/Tool \& Description} \\
             \hline
-            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/flutter_logo.png}} & \setstretch{1.2}\textbf{Flutter} \cite{flutter}: An open-source UI toolkit developed by Google for building natively compiled applications for mobile (Android, iOS), web, and desktop from a single codebase using the Dart language. It offers high-performance and reactive interfaces, making it ideal for Credix's end-user mobile application, ensuring a smooth and visually appealing payment experience. \\
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/flutter_logo.png}} & \setstretch{1.2}\textbf{Flutter} \cite{flutter}: An open-source UI toolkit developed by Google for building natively compiled applications for mobile (Android, iOS), web, and desktop from a single codebase using the Dart language. It offers high-performance and reactive interfaces, making it ideal for Credix's end user mobile application, ensuring a smooth and visually appealing payment experience. \\
             \hline
-            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/angular_logo.png}} & \setstretch{1.2}\textbf{Angular} \cite{angular}: A TypeScript-based open-source web application framework developed by Google for building dynamic single-page applications (SPAs). It provides a comprehensive platform with powerful features like two-way data binding, dependency injection, and modular architecture, making it ideal for Credix's web-based administrative interfaces and user dashboards. \\
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/angular_logo.png}} & \setstretch{1.2}\textbf{Angular} \cite{angular}: A TypeScript-based open-source web application framework developed by Google for building dynamic single-page applications (SPAs). It provides a comprehensive platform with powerful features like two-way data binding, dependency injection, and modular architecture, making it ideal for Credix's web-based administrative interfaces and end user dashboards. \\
             \hline
             \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/spring_boot_logo.png}} & \setstretch{1.2}\textbf{Spring Boot} \cite{springboot}: An open-source Java framework built on top of Spring Framework, designed to simplify the creation of stand-alone, production-grade Spring applications. It is ideal for building robust and modular RESTful APIs, forming the backbone of Credix's backend services for payment processing and credit management. \\
             \hline
@@ -69,7 +69,7 @@ Below, we present the main technologies and tools utilized for the development a
             \hline
             \textbf{Logo} & \textbf{Technology/Tool \& Description} \\
             \hline
-            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/android_studio_logo.png}} & \setstretch{1.2}\textbf{Android Studio} \cite{androidstudio}: The official Integrated Development Environment (IDE) for Android app development, based on IntelliJ IDEA. It provides a comprehensive suite of tools including an emulator, design tools, and a powerful debugger, essential for developing, testing, and optimizing the Flutter-based Credix mobile application. \\
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/android_studio_logo.png}} & \setstretch{1.2}\textbf{Android Studio} \cite{androidstudio}: The official Integrated Development Environment (IDE) for Android app development, based on IntelliJ IDEA. It provides a comprehensive suite of tools including an emulator, design tools, and a powerful debugger, essential for developing, testing, and optimizing the Flutter-based Credix end user mobile application. \\
             \hline
             \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/intellij_logo.png}} & \setstretch{1.2}\textbf{IntelliJ IDEA} \cite{intellij}: A powerful Integrated Development Environment (IDE) for Java and other languages, developed by JetBrains. It provides intelligent code completion, advanced refactoring, and seamless integration with tools like Maven, Git, and Spring frameworks, enhancing productivity for Credix's backend development team. \\
             \hline
@@ -79,7 +79,7 @@ Below, we present the main technologies and tools utilized for the development a
             \hline
             \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/render_logo.png}} & \setstretch{1.2}\textbf{Render} \cite{render}: A modern cloud platform that provides seamless deployment and hosting for web applications and APIs. It offers automatic builds from Git repositories, managed PostgreSQL databases, and SSL certificates, making it ideal for hosting Credix's Spring Boot backend services with integrated database management and API documentation. \\
             \hline
-            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/figma_logo.png}} & \setstretch{1.2}\textbf{Figma} \cite{figma}: A collaborative, cloud-based design tool used for creating user interfaces (UI) and user experiences (UX). It is essential for designing Credix's web application screens, prototyping interactions, and ensuring a consistent and intuitive visual design across all user roles. \\
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/figma_logo.png}} & \setstretch{1.2}\textbf{Figma} \cite{figma}: A collaborative, cloud-based design tool used for creating user interfaces (UI) and end user experiences (UX). It is essential for designing Credix's web application screens, prototyping interactions, and ensuring a consistent and intuitive visual design across all user roles. \\
             \hline
         \end{tabular}
     \end{adjustbox}

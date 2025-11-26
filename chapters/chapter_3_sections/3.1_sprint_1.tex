@@ -2,7 +2,7 @@
 
 \subsection{Sprint 1 Backlog}
 
-The first sprint focuses on establishing the fundamental authentication infrastructure and user management capabilities for the Credix mobile payment application. This sprint implements a three-tier role-based access control system distinguishing between Super Admin, Admin, and End User, with automatic wallet creation upon user account setup. The following table presents the user stories prioritized for this sprint:
+The first sprint focuses on establishing the fundamental authentication infrastructure and end user management capabilities for the Credix mobile payment application. This sprint implements a three-tier role-based access control system distinguishing between Super Admin, Admin, and End User, with automatic wallet creation upon end user account setup. The following table presents the user stories prioritized for this sprint:
 
 \begin{table}[!htbp]
   \centering
@@ -45,7 +45,7 @@ The following diagram illustrates the main use cases implemented during Sprint 1
 
 \clearpage
 
-\subsubsection{UC1: Manage End Users}
+\subsubsection{Manage End Users}
 
 \begin{longtable}{|p{4cm}|p{11cm}|}
         \caption{Description of Use Case « Manage End Users »}
@@ -60,21 +60,21 @@ The following diagram illustrates the main use cases implemented during Sprint 1
       \item view the list of users and their statuses.
     \end{itemize} \\ \hline
         \textbf{Preconditions} & The Admin is authenticated and has the rights to manage end user accounts. \\ \hline
-    \textbf{Postconditions} & End user accounts are created, updated, or deleted; wallets are automatically created for new users. \\ \hline
+    \textbf{Postconditions} & End user accounts are created, updated, or deleted; wallets are automatically created for new end users. \\ \hline
     \textbf{Nominal Scenario} &
       \begin{enumerate}[nosep,leftmargin=*]
-        \item The Admin accesses the user management interface.
+        \item The Admin accesses the end user management interface.
         \item The system displays the list of existing end user accounts with their statuses.
         \item The Admin chooses to add, modify, or delete an account.
         \item The Admin enters or modifies account information (email, password).
         \item The system validates the data and records the modification.
-        \item For a new user, the system automatically creates a wallet.
-        \item The system confirms the update of user accounts.
+        \item For a new end user, the system automatically creates a wallet.
+        \item The system confirms the update of end user accounts.
       \end{enumerate} \\ \hline
     \textbf{Alternative Scenarios} &
       \begin{enumerate}[nosep,leftmargin=*]
         \item If a required field is empty, the system displays « Required Field » and blocks the action.
-        \item If the email already exists, the system displays « User already exists ».
+        \item If the email already exists, the system displays « End User already exists ».
         \item If the Admin cancels the action, no modification is made.
       \end{enumerate} \\ \hline
     \textbf{Exception Scenarios} &
@@ -85,7 +85,7 @@ The following diagram illustrates the main use cases implemented during Sprint 1
 
 \clearpage
 
-\subsubsection{UC2: Manage Wallets}
+\subsubsection{Manage Wallets}
 
 \begin{longtable}{|p{4cm}|p{11cm}|}
       \caption{Description of Use Case « Manage Wallets »}
@@ -99,14 +99,14 @@ The following diagram illustrates the main use cases implemented during Sprint 1
   \textbf{Nominal Scenario} &
     \begin{enumerate}[nosep,leftmargin=*]
       \item The Admin navigates to the wallet management interface.
-      \item The Admin selects a user and chooses « Create », « Update », « Delete », or « View ».
+      \item The Admin selects an end user and chooses « Create », « Update », « Delete », or « View ».
       \item The Admin enters or modifies wallet details (initial balance, status).
       \item The system generates a unique tokenizedId for the new wallet.
       \item The system records the wallet and displays a success message.
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
-      \item If the user already has a wallet, the system displays « Wallet already exists ».
+      \item If the end user already has a wallet, the system displays « Wallet already exists ».
       \item If the Admin cancels the action, the wallet remains unchanged.
     \end{enumerate} \\ \hline
   \textbf{Exception Scenarios} &
@@ -117,7 +117,7 @@ The following diagram illustrates the main use cases implemented during Sprint 1
 
 \clearpage
 
-\subsubsection{UC3: Manage Admins}
+\subsubsection{Manage Admins}
 
 \begin{longtable}{|p{4cm}|p{11cm}|}
       \caption{Description of Use Case « Manage Admins »}
@@ -151,7 +151,7 @@ The following diagram illustrates the main use cases implemented during Sprint 1
 
 \clearpage
 
-\subsubsection{UC4: Authenticate}
+\subsubsection{Authenticate}
 
 \begin{longtable}{|p{4cm}|p{11cm}|}
       \caption{Description of Use Case « Authenticate »}
@@ -168,7 +168,7 @@ The following diagram illustrates the main use cases implemented during Sprint 1
       \item The user enters their email and password.
       \item The system validates the credentials against the database.
       \item The system generates a JWT token containing role information.
-      \item The user is redirected to the appropriate interface (Super Admin dashboard, Admin dashboard, or User wallet).
+      \item The user is redirected to the appropriate interface (Super Admin dashboard, Admin dashboard, or End User wallet).
     \end{enumerate} \\ \hline
   \textbf{Alternative Scenarios} &
     \begin{enumerate}[nosep,leftmargin=*]
@@ -198,14 +198,14 @@ This diagram illustrates the authentication process where a user (Super Admin, A
 \label{fig:seq_authentication}
 \end{figure}
 
-\subsubsection{User Creation Sequence Diagram}
+\subsubsection{End User Creation Sequence Diagram}
 
-This diagram shows the user creation process initiated by an Admin. The Admin submits user details through the interface, which are processed by the user controller. The system validates the data, checks for existing users, creates the new user account, and automatically triggers wallet creation for the new end user.
+This diagram shows the end user creation process initiated by an Admin. The Admin submits end user details through the interface, which are processed by the user controller. The system validates the data, checks for existing end users, creates the new end user account, and automatically triggers wallet creation for the new end user.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{images/seq_user_creation.png}
-\caption{User Creation Sequence Diagram}
+\caption{End User Creation Sequence Diagram}
 \label{fig:seq_user_creation}
 \end{figure}
 
@@ -232,7 +232,7 @@ The diagram shows inheritance relationships between User and its subclasses (Sup
 
 \subsection{Realization (Sprint 1)}
 
-In this section, we present the main interfaces developed during Sprint 1, focused on secure authentication and user management. The implementation covers both web application interfaces for Super Admins and Admins, and user interfaces for End Users. Each interface is illustrated with screenshots and accompanied by functionality descriptions.
+In this section, we present the main interfaces developed during Sprint 1, focused on secure authentication and end user management. The implementation covers both web application interfaces for Super Admins and Admins, and end user interfaces for End Users. Each interface is illustrated with screenshots and accompanied by functionality descriptions.
 
 \subsubsection{Authentication Interface}
 
@@ -255,7 +255,7 @@ The login interface provides secure access for all user types: Super Admin, Admi
 — \textbf{Key Features:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
 \item Email and password input fields with validation
-\item Role-based redirection (Super Admin dashboard, Admin dashboard, or User wallet)
+\item Role-based redirection (Super Admin dashboard, Admin dashboard, or End User wallet)
 \item JWT token generation and secure storage
 \item Error handling for invalid credentials and network issues
 \end{itemize}
@@ -295,23 +295,31 @@ The web-based Super Admin dashboard provides comprehensive admin account managem
 \item Manages admin permissions and access levels
 \end{itemize}
 
-\subsubsection{User Management Interface}
+\subsubsection{End User Management Interface}
 
-The user management interface allows Admins to create, update, delete, and view end user accounts.
+The end user management interface allows Admins to create, update, delete, and view end user accounts.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{images/web_users_list}
-  \caption{User Management Interface - Admin View}
+  \caption{End User Management Interface - Admin View}
   \label{fig:sprint1_user_management}
 \end{figure}
 
 — \textbf{Key Features:}
 \begin{itemize}[nosep,leftmargin=*,label=•]
-\item User management: Create, update, delete, and view end user accounts
-\item Bulk operations for efficient user onboarding
-\item User status monitoring and account activation controls
+\item End user management: Create, update, delete, and view end user accounts
+\item Bulk operations for efficient end user onboarding
+\item End user status monitoring and account activation controls
 \item Audit logging for all administrative actions
+\end{itemize}
+
+— \textbf{Admin Workflow:}
+\begin{itemize}[nosep,leftmargin=*,label=•]
+\item Admin authenticates and accesses management dashboard
+\item Creates end user accounts with secure credentials
+\item System automatically generates wallets for new end users
+\item Admin can monitor end user activity and wallet status
 \end{itemize}
 
 \subsubsection{Wallet Management Interface}
@@ -331,14 +339,6 @@ The wallet management interface enables Admins to manage end user wallets with b
 \item Real-time balance monitoring and updates
 \item Wallet activation and deactivation controls
 \item Transaction history access per wallet
-\end{itemize}
-
-— \textbf{Admin Workflow:}
-\begin{itemize}[nosep,leftmargin=*,label=•]
-\item Admin authenticates and accesses management dashboard
-\item Creates end user accounts with secure credentials
-\item System automatically generates wallets for new users
-\item Admin can monitor user activity and wallet status
 \end{itemize}
 
 \subsubsection{End User Interface}
@@ -364,6 +364,6 @@ The mobile application provides end users with secure access to their wallet inf
 \begin{itemize}[nosep,leftmargin=*,label=•]
 \item Simple, intuitive login process
 \item Immediate access to wallet information post-authentication
-\item Clear navigation and user-friendly interface design
+\item Clear navigation and end user-friendly interface design
 \item Secure session management with automatic logout
 \end{itemize}

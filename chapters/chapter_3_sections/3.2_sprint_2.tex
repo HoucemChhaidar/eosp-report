@@ -43,11 +43,11 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 
 \subsection{Use Case Descriptions}
 
-\subsubsection{UC4: Generate Time-bound Barcode}
+\subsubsection{Generate Time-bound Barcode}
 
 \begin{longtable}{|p{3cm}|p{11cm}|}
-\hline
-\textbf{Use Case ID} & UC4 \\
+\caption{Description of Use Case « Generate Time-bound Barcode »}
+\label{tab:uc_generate_timebound_barcode} \\
 \hline
 \textbf{Use Case Name} & Generate Time-bound Barcode \\
 \hline
@@ -67,24 +67,24 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \begin{itemize}[nosep,leftmargin=*]
 \item Time-bound barcode is generated using wallet's tokenizedId
 \item Barcode expires after a set time period for security
-\item User can regenerate barcode as needed
+\item End user can regenerate barcode as needed
 \end{itemize} \\
 \hline
 \textbf{Main Flow} & 
 \begin{enumerate}[nosep,leftmargin=*]
 \item End user opens wallet application and navigates to payment section
-\item User selects "Generate Payment Barcode" option
-\item System retrieves user's wallet tokenizedId from database
+\item End user selects "Generate Payment Barcode" option
+\item System retrieves end user's wallet tokenizedId from database
 \item System generates barcode encoding the tokenizedId
 \item System displays barcode on screen with countdown timer
 \item Barcode automatically expires after the time limit for security
-\item User can regenerate new barcode if needed
+\item End user can regenerate new barcode if needed
 \end{enumerate} \\
 \hline
 \textbf{Alternative Flow} & 
 \begin{itemize}[nosep,leftmargin=*]
-\item \textbf{A1:} Barcode expires - User can generate new barcode immediately
-\item \textbf{A2:} Multiple payment attempts - User can generate multiple barcodes in sequence
+\item \textbf{A1:} Barcode expires - End user can generate new barcode immediately
+\item \textbf{A2:} Multiple payment attempts - End user can generate multiple barcodes in sequence
 \end{itemize} \\
 \hline
 \textbf{Exception Flow} & 
@@ -96,11 +96,11 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \end{longtable}
 
-\subsubsection{UC5: View Real-time Transaction Confirmation}
+\subsubsection{View Real-time Transaction Confirmation}
 
 \begin{longtable}{|p{3cm}|p{11cm}|}
-\hline
-\textbf{Use Case ID} & UC5 \\
+\caption{Description of Use Case « View Real-time Transaction Confirmation »}
+\label{tab:uc_view_realtime_transaction_confirmation} \\
 \hline
 \textbf{Use Case Name} & View Real-time Transaction Confirmation \\
 \hline
@@ -112,25 +112,25 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \textbf{Preconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
-\item User has initiated a payment transaction
+\item End user has initiated a payment transaction
 \item Payment processing is in progress
 \end{itemize} \\
 \hline
 \textbf{Postconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
-\item User receives immediate transaction confirmation
+\item End user receives immediate transaction confirmation
 \item Wallet balance is updated in real-time
-\item Transaction is recorded in user's history
+\item Transaction is recorded in end user's history
 \end{itemize} \\
 \hline
 \textbf{Main Flow} & 
 \begin{enumerate}[nosep,leftmargin=*]
-\item User initiates a payment transaction
+\item End user initiates a payment transaction
 \item System processes payment through the transaction controller
 \item System validates transaction and updates wallet balance
-\item User receives real-time notification of successful payment
+\item End user receives real-time notification of successful payment
 \item System displays transaction confirmation with details (amount, timestamp, store, balance)
-\item User can view digital receipt immediately
+\item End user can view digital receipt immediately
 \end{enumerate} \\
 \hline
 \textbf{Alternative Flow} & 
@@ -148,11 +148,11 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \end{longtable}
 
-\subsubsection{UC6: View Balance}
+\subsubsection{View Balance}
 
 \begin{longtable}{|p{3cm}|p{11cm}|}
-\hline
-\textbf{Use Case ID} & UC6 \\
+\caption{Description of Use Case « View Balance »}
+\label{tab:uc_view_balance} \\
 \hline
 \textbf{Use Case Name} & View Balance \\
 \hline
@@ -164,7 +164,7 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \textbf{Preconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
-\item User is authenticated and has access to wallet
+\item End user is authenticated and has access to wallet
 \item Wallet exists and is active in the system
 \end{itemize} \\
 \hline
@@ -172,15 +172,15 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \begin{itemize}[nosep,leftmargin=*]
 \item Current wallet balance is displayed accurately
 \item Balance information is refreshed from server
-\item User has visibility into available funds
+\item End user has visibility into available funds
 \end{itemize} \\
 \hline
 \textbf{Main Flow} & 
 \begin{enumerate}[nosep,leftmargin=*]
-\item User opens wallet application home screen
+\item End user opens wallet application home screen
 \item System automatically retrieves current wallet balance
 \item System displays balance prominently on home interface
-\item User can refresh to update balance manually
+\item End user can refresh to update balance manually
 \item System shows last updated timestamp for transparency
 \item Balance updates automatically after transactions
 \end{enumerate} \\
@@ -199,11 +199,11 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \end{longtable}
 
-\subsubsection{UC7: View Transactions History}
+\subsubsection{View Transactions History}
 
 \begin{longtable}{|p{3cm}|p{11cm}|}
-\hline
-\textbf{Use Case ID} & UC7 \\
+\caption{Description of Use Case « View Transactions History »}
+\label{tab:uc_view_transactions_history} \\
 \hline
 \textbf{Use Case Name} & View Transactions History \\
 \hline
@@ -215,35 +215,35 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \textbf{Preconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
-\item User is authenticated and has wallet access
-\item User has performed at least one transaction (or none for empty state)
+\item End user is authenticated and has wallet access
+\item End user has performed at least one transaction (or none for empty state)
 \end{itemize} \\
 \hline
 \textbf{Postconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
 \item Complete transaction history is displayed chronologically
-\item User can access detailed information for each transaction
+\item End user can access detailed information for each transaction
 \item Transaction data is properly formatted and searchable
 \end{itemize} \\
 \hline
 \textbf{Main Flow} & 
 \begin{enumerate}[nosep,leftmargin=*]
-\item User navigates to "Transaction History" from main menu
-\item System retrieves all transactions associated with user's wallet
+\item End user navigates to "Transaction History" from main menu
+\item System retrieves all transactions associated with end user's wallet
 \item System displays transactions in reverse chronological order
 \item Each transaction shows: date, amount, store, status, and type
-\item User can tap on any transaction to view detailed information
+\item End user can tap on any transaction to view detailed information
 \item Detailed view includes: transaction ID, timestamp, description, receipt
-\item User can filter transactions by date range, amount, or store
-\item User can search transactions using keywords
+\item End user can filter transactions by date range, amount, or store
+\item End user can search transactions using keywords
 \end{enumerate} \\
 \hline
 \textbf{Alternative Flow} & 
 \begin{itemize}[nosep,leftmargin=*]
 \item \textbf{A1:} No transactions - System displays empty state with helpful guidance
 \item \textbf{A2:} Large transaction history - System implements pagination for performance
-\item \textbf{A3:} Export functionality - User can export transaction history as PDF/CSV
-\item \textbf{A4:} Print receipt - User can print individual transaction receipts
+\item \textbf{A3:} Export functionality - End user can export transaction history as PDF/CSV
+\item \textbf{A4:} Print receipt - End user can print individual transaction receipts
 \end{itemize} \\
 \hline
 \textbf{Exception Flow} & 
@@ -255,11 +255,11 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \end{longtable}
 
-\subsubsection{UC8: View Stores}
+\subsubsection{View Stores}
 
 \begin{longtable}{|p{3cm}|p{11cm}|}
-\hline
-\textbf{Use Case ID} & UC8 \\
+\caption{Description of Use Case « View Stores »}
+\label{tab:uc_view_stores} \\
 \hline
 \textbf{Use Case Name} & View Stores \\
 \hline
@@ -271,33 +271,33 @@ The following diagram illustrates the main use cases implemented during Sprint 2
 \hline
 \textbf{Preconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
-\item User is authenticated and has wallet access
+\item End user is authenticated and has wallet access
 \item Store data is available in the system
 \end{itemize} \\
 \hline
 \textbf{Postconditions} & 
 \begin{itemize}[nosep,leftmargin=*]
-\item List of stores is displayed to the user
-\item User can view store details including name, type, and location
-\item User can navigate to store locations
+\item List of stores is displayed to the end user
+\item End user can view store details including name, type, and location
+\item End user can navigate to store locations
 \end{itemize} \\
 \hline
 \textbf{Main Flow} & 
 \begin{enumerate}[nosep,leftmargin=*]
-\item User navigates to "Stores" from main menu
+\item End user navigates to "Stores" from main menu
 \item System retrieves list of available stores from database
 \item System displays stores with name, description, and type
-\item User can view store details including location (latitude, longitude)
-\item User can filter stores by type (Retail, Restaurant, Cafe, Clothing, Grocery, Pharmacy, Electronics, Bookstore, Gas Station, Bakery)
-\item User can search for specific stores by name
-\item User can view store location on map
+\item End user can view store details including location (latitude, longitude)
+\item End user can filter stores by type (Retail, Restaurant, Cafe, Clothing, Grocery, Pharmacy, Electronics, Bookstore, Gas Station, Bakery)
+\item End user can search for specific stores by name
+\item End user can view store location on map
 \end{enumerate} \\
 \hline
 \textbf{Alternative Flow} & 
 \begin{itemize}[nosep,leftmargin=*]
 \item \textbf{A1:} No stores available - System displays empty state with message
 \item \textbf{A2:} Location services enabled - System shows nearby stores first
-\item \textbf{A3:} Favorite stores - User can mark stores as favorites for quick access
+\item \textbf{A3:} Favorite stores - End user can mark stores as favorites for quick access
 \end{itemize} \\
 \hline
 \textbf{Exception Flow} & 

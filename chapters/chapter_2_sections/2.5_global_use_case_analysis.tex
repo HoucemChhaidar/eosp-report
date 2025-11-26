@@ -8,9 +8,9 @@ The Credix ecosystem operates through three primary actors, each with distinct r
 
 \textbf{SUPER\_ADMIN Actor:} Represents the top-level system administrators who oversee the entire Credix platform. This actor manages ADMIN accounts, distributes bulk credits to ADMINs after they provide cash payment at ASM, monitors system-wide activity, and maintains overall platform governance and operational oversight.
 
-\textbf{ADMIN Actor:} Represents the business entities that utilize Credix for employee payment management. This actor encompasses the administrative and managerial functions essential for organizational payment operations, including bulk credit management, user administration, financial oversight, and comprehensive analytics capabilities.
+\textbf{ADMIN Actor:} Represents the business entities that utilize Credix for employee payment management. This actor encompasses the administrative and managerial functions essential for organizational payment operations, including bulk credit management, end user administration, financial oversight, and comprehensive analytics capabilities.
 
-\textbf{USER Actor:} Represents individual employees or beneficiaries who utilize the Credix mobile application for daily payment transactions. This actor focuses on transactional capabilities, account management, and real-time payment processing functionalities.
+\textbf{END\_USER Actor:} Represents individual employees or beneficiaries who utilize the Credix mobile application for daily payment transactions. This actor focuses on transactional capabilities, account management, and real-time payment processing functionalities.
 
 \subsection{Use Case Organization and Sprint Mapping}
 
@@ -25,9 +25,9 @@ The global use case diagram strategically organizes system functionality across 
 
 \clearpage
 
-\textbf{Sprint 1 (Purple):} Establishes foundational user management capabilities, enabling ADMIN actors to create, update, delete, and view users within the system. This sprint includes comprehensive wallet management functionality, providing the administrative foundation necessary for subsequent payment operations.
+\textbf{Sprint 1 (Purple):} Establishes foundational end user management capabilities, enabling ADMIN actors to create, update, delete, and view end users within the system. This sprint includes comprehensive wallet management functionality, providing the administrative foundation necessary for subsequent payment operations.
 
-\textbf{Sprint 2 (Blue):} Implements core user transactional capabilities, including balance viewing, transaction history access, time-bound barcode generation for secure payments, and real-time transaction confirmation systems. This sprint delivers the essential payment functionality that users require for daily operations.
+\textbf{Sprint 2 (Blue):} Implements core end user transactional capabilities, including balance viewing, transaction history access, time-bound barcode generation for secure payments, and real-time transaction confirmation systems. This sprint delivers the essential payment functionality that end users require for daily operations.
 
 \textbf{Sprint 3 (Orange):} Focuses on hierarchical credit management operations, enabling SUPER\_ADMIN to distribute bulk credit to ADMIN after cash payment at ASM, and ADMIN to distribute credit across end users. This sprint addresses the sophisticated financial management requirements of the credit distribution hierarchy.
 
@@ -39,7 +39,7 @@ The diagram illustrates several critical cross-cutting concerns that span multip
 
 \textbf{Authentication:} Every use case includes authentication requirements, ensuring secure access control throughout the system. This universal security requirement demonstrates the system's commitment to financial data protection and regulatory compliance.
 
-\textbf{Extend Relationships:} Multiple use cases utilize extend relationships to provide specialized functionality while maintaining core use case simplicity. For example, user management extends to specific CRUD operations, and transaction viewing extends to receipt printing capabilities.
+\textbf{Extend Relationships:} Multiple use cases utilize extend relationships to provide specialized functionality while maintaining core use case simplicity. For example, end user management extends to specific CRUD operations, and transaction viewing extends to receipt printing capabilities.
 
 \textbf{Include Relationships:} The extensive use of include relationships with authentication demonstrates the system's security-first approach, ensuring that all functional capabilities require proper user verification before execution.
 

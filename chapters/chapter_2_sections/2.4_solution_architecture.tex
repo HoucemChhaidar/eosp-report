@@ -7,7 +7,7 @@ In this section, we present the client-server architecture chosen for Credix, wh
 To ensure better scalability, a clear separation of responsibilities, and the possibility of independent evolutions, we have adopted a client-server architecture based on RESTful Web Services. The front-end developed with Flutter communicates via HTTP with a Spring Boot back-end exposing REST APIs. The main advantages of this choice are:
 
 \begin{itemize}
-    \item \textbf{Layer Decoupling:} The front-end (Flutter) communicates via HTTP with a Spring Boot back-end, which exposes REST APIs. This allows the user interface to evolve independently of the business logic.
+    \item \textbf{Layer Decoupling:} The front-end (Flutter) communicates via HTTP with a Spring Boot back-end, which exposes REST APIs. This allows the end user interface to evolve independently of the business logic.
     \item \textbf{Service Reusability:} Each core component (e.g., authentication, payment processing, corporate credit management, fraud detection) becomes a distinct, reusable service.
     \item \textbf{Fine-grained Scalability:} Critical services (e.g., real-time payment validation, fraud engine) can be scaled autonomously based on load, without impacting the other services.
     \item \textbf{Third-party Service Integration:} We seamlessly integrate with external services, notably ASM POS APIs for barcode scanning and validation, without additional complexity in the core business code.
@@ -18,7 +18,7 @@ To ensure better scalability, a clear separation of responsibilities, and the po
 Our architecture distinguishes three main layers:
 
 \begin{itemize}
-    \item \textbf{Front-end (Flutter):} The mobile application responsible for the User Interface (UI), managing states via BLoC, and making API calls to the backend.
+    \item \textbf{Front-end (Flutter):} The mobile application responsible for the End User Interface (UI), managing states via BLoC, and making API calls to the backend.
     \item \textbf{Back-end (Spring Boot):} The REST APIs exposing business endpoints, orchestrating calls to the database (PostgreSQL) and third-party services (ASM POS).
     \item \textbf{Third-party Services:} Primarily ASM POS APIs, which integrate via HTTP for real-time payment validation and settlement synchronization.
 \end{itemize}
@@ -52,9 +52,9 @@ The Flutter client follows Clean Architecture principles with a clear five-layer
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Presentation Layer (Pages \& Widgets):} Contains all UI components organized by features (authentication, wallet, transactions, barcode scanning, etc.). This layer focuses purely on rendering the user interface and handling user interactions. Each feature includes dedicated pages and reusable widgets that display data and capture user input.
+    \item \textbf{Presentation Layer (Pages \& Widgets):} Contains all UI components organized by features (authentication, wallet, transactions, barcode scanning, etc.). This layer focuses purely on rendering the end user interface and handling end user interactions. Each feature includes dedicated pages and reusable widgets that display data and capture end user input.
     
-    \item \textbf{State Management Layer (BLoCs/Cubits):} Acts as an intermediary between the UI and business logic, implementing the BLoC (Business Logic Component) pattern. This layer handles user events, manages application state, and emits new states to update the UI reactively. Each feature has its dedicated BLoC (AuthBloc, WalletBloc, TransactionBloc, etc.) ensuring clean separation of presentation logic.
+    \item \textbf{State Management Layer (BLoCs/Cubits):} Acts as an intermediary between the UI and business logic, implementing the BLoC (Business Logic Component) pattern. This layer handles end user events, manages application state, and emits new states to update the UI reactively. Each feature has its dedicated BLoC (AuthBloc, WalletBloc, TransactionBloc, etc.) ensuring clean separation of presentation logic.
     
     \item \textbf{Domain Layer (Business Logic):} Defines repository interfaces, entities, and use cases that encapsulate core business rules. This layer is completely independent of external frameworks and contains the pure business logic of the application. It defines contracts through repository interfaces and implements business validation rules, ensuring high testability and maintainability.
     
