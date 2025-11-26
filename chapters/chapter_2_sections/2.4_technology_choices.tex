@@ -1,0 +1,74 @@
+\section{Technology Choices and Development Environment}
+
+Below, we present the main technologies and tools utilized for the development and deployment of Credix, grouped by their primary function within the project. Each table includes the logo and a detailed description of their role.
+
+\begin{table}[H]
+    \centering
+    \caption{Core Development Technologies}
+    \label{tab:core_tech}
+    \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{| >{\centering\arraybackslash}m{3cm} | >{\arraybackslash}m{12cm} |}
+            \hline
+            \textbf{Logo} & \textbf{Technology/Tool \& Description} \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/flutter_logo.png}} & \setstretch{1.2}\textbf{Flutter} \cite{flutter}: An open-source UI toolkit developed by Google for building natively compiled applications for mobile (Android, iOS), web, and desktop from a single codebase using the Dart language. It offers high-performance and reactive interfaces, making it ideal for Credix's end user mobile application, ensuring a smooth and visually appealing payment experience. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/angular_logo.png}} & \setstretch{1.2}\textbf{Angular} \cite{angular}: A TypeScript-based open-source web application framework developed by Google for building dynamic single-page applications (SPAs). It provides a comprehensive platform with powerful features like two-way data binding, dependency injection, and modular architecture, making it ideal for Credix's web-based administrative interfaces and end user dashboards. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/spring_boot_logo.png}} & \setstretch{1.2}\textbf{Spring Boot} \cite{springboot}: An open-source Java framework built on top of Spring Framework, designed to simplify the creation of stand-alone, production-grade Spring applications. It is ideal for building robust and modular RESTful APIs, forming the backbone of Credix's backend services for payment processing and credit management. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/postgresql_logo.png}} & \setstretch{1.2}\textbf{PostgreSQL} \cite{postgresql}: A powerful, open-source relational database management system (RDBMS) known for its strong adherence to SQL standards, reliability, feature robustness, and performance. It is chosen for storing structured data such as user accounts, transaction records, and credit configurations, ensuring data integrity and complex query capabilities. \\
+            \hline
+        \end{tabular}
+    \end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Development Environments and API Tools}
+    \label{tab:dev_env_api_tools}
+    \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{| >{\centering\arraybackslash}m{3cm} | >{\arraybackslash}m{12cm} |}
+            \hline
+            \textbf{Logo} & \textbf{Technology/Tool \& Description} \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/android_studio_logo.png}} & \setstretch{1.2}\textbf{Android Studio} \cite{androidstudio}: The official Integrated Development Environment (IDE) for Android app development, based on IntelliJ IDEA. It provides a comprehensive suite of tools including an emulator, design tools, and a powerful debugger, essential for developing, testing, and optimizing the Flutter-based Credix end user mobile application. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/intellij_logo.png}} & \setstretch{1.2}\textbf{IntelliJ IDEA} \cite{intellij}: A powerful Integrated Development Environment (IDE) for Java and other languages, developed by JetBrains. It provides intelligent code completion, advanced refactoring, and seamless integration with tools like Maven, Git, and Spring frameworks, enhancing productivity for Credix's backend development team. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/postman_logo.png}} & \setstretch{1.2}\textbf{Postman} \cite{postman}: A graphical tool for developing and testing REST APIs. It facilitates sending requests, managing environments, and creating automated test collections, crucial for validating Credix's payment validation and credit management APIs. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/swagger_logo.png}} & \setstretch{1.2}\textbf{Swagger (OpenAPI)} \cite{swagger}: A set of open-source tools for designing, documenting, and testing REST APIs. Swagger automatically generates API specifications and interactive web interfaces, enabling clear communication and testing of Credix's backend services. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/render_logo.png}} & \setstretch{1.2}\textbf{Render} \cite{render}: A modern cloud platform that provides seamless deployment and hosting for web applications and APIs. It offers automatic builds from Git repositories, managed PostgreSQL databases, and SSL certificates, making it ideal for hosting Credix's Spring Boot backend services with integrated database management and API documentation. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/figma_logo.png}} & \setstretch{1.2}\textbf{Figma} \cite{figma}: A collaborative, cloud-based design tool used for creating user interfaces (UI) and end user experiences (UX). It is essential for designing Credix's web application screens, prototyping interactions, and ensuring a consistent and intuitive visual design across all user roles. \\
+            \hline
+        \end{tabular}
+    \end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Version Control, DevOps, and Monitoring Tools}
+    \label{tab:version_control_devops}
+    \begin{adjustbox}{max width=\textwidth}
+        \begin{tabular}{| >{\centering\arraybackslash}m{3cm} | >{\arraybackslash}m{12cm} |}
+            \hline
+            \textbf{Logo} & \textbf{Technology/Tool \& Description} \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/git_logo.png}} & \setstretch{1.2}\textbf{Git} \cite{git}: A distributed version control system that ensures a complete history of source code, facilitates team collaboration through pull requests, and supports continuous integration via CI/CD pipelines. It is fundamental for managing Credix's codebase and collaborative development. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/github_logo.png}} & \setstretch{1.2}\textbf{GitHub} \cite{github}: A leading web-based platform for version control and collaborative software development, built around Git. It hosts Credix's repositories, enabling team collaboration through pull requests, issue tracking, and serving as the foundation for continuous integration and deployment workflows. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/docker_logo.png}} & \setstretch{1.2}\textbf{Docker} \cite{docker}: A containerization platform that isolates application dependencies, ensuring portability and consistent deployments across different environments (development, staging, production). It guarantees that Credix's backend services run uniformly, simplifying deployment and scaling. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/jenkins_logo.png}} & \setstretch{1.2}\textbf{Jenkins} \cite{jenkins}: An open-source automation server that enables continuous integration and continuous deployment (CI/CD) pipelines. It automates the building, testing, and deployment processes for Credix's web application, facilitating seamless deployment workflows. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/uml_logo.png}} & \setstretch{1.2}\textbf{Unified Modeling Language (UML)} \cite{uml}: A standardized language for system modeling, utilizing diagrams (e.g., use case, class, sequence, deployment) to graphically describe software architecture and behavior. UML is used in Credix's design phase to visualize system components, interactions, and data flows. \\
+            \hline
+            \raisebox{-0.3\height}{\includegraphics[height=1.5cm, width=\linewidth, keepaspectratio]{images/sentry_logo.png}} & \setstretch{1.2}\textbf{Sentry} \cite{sentry}: An open-source platform dedicated to error management and application performance monitoring. It helps developers detect, report, and resolve issues in real-time, crucial for maintaining the stability and reliability of the Credix payment system. \\
+            \hline
+        \end{tabular}
+    \end{adjustbox}
+\end{table}
